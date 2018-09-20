@@ -1,1 +1,1 @@
-# bltg
+BLTG Core integration/staging repository
