@@ -33,7 +33,7 @@ More information at [block-logic.com](https://block-logic.com) Visit our ANN thr
 ### PoW and PoS Rewards Breakdown
 
 <table>
-<th>Block Height</th><th>Masternodes</th><th>Miner</th><th>Budget *</th>
+<th>Block Height</th><th>Stakers</th><th>Masternodes</th><th>Budget *</th>
 <tr><td>11-300</td><td>40% (0.40 BLTG)</td><td>60% (0.60 BLTG)</td><td>N/A</td></tr>
 <tr><td>301-20200</td><td>20% (0.20 BLTG)</td><td>80% (0.80 BLTG)</td><td>20% (0.20 BLTG)</td></tr>
 <tr><td>20201-279400</td><td>20% (2 BLTG)</td><td>80% (8 BLTG)</td><td>20% (2 BLTG)</td></tr>
