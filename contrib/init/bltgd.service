@@ -1,0 +1,26 @@
+[Unit]
+Description=BLTG's distributed currency daemon
+After=network.target
+
+[Service]
+User=bltg
+Group=bltg
+
+Type=forking
+PIDFile=/var/lib/bltgd/bltgd.pid
+
+ExecStart=/usr/bin/bltgd -daemon -pid=/var/lib/bltgd/bltgd.pid \
+          -conf=/etc/bltg/bltg.conf -datadir=/var/lib/bltgd
+
+ExecStop=-/usr/bin/bltg-cli -conf=/etc/bltg/bltg.conf \
+         -datadir=/var/lib/bltgd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
