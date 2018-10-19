@@ -45,4 +45,4 @@ More information at [block-logic.com](https://block-logic.com) Visit our ANN thr
 <tr><td>1575401-Infinite</td><td>20% (1 BLTG)</td><td>80% (4 BLTG)</td><td>20% (1 BLTG)</td></tr>
 </table>
 
-* Budget representation is merely informative as to what woill be stored for approval by Masternode community Holders
+* Budget representation is merely informative as to what will be stored for approval by Masternode community Holders
