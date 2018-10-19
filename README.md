@@ -27,7 +27,7 @@ More information at [block-logic.com](https://block-logic.com) Visit our ANN thr
 <table>
 <th colspan=4>Genesis Block</th>
 <tr><th>Block Height</th><th>Reward Amount</th><th>Notes</th></tr>
-<tr><td>1 - 11</td><td>300,000 BLTG</td><td>Initial Pre-mine. </td></tr>
+<tr><td>1 - 11</td><td>3000,000 BLTG</td><td>Initial Pre-mine. </td></tr>
 </table>
 
 ### PoW and PoS Rewards Breakdown
