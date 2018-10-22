@@ -20,7 +20,7 @@ More information at [block-logic.com](https://block-logic.com) Visit our ANN thr
 <tr><td>Premine</td><td>33 000 300 BLTG*</td></tr>
 </table>
 
-*30 000 300 BLTG Premine
+*33 000 300 BLTG Premine
 
 ### Reward Distribution
 
