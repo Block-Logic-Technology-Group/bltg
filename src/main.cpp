@@ -1813,19 +1813,19 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 3000000 * COIN;
     } else if (nHeight < 11 ) {
         nSubsidy = 3000000 * COIN;
-    } else if (nHeight < 20200 && nHeight >= 11) { // ~2 weeks for grace period
+    } else if (nHeight < 20201 && nHeight >= 11) { // ~1 week for grace period
         nSubsidy = 1 * COIN;
     } else if (nHeight < 279400 && nHeight >= 20201) { // ~6 month period
         nSubsidy = 10 * COIN;
-    } else if (nHeight < 538600 && nHeight >= 279401) { // ~6 month period
+    } else if (nHeight < 538600 && nHeight >= 279400) { // ~6 month period
         nSubsidy = 9 * COIN;
-    } else if (nHeight < 797800 && nHeight >= 538601) { // ~6 month period
+    } else if (nHeight < 797800 && nHeight >= 538600) { // ~6 month period
         nSubsidy = 8 * COIN;
-    } else if (nHeight < 1057000 && nHeight >= 797801) { // ~6 month period
+    } else if (nHeight < 1057000 && nHeight >= 797800) { // ~6 month period
         nSubsidy = 7 * COIN;
-    } else if (nHeight < 1316200 && nHeight >= 1057001) { // ~6 month period
+    } else if (nHeight < 1316200 && nHeight >= 1057000) { // ~6 month period
         nSubsidy = 6 * COIN;
-    } else if (nHeight < 1575400 && nHeight >= 1316201) { // last ~6 month period
+    } else if (nHeight < 1575400 && nHeight >= 1316200) { // last ~6 month period
         nSubsidy = 5 * COIN; // continuous rewards up to max supply
     }
     return nSubsidy;
