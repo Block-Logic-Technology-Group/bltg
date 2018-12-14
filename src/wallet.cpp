@@ -1697,7 +1697,7 @@ CAmount CWallet::GetLockedCoins() const
             const CWalletTx* pcoin = &(*it).second;
 
             if (pcoin->IsTrusted() && pcoin->GetDepthInMainChain() > 0)
-                nTotal += pcoin->GetLockedCredit();
+                nTotal -= pcoin->GetLockedCredit();
         }
     }
 
