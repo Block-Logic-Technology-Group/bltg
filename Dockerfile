@@ -16,7 +16,7 @@ RUN git clone https://github.com/Block-Logic-Technology-Group/bltg
 WORKDIR /usr/local/src/bltg
 
 RUN ./autogen.sh
-RUN ./configure
+RUN ./configure --disable-tests
 RUN make
 
 RUN adduser --disabled-password --home /bltg --gecos "" bltg
@@ -26,6 +26,7 @@ COPY bltg.conf /bltg/.bltg/bltg.conf
 RUN chown -R bltg:bltg /bltg/.bltg
 
 RUN cp /usr/local/src/bltg/src/bltgd /bltgd
+RUN cp /usr/local/src/bltg/src/bltg-cli /bltg-cli
 
 USER bltg
 WORKDIR /bltg
