@@ -22,6 +22,7 @@ RUN make
 RUN adduser --disabled-password --home /bltg --gecos "" bltg
 RUN echo "bltg ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+RUN mkdir -p /home/bltg/.bltg/
 RUN chown -R bltg:bltg /bltg/.bltg
 
 RUN cp /usr/local/src/bltg/src/bltgd /bltgd
