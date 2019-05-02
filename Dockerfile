@@ -17,7 +17,7 @@ ENV LC_ALL en_US.UTF-8
 WORKDIR /usr/local/src
 RUN git clone https://github.com/Block-Logic-Technology-Group/bltg
 
-WORKDIR /usr/local/src/bltg/src
+WORKDIR /usr/local/src/bltg
 
 RUN ./autogen.sh
 RUN ./configure
