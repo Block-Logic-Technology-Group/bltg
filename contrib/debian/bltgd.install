@@ -1,2 +1,3 @@
 usr/local/bin/bltgd usr/bin
 usr/local/bin/bltg-cli usr/bin
+debian/examples/bltg.conf etc/bltg

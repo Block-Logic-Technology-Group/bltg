@@ -1,0 +1,8 @@
+/usr/bin/bltg-cli		--	gen_context(system_u:object_r:bltg_exec_t,s0)
+/usr/sbin/bltgd		--	gen_context(system_u:object_r:bltg_exec_t,s0)
+/usr/lib(64)?/bltg/bltgd		--	gen_context(system_u:object_r:bltg_exec_t,s0)
+
+/etc/bltg(/.*)?		gen_context(system_u:object_r:bltg_conf_t,s0)
+/var/lib/bltg(/.*)?		gen_context(system_u:object_r:bltg_var_lib_t,s0)
+
+(/var)?/run/bltgd(/.*)?   gen_context(system_u:object_r:bltg_var_run_t,s0)

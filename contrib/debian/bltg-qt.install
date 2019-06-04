@@ -1,6 +1,6 @@
 usr/local/bin/bltg-qt usr/bin
-share/pixmaps/bitcoin32.xpm usr/share/pixmaps
-share/pixmaps/bitcoin16.xpm usr/share/pixmaps
-share/pixmaps/bitcoin128.png usr/share/pixmaps
+share/pixmaps/bltg32.xpm usr/share/pixmaps
+share/pixmaps/bltg16.xpm usr/share/pixmaps
+share/pixmaps/bltg128.png usr/share/pixmaps
 debian/bltg-qt.desktop usr/share/applications
 debian/bltg-qt.protocol usr/share/kde4/services/

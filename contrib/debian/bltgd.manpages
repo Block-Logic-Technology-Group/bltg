@@ -1,2 +1,2 @@
-debian/manpages/bltgd.1
-debian/manpages/bltg.conf.5
+doc/man/bltgd.1
+doc/man/bltg-cli.1

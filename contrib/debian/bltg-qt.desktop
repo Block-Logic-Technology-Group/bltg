@@ -1,12 +1,12 @@
 [Desktop Entry]
-Encoding=UTF-8
-Name=BLTG
+Version=1.0
+Name=BLTG Core
 Comment=BLTG P2P Cryptocurrency
-Comment[fr]=BLTG, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=BLTG, eşten eşe kriptografik sanal para birimi
 Exec=bltg-qt %u
 Terminal=false
 Type=Application
 Icon=bltg128
 MimeType=x-scheme-handler/bltg;
 Categories=Office;Finance;
+StartupWMClass=Bltg-qt
+Name[en_US]=bltg-qt.desktop

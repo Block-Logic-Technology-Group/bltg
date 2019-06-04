@@ -1,0 +1,157 @@
+
+## <summary>policy for bltg</summary>
+
+
+########################################
+## <summary>
+##	Transition to bltg.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`bltg_domtrans',`
+	gen_require(`
+		type bltg_t, bltg_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, bltg_exec_t, bltg_t)
+')
+
+
+########################################
+## <summary>
+##	Execute bltg server in the bltg domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`bltg_initrc_domtrans',`
+	gen_require(`
+		type bltg_initrc_exec_t;
+	')
+
+	init_labeled_script_domtrans($1, bltg_initrc_exec_t)
+')
+
+
+########################################
+## <summary>
+##	Search bltg lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`bltg_search_lib',`
+	gen_require(`
+		type bltg_var_lib_t;
+	')
+
+	allow $1 bltg_var_lib_t:dir search_dir_perms;
+	files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read bltg lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`bltg_read_lib_files',`
+	gen_require(`
+		type bltg_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	read_files_pattern($1, bltg_var_lib_t, bltg_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage bltg lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`bltg_manage_lib_files',`
+	gen_require(`
+		type bltg_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_files_pattern($1, bltg_var_lib_t, bltg_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage bltg lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`bltg_manage_lib_dirs',`
+	gen_require(`
+		type bltg_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_dirs_pattern($1, bltg_var_lib_t, bltg_var_lib_t)
+')
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	a bltg environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`bltg_admin',`
+	gen_require(`
+		type bltg_t;
+		type bltg_initrc_exec_t;
+		type bltg_var_lib_t;
+	')
+
+	allow $1 bltg_t:process { ptrace signal_perms };
+	ps_process_pattern($1, bltg_t)
+
+	bltg_initrc_domtrans($1)
+	domain_system_change_exemption($1)
+	role_transition $2 bltg_initrc_exec_t system_r;
+	allow $2 system_r;
+
+	files_search_var_lib($1)
+	admin_pattern($1, bltg_var_lib_t)
+
+')
+

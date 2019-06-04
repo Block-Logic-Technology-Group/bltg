@@ -137,7 +137,7 @@ I usually confirm that remote is on the correct block by issuing:
 
 ```bltgd getinfo```
 
-And compare with the official explorer at http://explorer.block-logic.com <or> dnet.presstab.pw
+And compare with the official explorer at http://explorer.block-logic.com
 
 ### Local
 

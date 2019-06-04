@@ -377,7 +377,7 @@ and inputs.
 
 For example:
 ```bash
-URL=https://github.com/Block-Logic-Technology-Group/crowning-/bltg.git
+URL=https://github.com/Block-Logic-Technology-Group/bltg.git
 COMMIT=b616fb8ef0d49a919b72b0388b091aaec5849b96
 ./bin/gbuild --commit bltg=${COMMIT} --url bltg=${URL} ../bltg/contrib/gitian-descriptors/gitian-linux.yml
 ./bin/gbuild --commit bltg=${COMMIT} --url bltg=${URL} ../bltg/contrib/gitian-descriptors/gitian-win.yml
@@ -408,6 +408,6 @@ Uploading signatures (not yet implemented)
 ---------------------
 
 In the future it will be possible to push your signatures (both the `.assert` and `.assert.sig` files) to the
-[bltg/gitian.sigs]https://github.com/Block-Logic-Technology-Group/bltg-crypto/gitian.sigs/) repository, or if that's not possible to create a pull
+[bltg/gitian.sigs]https://github.com/Block-Logic-Technology-Group/bltg/gitian.sigs/) repository, or if that's not possible to create a pull
 request.
 There will be an official announcement when this repository is online.
