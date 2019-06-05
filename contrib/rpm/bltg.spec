@@ -21,21 +21,21 @@ Summary:	Peer to Peer Cryptographic Currency
 Group:		Applications/System
 License:	MIT
 URL:		https://block-logic.com/
-Source0:	https://pivx.org/bin/pivx-core-%{version}/pivx-%{version}.tar.gz
+Source0:	https://bltg.org/bin/bltg-core-%{version}/bltg-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
-Source10:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/debian/examples/pivx.conf
+Source10:	https://raw.githubusercontent.com/bltg-project/bltg/v%{version}/contrib/debian/examples/bltg.conf
 
 #man pages
-Source20:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/pivxd.1
-Source21:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/pivx-cli.1
-Source22:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/pivx-qt.1
+Source20:	https://raw.githubusercontent.com/bltg-project/bltg/v%{version}/doc/man/bltgd.1
+Source21:	https://raw.githubusercontent.com/bltg-project/bltg/v%{version}/doc/man/bltg-cli.1
+Source22:	https://raw.githubusercontent.com/bltg-project/bltg/v%{version}/doc/man/bltg-qt.1
 
 #selinux
-Source30:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/rpm/pivx.te
-# Source31 - what about pivx-tx and bench_pivx ???
-Source31:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/rpm/pivx.fc
-Source32:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/rpm/pivx.if
+Source30:	https://raw.githubusercontent.com/bltg-project/bltg/v%{version}/contrib/rpm/bltg.te
+# Source31 - what about bltg-tx and bench_bltg ???
+Source31:	https://raw.githubusercontent.com/bltg-project/bltg/v%{version}/contrib/rpm/bltg.fc
+Source32:	https://raw.githubusercontent.com/bltg-project/bltg/v%{version}/contrib/rpm/bltg.if
 
 Source100:	https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg
 
