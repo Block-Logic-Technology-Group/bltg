@@ -9,8 +9,7 @@ namespace leveldb {
 
 static const int kBlockSize = 4096;
 
-Arena::Arena() {
-  blocks_memory_ = 0;
+Arena::Arena() : memory_usage_(0) {
   alloc_ptr_ = NULL;  // First allocation will allocate a block
   alloc_bytes_remaining_ = 0;
 }
