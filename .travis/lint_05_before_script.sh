@@ -6,4 +6,4 @@
 
 export LC_ALL=C
 
-git fetch --depth=1
+git fetch --depth=100
