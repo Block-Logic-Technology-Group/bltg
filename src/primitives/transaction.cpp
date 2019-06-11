@@ -48,6 +48,19 @@ CTxIn::CTxIn(uint256 hashPrevTx, uint32_t nOut, CScript scriptSigIn, uint32_t nS
     nSequence = nSequenceIn;
 }
 
+CTxIn::CTxIn(const libzerocoin::CoinSpend& spend, libzerocoin::CoinDenomination denom)
+{
+    //Serialize the coinspend object and append it to a CScript
+    CDataStream serializedCoinSpend(SER_NETWORK, PROTOCOL_VERSION);
+    serializedCoinSpend << spend;
+    std::vector<unsigned char> data(serializedCoinSpend.begin(), serializedCoinSpend.end());
+
+    scriptSig = CScript() << OP_ZEROCOINSPEND << data.size();
+    scriptSig.insert(scriptSig.end(), data.begin(), data.end());
+    prevout.SetNull();
+    nSequence = denom;
+}
+
 std::string CTxIn::ToString() const
 {
     std::string str;
@@ -166,7 +179,7 @@ CAmount CTransaction::GetValueOut() const
 
 CAmount CTransaction::GetZerocoinMinted() const
 {
-    for (const CTxOut txOut : vout) {
+    for (const CTxOut& txOut : vout) {
         if(!txOut.scriptPubKey.IsZerocoinMint())
             continue;
 
@@ -178,7 +191,7 @@ CAmount CTransaction::GetZerocoinMinted() const
 
 bool CTransaction::UsesUTXO(const COutPoint out)
 {
-    for (const CTxIn in : vin) {
+    for (const CTxIn& in : vin) {
         if (in.prevout == out)
             return true;
     }
@@ -201,7 +214,7 @@ CAmount CTransaction::GetZerocoinSpent() const
         return 0;
 
     CAmount nValueOut = 0;
-    for (const CTxIn txin : vin) {
+    for (const CTxIn& txin : vin) {
         if(!txin.scriptSig.IsZerocoinSpend())
             continue;
 
@@ -214,7 +227,7 @@ CAmount CTransaction::GetZerocoinSpent() const
 int CTransaction::GetZerocoinMintCount() const
 {
     int nCount = 0;
-    for (const CTxOut out : vout) {
+    for (const CTxOut& out : vout) {
         if (out.scriptPubKey.IsZerocoinMint())
             nCount++;
     }

@@ -125,7 +125,13 @@ public:
     int Zerocoin_StartTime() const { return nZerocoinStartTime; }
     //int Block_Enforce_Invalid() const { return nBlockEnforceInvalidUTXO; }
     int Zerocoin_Block_V2_Start() const { return nBlockZerocoinV2; }
-    //CAmount InvalidAmountFiltered() const { return nInvalidAmountFiltered; };
+
+    // fake serial attack
+    int Zerocoin_Block_EndFakeSerial() const { return nFakeSerialBlockheightEnd; }
+    CAmount GetSupplyBeforeFakeSerial() const { return nSupplyBeforeFakeSerial; }
+
+    int Zerocoin_Block_Double_Accumulated() const { return nBlockDoubleAccumulated; }
+    CAmount InvalidAmountFiltered() const { return nInvalidAmountFiltered; };
 
 protected:
     CChainParams() {}
@@ -146,7 +152,7 @@ protected:
     int nLastPOWBlock;
     int nMasternodeCountDrift;
     int nMaturity;
-    //int nModifierUpdateBlock;
+    int nModifierUpdateBlock;
     CAmount nMaxMoneyOut;
     int nMinerThreads;
     std::vector<CDNSSeedData> vSeeds;
@@ -173,7 +179,7 @@ protected:
     std::string zerocoinModulus;
     int nMaxZerocoinSpendsPerTransaction;
     CAmount nMinZerocoinMintFee;
-    //CAmount nInvalidAmountFiltered;
+    CAmount nInvalidAmountFiltered;
     int nMintRequiredConfirmations;
     int nRequiredAccumulation;
     int nDefaultSecurityLevel;
@@ -189,6 +195,11 @@ protected:
     int nBlockLastGoodCheckpoint;
     //int nBlockEnforceInvalidUTXO;
     int nBlockZerocoinV2;
+    int nBlockDoubleAccumulated;
+
+    // fake serial attack
+    int nFakeSerialBlockheightEnd = 0;
+    CAmount nSupplyBeforeFakeSerial = 0;
 };
 
 /**

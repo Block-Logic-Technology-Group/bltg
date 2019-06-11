@@ -126,9 +126,9 @@ public:
         bnProofOfWorkLimit = ~uint256(0) >> 20; // BLTG starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
-        nEnforceBlockUpgradeMajority = 750;
-        nRejectBlockOutdatedMajority = 950;
-        nToCheckBlockUpgradeMajority = 1000;
+        nEnforceBlockUpgradeMajority = 8100; // 75%
+        nRejectBlockOutdatedMajority = 10260; // 95%
+        nToCheckBlockUpgradeMajority = 10800; // Approximate expected amount of blocks in 7 days (1440*7.5);
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // BLTG: 1 day
         nTargetSpacing = 1 * 60;  // BLTG: 60 seconds
@@ -139,17 +139,22 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 300; // Ensure we have enough to jump start the network.
         //nModifierUpdateBlock = 615800;
-        nZerocoinStartHeight = 2147483646; // Block # should start at
-        nZerocoinStartTime = 2147483646; // 09/28/2018 @ 12:00am (UTC)
+        nZerocoinStartHeight = 330000; // Block # should start at
+        nZerocoinStartTime = 1559968800; // 8th Jun 2019 06:40:00
         nBlockEnforceSerialRange = 2147483646; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = 2147483646; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 2147483646; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 2147483646; //Last valid accumulator checkpoint
         //nBlockEnforceInvalidUTXO = 902850; //Start enforcing the invalid UTXO's
-        //nInvalidAmountFiltered = 268200*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
+        nInvalidAmountFiltered = 0*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = 2147483646; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
+        nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
+
+        // Fake Serial Attack
+        nFakeSerialBlockheightEnd = -1;
+        nSupplyBeforeFakeSerial = 0 * COIN;   // zerocoin supply at block nFakeSerialBlockheightEnd
 
         const char* pszTimestamp = "Boris Johnson quits to add to pressure on May over Brexit";
         CMutableTransaction txNew;
@@ -212,7 +217,7 @@ public:
         nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
         nRequiredAccumulation = 1;
         nDefaultSecurityLevel = 100; //full security level for accumulators
-        nZerocoinHeaderVersion = 4; //Block headers must be this version once zerocoin is active
+        nZerocoinHeaderVersion = 3; //Block headers must be this version once zerocoin is active
         nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zbltg to be stakable
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
@@ -241,35 +246,39 @@ public:
         pchMessageStart[3] = 0xb7;
         vAlertPubKey = ParseHex("0443db95cf8f4f523fdcfa43dbb630e854e20f8816f4f399fd70a93699aa3fe2a255383df1fe36f14cf1640410d8419285b1ed4d127c2992835c72d72ee8159a73");
         nDefaultPort = 18127;
-        nEnforceBlockUpgradeMajority = 51;
-        nRejectBlockOutdatedMajority = 75;
-        nToCheckBlockUpgradeMajority = 100;
+        nEnforceBlockUpgradeMajority = 4320; // 75%
+        nRejectBlockOutdatedMajority = 5472; // 95%
+        nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // BLTG: 1 day
         nTargetSpacing = 1 * 30;  // BLTG: 30 seconds
-        nLastPOWBlock = 500;
-        nMaturity = 15;
+        //nLastPOWBlock = 300;
+        //nMaturity = 10;
         nMasternodeCountDrift = 4;
         //nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
-        nZerocoinStartHeight = 201576;
-        nZerocoinStartTime = 1501776000;
+        //nZerocoinStartHeight = 300000;
+        //nZerocoinStartTime = 1558172837;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = 9908000; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = 9891737; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 9891730; //Last valid accumulator checkpoint
+        nBlockRecalculateAccumulators = -9908000; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = -9891737; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = -9891730; //Last valid accumulator checkpoint
         //nBlockEnforceInvalidUTXO = 9902850; //Start enforcing the invalid UTXO's
         //nInvalidAmountFiltered = 0; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = 444020; //!> The block that zerocoin v2 becomes active
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
 
+        // Fake Serial Attack
+        nFakeSerialBlockheightEnd = -1;
+        nSupplyBeforeFakeSerial = 0;
+
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1531154631;
         genesis.nNonce = 1568802;
 
         hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0x00000ccaa671bbab8d6f72eb853466d5af0e33491fddd2861d52b394553f96f9"));
+        assert(hashGenesisBlock == uint256("0x00000ccaa671bbab8d6f72eb853466d5af0e33491fddd2861d52b394553f96f9"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -290,12 +299,13 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fAllowMinDifficultyBlocks = true;
-        fDefaultConsistencyChecks = false;
-        fRequireStandard = true;
-        fMineBlocksOnDemand = false;
-        fTestnetToBeDeprecatedFieldRPC = true;
+        fDefaultConsistencyChecks = true;
+        fRequireStandard = false;
+        fMineBlocksOnDemand = true;
+        fSkipProofOfWorkCheck = true;
+        fTestnetToBeDeprecatedFieldRPC = false;
 
         nPoolMaxTransactions = 2;
         strSporkKey = "04118a7267382e19ab2d80b79a76844b2dc191fd9cd9815338363c74f50431b551beb64854d76042b920465b6055db6a72db8793c81de937ab0c371731527852f9";
@@ -322,26 +332,41 @@ public:
     {
         networkID = CBaseChainParams::REGTEST;
         strNetworkID = "regtest";
-        strNetworkID = "regtest";
         pchMessageStart[0] = 0xc1;
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0x7d;
         pchMessageStart[3] = 0x3c;
+        nDefaultPort = 19127;
+        nSubsidyHalvingInterval = 150;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
         nTargetTimespan = 24 * 60 * 60; // BLTG: 1 day
-        nTargetSpacing = 1 * 30;        // BLTG: 30 seconds
+        nTargetSpacing = 1 * 60;        // BLTG: 30 seconds
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1454124731;
-        genesis.nBits = 0x207fffff;
-        genesis.nNonce = 12345;
+        nLastPOWBlock = 250;
+        nMaturity = 10;
+        nMasternodeCountDrift = 4;
+        nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
+        nMaxMoneyOut = 43199500 * COIN;
+        nZerocoinStartHeight = 300;
+        nBlockZerocoinV2 = 300;
+        nZerocoinStartTime = 1501776000;
+        nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
+        nBlockRecalculateAccumulators = 999999999; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
+
+        // Fake Serial Attack
+        nFakeSerialBlockheightEnd = -1;
+
+        //! Modify the regtest genesis block so the timestamp is valid for a later start.
+        genesis.nTime = 1531154631;
+        genesis.nNonce = 1568802;
 
         hashGenesisBlock = genesis.GetHash();
-        nDefaultPort = 19127;
-        //assert(hashGenesisBlock == uint256("0x3a9ebb62695d4ee9b07bb4e9b23cea60b5c8d3eacd5675f18c393414fc36656f"));
-
+        assert(hashGenesisBlock == uint256("0x00000ccaa671bbab8d6f72eb853466d5af0e33491fddd2861d52b394553f96f9"));
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
 
@@ -350,6 +375,7 @@ public:
         fDefaultConsistencyChecks = true;
         fRequireStandard = false;
         fMineBlocksOnDemand = true;
+        fSkipProofOfWorkCheck = true;
         fTestnetToBeDeprecatedFieldRPC = false;
     }
     const Checkpoints::CCheckpointData& Checkpoints() const
