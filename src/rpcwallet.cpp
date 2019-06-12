@@ -791,7 +791,7 @@ UniValue movecmd(const UniValue& params, bool fHelp)
             "\nArguments:\n"
             "1. \"fromaccount\"   (string, required) The name of the account to move funds from. May be the default account using \"\".\n"
             "2. \"toaccount\"     (string, required) The name of the account to move funds to. May be the default account using \"\".\n"
-            "3. amount            (numeric, required) Quantity of PIV to move between accounts.\n"
+            "3. amount            (numeric, required) Quantity of BLTG to move between accounts.\n"
             "4. minconf           (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"       (string, optional) An optional comment, stored in the wallet only.\n"
 
@@ -2905,7 +2905,7 @@ UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "spendzerocoinmints mints_list (\"address\") \n"
-            "\nSpend zBLTG mints to a PIV address.\n" +
+            "\nSpend zBLTG mints to a BLTG address.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
