@@ -22,13 +22,13 @@ def setup():
     else:
         programs += ['lxc', 'debootstrap']
     subprocess.check_call(['sudo', 'apt-get', 'install', '-qq'] + programs)
-    if not os.path.isdir('gitian.sigs'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/PIVX-Project/gitian.sigs.git'])
-    if not os.path.isdir('BLTG-detached-sigs'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/PIVX-Project/PIVX-detached-sigs.git'])
+#    if not os.path.isdir('gitian.sigs'):
+#        subprocess.check_call(['git', 'clone', 'https://github.com/PIVX-Project/gitian.sigs.git'])
+#    if not os.path.isdir('bltg-detached-sigs'):
+#        subprocess.check_call(['git', 'clone', 'https://github.com/PIVX-Project/PIVX-detached-sigs.git'])
     if not os.path.isdir('gitian-builder'):
         subprocess.check_call(['git', 'clone', 'https://github.com/devrandom/gitian-builder.git'])
-    if not os.path.isdir('BLTG'):
+    if not os.path.isdir('bltg'):
         subprocess.check_call(['git', 'clone', 'https://github.com/Block-Logic-Technology-Group/bltg.git'])
     os.chdir('gitian-builder')
     make_image_prog = ['bin/make-base-vm', '--suite', 'bionic', '--arch', 'amd64']
@@ -46,34 +46,34 @@ def setup():
 def build():
     global args, workdir
 
-    os.makedirs('BLTG-binaries/' + args.version, exist_ok=True)
+    os.makedirs('bltg-binaries/' + args.version, exist_ok=True)
     print('\nBuilding Dependencies\n')
     os.chdir('gitian-builder')
     os.makedirs('inputs', exist_ok=True)
 
     subprocess.check_call(['wget', '-N', '-P', 'inputs', 'http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz'])
     subprocess.check_call(['wget', '-N', '-P', 'inputs', 'https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch'])
-    subprocess.check_call(['make', '-C', '../BLTG/depends', 'download', 'SOURCES_PATH=' + os.getcwd() + '/cache/common'])
+    subprocess.check_call(['make', '-C', '../bltg/depends', 'download', 'SOURCES_PATH=' + os.getcwd() + '/cache/common'])
 
     if args.linux:
         print('\nCompiling ' + args.version + ' Linux')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'bltg='+args.commit, '--url', 'bltg='+args.url, '../BLTG/contrib/gitian-descriptors/gitian-linux.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-linux', '--destination', '../gitian.sigs/', '../BLTG/contrib/gitian-descriptors/gitian-linux.yml'])
-        subprocess.check_call('mv build/out/bltg-*.tar.gz build/out/src/bltg-*.tar.gz ../BLTG-binaries/'+args.version, shell=True)
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'bltg='+args.commit, '--url', 'bltg='+args.url, '../bltg/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-linux', '--destination', '../gitian.sigs/', '../bltg/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call('mv build/out/bltg-*.tar.gz build/out/src/bltg-*.tar.gz ../bltg-binaries/'+args.version, shell=True)
 
     if args.windows:
         print('\nCompiling ' + args.version + ' Windows')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'bltg='+args.commit, '--url', 'bltg='+args.url, '../BLTG/contrib/gitian-descriptors/gitian-win.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-unsigned', '--destination', '../gitian.sigs/', '../BLTG/contrib/gitian-descriptors/gitian-win.yml'])
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'bltg='+args.commit, '--url', 'bltg='+args.url, '../bltg/contrib/gitian-descriptors/gitian-win.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-unsigned', '--destination', '../gitian.sigs/', '../bltg/contrib/gitian-descriptors/gitian-win.yml'])
         subprocess.check_call('mv build/out/bltg-*-win-unsigned.tar.gz inputs/', shell=True)
-        subprocess.check_call('mv build/out/bltg-*.zip build/out/bltg-*.exe ../BLTG-binaries/'+args.version, shell=True)
+        subprocess.check_call('mv build/out/bltg-*.zip build/out/bltg-*.exe ../bltg-binaries/'+args.version, shell=True)
 
     if args.macos:
         print('\nCompiling ' + args.version + ' MacOS')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'bltg='+args.commit, '--url', 'bltg='+args.url, '../BLTG/contrib/gitian-descriptors/gitian-osx.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-unsigned', '--destination', '../gitian.sigs/', '../BLTG/contrib/gitian-descriptors/gitian-osx.yml'])
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'bltg='+args.commit, '--url', 'bltg='+args.url, '../bltg/contrib/gitian-descriptors/gitian-osx.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-unsigned', '--destination', '../gitian.sigs/', '../bltg/contrib/gitian-descriptors/gitian-osx.yml'])
         subprocess.check_call('mv build/out/bltg-*-osx-unsigned.tar.gz inputs/', shell=True)
-        subprocess.check_call('mv build/out/bltg-*.tar.gz build/out/bltg-*.dmg ../BLTG-binaries/'+args.version, shell=True)
+        subprocess.check_call('mv build/out/bltg-*.tar.gz build/out/bltg-*.dmg ../bltg-binaries/'+args.version, shell=True)
 
     os.chdir(workdir)
 
@@ -96,18 +96,18 @@ def sign():
 
     if args.windows:
         print('\nSigning ' + args.version + ' Windows')
-        subprocess.check_call('cp inputs/BLTG-' + args.version + '-win-unsigned.tar.gz inputs/BLTG-win-unsigned.tar.gz', shell=True)
-        subprocess.check_call(['bin/gbuild', '-i', '--commit', 'signature='+args.commit, '../BLTG/contrib/gitian-descriptors/gitian-win-signer.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-signed', '--destination', '../gitian.sigs/', '../BLTG/contrib/gitian-descriptors/gitian-win-signer.yml'])
-        subprocess.check_call('mv build/out/bltg-*win64-setup.exe ../BLTG-binaries/'+args.version, shell=True)
-        subprocess.check_call('mv build/out/bltg-*win32-setup.exe ../BLTG-binaries/'+args.version, shell=True)
+        subprocess.check_call('cp inputs/bltg-' + args.version + '-win-unsigned.tar.gz inputs/bltg-win-unsigned.tar.gz', shell=True)
+        subprocess.check_call(['bin/gbuild', '-i', '--commit', 'signature='+args.commit, '../bltg/contrib/gitian-descriptors/gitian-win-signer.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-signed', '--destination', '../gitian.sigs/', '../bltg/contrib/gitian-descriptors/gitian-win-signer.yml'])
+        subprocess.check_call('mv build/out/bltg-*win64-setup.exe ../bltg-binaries/'+args.version, shell=True)
+        subprocess.check_call('mv build/out/bltg-*win32-setup.exe ../bltg-binaries/'+args.version, shell=True)
 
     if args.macos:
         print('\nSigning ' + args.version + ' MacOS')
-        subprocess.check_call('cp inputs/BLTG-' + args.version + '-osx-unsigned.tar.gz inputs/BLTG-osx-unsigned.tar.gz', shell=True)
-        subprocess.check_call(['bin/gbuild', '-i', '--commit', 'signature='+args.commit, '../BLTG/contrib/gitian-descriptors/gitian-osx-signer.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-signed', '--destination', '../gitian.sigs/', '../BLTG/contrib/gitian-descriptors/gitian-osx-signer.yml'])
-        subprocess.check_call('mv build/out/bltg-osx-signed.dmg ../BLTG-binaries/'+args.version+'/BLTG-'+args.version+'-osx.dmg', shell=True)
+        subprocess.check_call('cp inputs/bltg-' + args.version + '-osx-unsigned.tar.gz inputs/bltg-osx-unsigned.tar.gz', shell=True)
+        subprocess.check_call(['bin/gbuild', '-i', '--commit', 'signature='+args.commit, '../bltg/contrib/gitian-descriptors/gitian-osx-signer.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-signed', '--destination', '../gitian.sigs/', '../bltg/contrib/gitian-descriptors/gitian-osx-signer.yml'])
+        subprocess.check_call('mv build/out/bltg-osx-signed.dmg ../bltg-binaries/'+args.version+'/bltg-'+args.version+'-osx.dmg', shell=True)
 
     os.chdir(workdir)
 
@@ -129,23 +129,23 @@ def verify():
 
     if args.linux:
         print('\nVerifying v'+args.version+' Linux\n')
-        subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-linux', '../BLTG/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-linux', '../bltg/contrib/gitian-descriptors/gitian-linux.yml'])
         print('\nVerifying v'+args.version+' Linux\n')
-        subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-linux', '../BLTG/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-linux', '../bltg/contrib/gitian-descriptors/gitian-linux.yml'])
 
     if args.windows:
         print('\nVerifying v'+args.version+' Windows\n')
-        subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-win-unsigned', '../BLTG/contrib/gitian-descriptors/gitian-win.yml'])
+        subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-win-unsigned', '../bltg/contrib/gitian-descriptors/gitian-win.yml'])
         if args.sign:
             print('\nVerifying v'+args.version+' Signed Windows\n')
-            subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-win-signed', '../BLTG/contrib/gitian-descriptors/gitian-win-signer.yml'])
+            subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-win-signed', '../bltg/contrib/gitian-descriptors/gitian-win-signer.yml'])
 
     if args.macos:
         print('\nVerifying v'+args.version+' MacOS\n')
-        subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-osx-unsigned', '../BLTG/contrib/gitian-descriptors/gitian-osx.yml'])
+        subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-osx-unsigned', '../bltg/contrib/gitian-descriptors/gitian-osx.yml'])
         if args.sign:
             print('\nVerifying v'+args.version+' Signed MacOS\n')
-            subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-osx-signed', '../BLTG/contrib/gitian-descriptors/gitian-osx-signer.yml'])
+            subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs/', '-r', args.version+'-osx-signed', '../bltg/contrib/gitian-descriptors/gitian-osx-signer.yml'])
 
     os.chdir(workdir)
 
@@ -223,10 +223,10 @@ def main():
     if args.setup:
         setup()
 
-    os.chdir('BLTG')
+    os.chdir('bltg')
     if args.pull:
         subprocess.check_call(['git', 'fetch', args.url, 'refs/pull/'+args.version+'/merge'])
-        os.chdir('../gitian-builder/inputs/BLTG')
+        os.chdir('../gitian-builder/inputs/bltg')
         subprocess.check_call(['git', 'fetch', args.url, 'refs/pull/'+args.version+'/merge'])
         args.commit = subprocess.check_output(['git', 'show', '-s', '--format=%H', 'FETCH_HEAD'], universal_newlines=True, encoding='utf8').strip()
         args.version = 'pull-' + args.version
