@@ -1,7 +1,7 @@
 BLTG Core integration/staging repository
 =====================================
 
-[![pipeline status](https://gitlab.com/cpass78/block-logic/badges/master/pipeline.svg)](https://gitlab.com/cpass78/block-logic/commits/master)
+[![Build Status](https://travis-ci.org/Block-Logic-Technology-Group/bltg.svg?branch=vtemp-dev)](https://travis-ci.org/Block-Logic-Technology-Group/bltg)
 
 BLTG is an open source crypto-currency focused on fast private transactions with low transaction fees & environmental footprint.  It utilizes a custom Proof of Stake protocol for securing its network and uses an innovative variable seesaw reward mechanism that dynamically balances 80% of its block reward size between masternodes and staking nodes and 20% dedicated for budget proposals. The goal of BLTG is to achieve a decentralized sustainable crypto currency with near instant full-time private transactions, fair governance and community intelligence.
 - Anonymized transactions using the [_Zerocoin Protocol_](http://block-logic.com/zbltg).
