@@ -138,7 +138,7 @@ public:
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 300; // Ensure we have enough to jump start the network.
-        //nModifierUpdateBlock = 615800;
+        nModifierUpdateBlock = 0;
         nZerocoinStartHeight = 330000; // Block # should start at
         nZerocoinStartTime = 1559968800; // 8th Jun 2019 06:40:00
         nBlockEnforceSerialRange = 2147483646; //Enforce serial range starting this block
@@ -251,11 +251,11 @@ public:
         nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // BLTG: 1 day
-        nTargetSpacing = 1 * 30;  // BLTG: 30 seconds
-        //nLastPOWBlock = 300;
-        //nMaturity = 10;
+        nTargetSpacing = 1 * 60;  // BLTG: 30 seconds
+        nLastPOWBlock = 300;
+        nMaturity = 10;
         nMasternodeCountDrift = 4;
-        //nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
+        nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
         //nZerocoinStartHeight = 300000;
         //nZerocoinStartTime = 1558172837;
@@ -297,13 +297,12 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
 
-        fMiningRequiresPeers = false;
+        fMiningRequiresPeers = true;
         fAllowMinDifficultyBlocks = true;
-        fDefaultConsistencyChecks = true;
-        fRequireStandard = false;
-        fMineBlocksOnDemand = true;
-        fSkipProofOfWorkCheck = true;
-        fTestnetToBeDeprecatedFieldRPC = false;
+        fDefaultConsistencyChecks = false;
+        fRequireStandard = true;
+        fMineBlocksOnDemand = false;
+        fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 2;
         //strSporkKey = "04118a7267382e19ab2d80b79a76844b2dc191fd9cd9815338363c74f50431b551beb64854d76042b920465b6055db6a72db8793c81de937ab0c371731527852f9";

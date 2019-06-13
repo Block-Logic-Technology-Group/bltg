@@ -83,8 +83,8 @@ static bool SelectBlockFromCandidates(
     uint64_t nStakeModifierPrev,
     const CBlockIndex** pindexSelected)
 {
-    //bool fModifierV2 = false;
-    //bool fFirstRun = true;
+    bool fModifierV2 = false;
+    bool fFirstRun = true;
     bool fSelected = false;
     uint256 hashBest = 0;
     *pindexSelected = (const CBlockIndex*)0;
@@ -97,19 +97,19 @@ static bool SelectBlockFromCandidates(
             break;
 
         //if the lowest block height (vSortedByTimestamp[0]) is >= switch height, use new modifier calc
-//        if (fFirstRun){
-//            fModifierV2 = pindex->nHeight >= Params().ModifierUpgradeBlock();
-//            fFirstRun = false;
-//        }
+        if (fFirstRun){
+            fModifierV2 = pindex->nHeight >= Params().ModifierUpgradeBlock();
+            fFirstRun = false;
+        }
 
         if (mapSelectedBlocks.count(pindex->GetBlockHash()) > 0)
             continue;
 
         // compute the selection hash by hashing an input that is unique to that block
         uint256 hashProof;
-//        if(fModifierV2)
-//            hashProof = pindex->GetBlockHash();
-//        else
+        if(fModifierV2)
+            hashProof = pindex->GetBlockHash();
+        else
             hashProof = pindex->IsProofOfStake() ? 0 : pindex->GetBlockHash();
 
         CDataStream ss(SER_GETHASH, 0);
@@ -324,7 +324,7 @@ bool Stake(CStakeInput* stakeInput, unsigned int nBits, unsigned int nTimeBlockF
     bool fSuccess = false;
     unsigned int nTryTime = 0;
     int nHeightStart = chainActive.Height();
-    int nHashDrift = 30;
+    int nHashDrift = 60;
     CDataStream ssUniqueID = stakeInput->GetUniqueness();
     CAmount nValueIn = stakeInput->GetValue();
     for (int i = 0; i < nHashDrift; i++) //iterate the hashing
