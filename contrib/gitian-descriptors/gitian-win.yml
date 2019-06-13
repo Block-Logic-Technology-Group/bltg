@@ -1,5 +1,5 @@
 ---
-name: "bltg-win-2.0.1"
+name: "bltg-win-3.0.0"
 enable_cache: true
 suites:
 - "bionic"

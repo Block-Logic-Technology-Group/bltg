@@ -287,14 +287,12 @@ public:
         vSeeds.push_back(CDNSSeedData("", ""));
         vSeeds.push_back(CDNSSeedData("", ""));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);  // Testnet bltg script addresses start with '8' or '9'
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet bltg BIP32 pubkeys start with 'DRKV'
+        //base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
+        //base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);  // Testnet bltg script addresses start with '8' or '9'
+        //base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 145);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet bltg BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet bltg BIP44 coin type is '1' (All coin's testnet default)
+        Testnet bltg BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -308,8 +306,8 @@ public:
         fTestnetToBeDeprecatedFieldRPC = false;
 
         nPoolMaxTransactions = 2;
-        strSporkKey = "04118a7267382e19ab2d80b79a76844b2dc191fd9cd9815338363c74f50431b551beb64854d76042b920465b6055db6a72db8793c81de937ab0c371731527852f9";
-        strSporkKeyOld = "";
+        //strSporkKey = "04118a7267382e19ab2d80b79a76844b2dc191fd9cd9815338363c74f50431b551beb64854d76042b920465b6055db6a72db8793c81de937ab0c371731527852f9";
+        //strSporkKeyOld = "";
         strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
         nStartMasternodePayments = 1531241031; //Fri, 09 Jan 2015 21:05:58 GMT
         nBudget_Fee_Confirmations = 4; // Number of confirmations for the finalization fee. We have to make this very short
