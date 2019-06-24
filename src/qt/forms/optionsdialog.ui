@@ -131,8 +131,8 @@
         </spacer>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZpivOptionsWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZpivOptionsLayout">
+        <widget class="QWidget" name="verticalZbltgOptionsWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalZbltgOptionsLayout">
           <property name="margin">
            <number>0</number>
           </property>
@@ -561,8 +561,8 @@ https://www.transifex.com/bltg-project/bltg-project-translations</string>
         </layout>
        </item>
        <item>
-        <widget class="QWidget" name="verticalZpivDisplayWidget" native="true">
-         <layout class="QVBoxLayout" name="verticalZpivDisplayLayout">
+        <widget class="QWidget" name="verticalZbltgDisplayWidget" native="true">
+         <layout class="QVBoxLayout" name="verticalZbltgDisplayLayout">
           <property name="margin">
            <number>0</number>
           </property>

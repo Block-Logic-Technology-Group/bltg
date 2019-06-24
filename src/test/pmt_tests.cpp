@@ -10,7 +10,7 @@
 #include "uint256.h"
 #include "version.h"
 #include "random.h"
-#include "test/test_pivx.h"
+#include "test/test_bltg.h"
 
 #include <vector>
 

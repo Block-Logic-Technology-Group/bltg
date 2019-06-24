@@ -18,7 +18,7 @@
 #include "wallet/wallet.h"
 #include "zbltg/zbltgwallet.h"
 #include "zbltgchain.h"
-#include "test_pivx.h"
+#include "test_bltg.h"
 
 using namespace libzerocoin;
 

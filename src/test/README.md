@@ -5,32 +5,32 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with `make check`.
 
-To run the pivxd tests manually, launch `src/test/test_pivx`. To recompile
+To run the bltgd tests manually, launch `src/test/test_bltg`. To recompile
 after a test file was modified, run `make` and then run the test again. If you
 modify a non-test file, use `make -C src/test` to recompile only what's needed
-to run the pivxd tests.
+to run the bltgd tests.
 
-To add more pivxd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more bltgd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_FIXTURE_TEST_SUITE sections.
 
-To run the pivx-qt tests manually, launch `src/qt/test/test_pivx-qt`
+To run the bltg-qt tests manually, launch `src/qt/test/test_bltg-qt`
 
-To add more pivx-qt tests, add them to the `src/qt/test/` directory and
+To add more bltg-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.
 
 ### Running individual tests
 
-test_pivx has some built-in command-line arguments; for
+test_bltg has some built-in command-line arguments; for
 example, to run just the getarg_tests verbosely:
 
-    test_pivx --log_level=all --run_test=getarg_tests
+    test_bltg --log_level=all --run_test=getarg_tests
 
 ... or to run just the doubledash test:
 
-    test_pivx --run_test=getarg_tests/doubledash
+    test_bltg --run_test=getarg_tests/doubledash
 
-Run `test_pivx --help` for the full list.
+Run `test_bltg --help` for the full list.
 
 ### Note on adding test cases
 

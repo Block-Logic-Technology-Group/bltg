@@ -17,7 +17,7 @@
 #include "zbltg/accumulatormap.h"
 #include "zbltg/accumulators.h"
 #include "wallet/wallet.h"
-#include "zpiv/zpivmodule.h"
+#include "zbltg/zbltgmodule.h"
 #include "zbltgchain.h"
 
 #include <stdint.h>
