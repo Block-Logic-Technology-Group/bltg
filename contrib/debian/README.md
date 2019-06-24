@@ -18,3 +18,4 @@ the .desktop file or copy or symlink your bltgqt binary to `/usr/bin`
 and the `../../share/pixmaps/bltg128.png` to `/usr/share/pixmaps`
 
 bltg-qt.protocol (KDE)
+

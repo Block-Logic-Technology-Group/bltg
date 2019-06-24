@@ -22,8 +22,8 @@
 
 #ifdef ENABLE_WALLET
 #include "masternodeconfig.h"
-#include "wallet.h"
-#include "walletdb.h"
+#include "wallet/wallet.h"
+#include "wallet/walletdb.h"
 #endif
 
 #include <QNetworkProxy>
@@ -96,11 +96,6 @@ void OptionsModel::Init()
     if (!settings.contains("nPreferredDenom"))
         settings.setValue("nPreferredDenom", 0);
     nPreferredDenom = settings.value("nPreferredDenom", "0").toLongLong();
-
-    if (!settings.contains("nAnonymizeBltgAmount"))
-        settings.setValue("nAnonymizeBltgAmount", 1000);
-
-    nAnonymizeBltgAmount = settings.value("nAnonymizeBltgAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -272,8 +267,6 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return QVariant(nZeromintPercentage);
         case ZeromintPrefDenom:
             return QVariant(nPreferredDenom);
-        case AnonymizeBltgAmount:
-            return QVariant(nAnonymizeBltgAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -409,11 +402,6 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             fHideOrphans = value.toBool();
             settings.setValue("fHideOrphans", fHideOrphans);
             emit hideOrphansChanged(fHideOrphans);
-            break;
-        case AnonymizeBltgAmount:
-            nAnonymizeBltgAmount = value.toInt();
-            settings.setValue("nAnonymizeBltgAmount", nAnonymizeBltgAmount);
-            emit anonymizeBltgAmountChanged(nAnonymizeBltgAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

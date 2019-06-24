@@ -1,14 +1,16 @@
 BLTG Core integration/staging repository
 =====================================
 
-[![Build Status](https://travis-ci.org/Block-Logic-Technology-Group/bltg.svg?branch=vtemp-dev)](https://travis-ci.org/Block-Logic-Technology-Group/bltg)
+[![Build Status](https://travis-ci.org/Block-Logic-Technology-Group/bltg.svg?branch=master)](https://travis-ci.org/Block-Logic-Technology-Group/bltg)
 
-BLTG is an open source crypto-currency focused on fast private transactions with low transaction fees & environmental footprint.  It utilizes a custom Proof of Stake protocol for securing its network and uses an innovative variable seesaw reward mechanism that dynamically balances 80% of its block reward size between masternodes and staking nodes and 20% dedicated for budget proposals. The goal of BLTG is to achieve a decentralized sustainable crypto currency with near instant full-time private transactions, fair governance and community intelligence.
-- Anonymized transactions using the [_Zerocoin Protocol_](http://block-logic.com/zbltg).
+BLTG is an open source crypto-currency focused on fast private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes the first ever anonymous proof of stake protocol, called zPoS, combined with regular PoS and masternodes for securing its network. zPoS incentivises using the privacy features available in BLTG by granting a higher block reward for zPoS over regular PoS and masternodes. In practice BLTG has between 4 to 10 times higher use of it's privacy features in comparison to other coins that combine public and private transactions. This is thanks to innovations like zPoS and integrating the Zerocoin protocol into light/mobile wallets, allowing for a complete and lightweight privacy protocol that can be used on the go. As well as security improvements like deterministic generation of zBLTG for easy backups.
+The goal of BLTG is to achieve a decentralized sustainable crypto currency with near instant full-time private transactions, fair governance and community intelligence.
+- Anonymized transactions & consensus using the [_Zerocoin Protocol_](http://www.pivx.org/zpiv) and [zPoS](https://pivx.org/zpos/).
+- light/mobile wallet privacy using the [Zerocoin Light Node Protocol](https://pivx.org/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf)
 - Fast transactions featuring guaranteed zero confirmation transactions, we call it _SwiftX_.
 - Decentralized blockchain voting utilizing Masternode technology to form a DAO. The blockchain will distribute monthly treasury funds based on successful proposals submitted by the community and voted on by the DAO.
 
-More information at [block-logic.com](https://block-logic.com) Visit our ANN thread at [BitcoinTalk](http:)
+More information at [block-logic.com](https://block-logic.com)
 
 ### Coin Specs
 <table>

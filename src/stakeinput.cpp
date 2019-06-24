@@ -8,7 +8,7 @@
 #include "zbltg/deterministicmint.h"
 #include "main.h"
 #include "stakeinput.h"
-#include "wallet.h"
+#include "wallet/wallet.h"
 
 CZBltgStake::CZBltgStake(const libzerocoin::CoinSpend& spend)
 {

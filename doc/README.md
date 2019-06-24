@@ -1,5 +1,5 @@
 BLTG Core
-=====================
+=============
 
 Setup
 ---------------------
@@ -13,14 +13,14 @@ The following are some helpful notes on how to run BLTG on your native platform.
 
 Unpack the files into a directory and run:
 
-- bin/32/bltg-qt (GUI, 32-bit) or bin/32/bltgd (headless, 32-bit)
-- bin/64/bltg-qt (GUI, 64-bit) or bin/64/bltgd (headless, 64-bit)
+- `bin/bltg-qt` (GUI) or
+- `bin/bltgd` (headless)
 
 ### Windows
 
 Unpack the files into a directory, and then run bltg-qt.exe.
 
-### OSX
+### macOS
 
 Drag BLTG-Qt to your applications folder, and then run BLTG-Qt.
 
@@ -28,16 +28,16 @@ Drag BLTG-Qt to your applications folder, and then run BLTG-Qt.
 
 * See the documentation at the [BLTG Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](http://) or on the [BLTG Website](http://block-logic.com/).
 * Join our Discord server [Discord Server](https://discord.gg/RggfhTH)
-* Join one of our Slack groups [BLTG Telegram Group](https://t.me/bltgx) (Main community is replaced by Discord).
 
 Building
 ---------------------
 The following are developer notes on how to build BLTG on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
-- [OSX Build Notes](build-osx.md)
+- [Dependencies](dependencies.md)
+- [macOS Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
+- [Windows Build Notes](build-windows.md)
 - [Gitian Building Guide](gitian-building.md)
 
 Development
@@ -55,8 +55,7 @@ The Bltg repo's [root README](https://github.com/Block-Logic-Technology-Group/bl
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-
-* Discuss on the [BitcoinTalk](https://).
+* Join the [BLTG Discord](https://discord.gg/RggfhTH).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
@@ -66,6 +65,6 @@ The Bltg repo's [root README](https://github.com/Block-Logic-Technology-Group/bl
 
 License
 ---------------------
-Distributed under the [MIT/X11 software license](http://www.opensource.org/licenses/mit-license.php).
+Distributed under the [MIT software license](/COPYING).
 This product includes software developed by the OpenSSL Project for use in the [OpenSSL Toolkit](https://www.openssl.org/). This product includes
 cryptographic software written by Eric Young ([eay@cryptsoft.com](mailto:eay@cryptsoft.com)), and UPnP software written by Thomas Bernard.

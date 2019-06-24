@@ -139,8 +139,8 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 300; // Ensure we have enough to jump start the network.
         nModifierUpdateBlock = 0;
-        nZerocoinStartHeight = 330000; // Block # should start at
-        nZerocoinStartTime = 1559968800; // 8th Jun 2019 06:40:00
+        nZerocoinStartHeight = 357800; // Block # should start at
+        nZerocoinStartTime = 1561507200; // Wed, 26 Jun 2019 00:00:00 +0000
         nBlockEnforceSerialRange = 2147483646; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = 2147483646; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 2147483646; //First block that bad serials emerged
@@ -151,6 +151,9 @@ public:
         nBlockDoubleAccumulated = 1050010;
         nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
+
+        // Public coin spend enforcement
+        nPublicZCSpends = 1880000;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
@@ -200,10 +203,11 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
+        nBudgetCycleBlocks = 43200; //!< Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
         strSporkKey = "04300c047237e28c6361264532ca825f409babc06f49eadca1540ea15bba9b10710dfdaf1884029d0066381dc6dded497093c7722bde5992ddb76604882514155d";
         strSporkKeyOld = "";
         strObfuscationPoolDummyAddress = "B4cgYuJAT66Jy4gXQWjJurU8k9wJ38YR2h";
-        nStartMasternodePayments = 1531154631; //@Todo Change this after testing is completed to more suitable time frame
+        nStartMasternodePayments = 1531154631;
 
         /** Zerocoin */
         zerocoinModulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
@@ -213,6 +217,7 @@ public:
             "8441436038339044149526344321901146575444541784240209246165157233507787077498171257724679629263863563732899121548"
             "31438167899885040445364023527381951378636564391212010397122822120720357";
         nMaxZerocoinSpendsPerTransaction = 7; // Assume about 20kb each
+        nMaxZerocoinPublicSpendsPerTransaction = 637; // Assume about 220 bytes each input
         nMinZerocoinMintFee = 1 * CENT; //high fee required for zerocoin mints
         nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
         nRequiredAccumulation = 1;
@@ -221,6 +226,7 @@ public:
         nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zbltg to be stakable
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
+        nProposalEstablishmentTime = 60 * 60 * 24; // Proposals must be at least a day old to make it into a budget
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
@@ -269,6 +275,9 @@ public:
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
 
+        // Public coin spend enforcement
+        nPublicZCSpends = 1106100;
+
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
         nSupplyBeforeFakeSerial = 0;
@@ -282,7 +291,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("", ""));
+        vSeeds.push_back(CDNSSeedData("192.145.126.148", "192.145.126.148"));
         vSeeds.push_back(CDNSSeedData("", ""));
         vSeeds.push_back(CDNSSeedData("", ""));
         vSeeds.push_back(CDNSSeedData("", ""));
@@ -305,12 +314,15 @@ public:
         fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 2;
+        nBudgetCycleBlocks = 144; //!< Ten cycles per day on testnet
         //strSporkKey = "04118a7267382e19ab2d80b79a76844b2dc191fd9cd9815338363c74f50431b551beb64854d76042b920465b6055db6a72db8793c81de937ab0c371731527852f9";
         //strSporkKeyOld = "";
         strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
-        nStartMasternodePayments = 1531241031; //Fri, 09 Jan 2015 21:05:58 GMT
-        nBudget_Fee_Confirmations = 4; // Number of confirmations for the finalization fee. We have to make this very short
-        // here because we only have a 8 block finalization window on testnet
+        nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
+        nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
+                                       // here because we only have a 8 block finalization window on testnet
+
+        nProposalEstablishmentTime = 60 * 5; // Proposals must be at least 5 mns old to make it into a test budget
     }
     const Checkpoints::CCheckpointData& Checkpoints() const
     {
@@ -354,6 +366,9 @@ public:
         nBlockRecalculateAccumulators = 999999999; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
+
+        // Public coin spend enforcement
+        nPublicZCSpends = 350;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;

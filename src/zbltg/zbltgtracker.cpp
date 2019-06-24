@@ -8,7 +8,7 @@
 #include "sync.h"
 #include "main.h"
 #include "txdb.h"
-#include "walletdb.h"
+#include "wallet/walletdb.h"
 #include "zbltg/accumulators.h"
 #include "zbltg/zbltgwallet.h"
 #include "witness.h"
@@ -473,6 +473,8 @@ std::set<CMintMeta> CzBLTGTracker::ListMints(bool fUnusedOnly, bool fMatureOnly,
 
         CzBLTGWallet* zBLTGWallet = new CzBLTGWallet(strWalletFile);
         for (auto& dMint : listDeterministicDB) {
+            if (fExcludeV1 && dMint.GetVersion() < 2)
+                continue;
             Add(dMint, false, false, zBLTGWallet);
         }
         delete zBLTGWallet;
