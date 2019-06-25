@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_TEST_TEST_PIVX_H
-#define PIVX_TEST_TEST_PIVX_H
+#ifndef BLTG_TEST_TEST_BLTG_H
+#define BLTG_TEST_TEST_BLTG_H
 
 #include "txdb.h"
 
