@@ -4,6 +4,8 @@
 
 #include "serialize.h"
 #include "streams.h"
+#include "hash.h"
+#include "test/test_bltg.h"
 
 #include <stdint.h>
 
@@ -11,7 +13,7 @@
 
 using namespace std;
 
-BOOST_AUTO_TEST_SUITE(serialize_tests)
+BOOST_FIXTURE_TEST_SUITE(serialize_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(varints)
 {
