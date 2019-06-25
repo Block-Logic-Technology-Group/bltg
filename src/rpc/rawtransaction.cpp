@@ -999,7 +999,7 @@ UniValue createrawzerocoinpublicspend(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "createrawzerocoinpublicspend mint_input \n"
-            "\nCreates raw zPIV public spend.\n" +
+            "\nCreates raw zBLTG public spend.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"

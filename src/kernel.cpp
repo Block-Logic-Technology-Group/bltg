@@ -395,7 +395,7 @@ bool CheckProofOfStake(const CBlock block, uint256& hashProofOfStake, std::uniqu
         stake = std::unique_ptr<CStakeInput>(new CZBltgStake(spend));
 
         if (!ContextualCheckZerocoinStake(nPreviousBlockHeight, stake.get()))
-            return error("%s: staked zPIV fails context checks", __func__);
+            return error("%s: staked zBLTG fails context checks", __func__);
     } else {
         // First try finding the previous transaction in database
         uint256 hashBlock;
