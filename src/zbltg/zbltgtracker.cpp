@@ -460,7 +460,7 @@ bool CzBLTGTracker::UpdateStatusInternal(const std::set<uint256>& setMempool, CM
     return false;
 }
 
-std::set<CMintMeta> CzBLTGTracker::ListMints(bool fUnusedOnly, bool fMatureOnly, bool fUpdateStatus, bool fWrongSeed)
+std::set<CMintMeta> CzBLTGTracker::ListMints(bool fUnusedOnly, bool fMatureOnly, bool fUpdateStatus, bool fWrongSeed, bool fExcludeV1)
 {
     CWalletDB walletdb(strWalletFile);
     if (fUpdateStatus) {
