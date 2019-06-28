@@ -156,7 +156,7 @@ public:
         nPublicZCSpends = 1880000;
 
         // Fake Serial Attack
-        nFakeSerialBlockheightEnd = -1;
+        nFakeSerialBlockheightEnd = 0;        // We werent subjected by this, therefore shouldn't be anything to recalculate
         nSupplyBeforeFakeSerial = 0 * COIN;   // zerocoin supply at block nFakeSerialBlockheightEnd
 
         const char* pszTimestamp = "Boris Johnson quits to add to pressure on May over Brexit";
@@ -279,7 +279,7 @@ public:
         nPublicZCSpends = 1106100;
 
         // Fake Serial Attack
-        nFakeSerialBlockheightEnd = -1;
+        nFakeSerialBlockheightEnd = 0;
         nSupplyBeforeFakeSerial = 0;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
@@ -371,7 +371,7 @@ public:
         nPublicZCSpends = 350;
 
         // Fake Serial Attack
-        nFakeSerialBlockheightEnd = -1;
+        nFakeSerialBlockheightEnd = 0;
 
         //! Modify the regtest genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1531154631;
