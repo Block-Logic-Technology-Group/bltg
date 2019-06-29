@@ -139,8 +139,8 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 300; // Ensure we have enough to jump start the network.
         nModifierUpdateBlock = 0;
-        nZerocoinStartHeight = 357800; // Block # should start at
-        nZerocoinStartTime = 1561852800; // Wed, 26 Jun 2019 00:00:00 +0000
+        nZerocoinStartHeight = 370800; // Block # should start at
+        nZerocoinStartTime = 1561852800; // Sun, 30 Jun 2019 00:00:00 +0000
         nBlockEnforceSerialRange = 2147483646; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = 2147483646; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 2147483646; //First block that bad serials emerged
