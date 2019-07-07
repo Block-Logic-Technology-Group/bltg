@@ -18,7 +18,7 @@ class BitcoinGUI;
 class ClientModel;
 class OverviewPage;
 class ReceiveCoinsDialog;
-class PrivacyDialog;
+//class PrivacyDialog;
 class GovernancePage;
 class SendCoinsDialog;
 class SendCoinsRecipient;
@@ -68,7 +68,7 @@ private:
     OverviewPage* overviewPage;
     QWidget* transactionsPage;
     ReceiveCoinsDialog* receiveCoinsPage;
-    PrivacyDialog* privacyPage;
+//    PrivacyDialog* privacyPage;
     GovernancePage* governancePage;
     SendCoinsDialog* sendCoinsPage;
     BlockExplorer* explorerWindow;
@@ -91,7 +91,7 @@ public slots:
     /** Switch to explorer page */
     void gotoBlockExplorerPage();
     /** Switch to privacy page */
-    void gotoPrivacyPage();
+//    void gotoPrivacyPage();
     /** Switch to receive coins page */
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
