@@ -139,21 +139,21 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 300; // Ensure we have enough to jump start the network.
         nModifierUpdateBlock = 0;
-        nZerocoinStartHeight = 370800; // Block # should start at
-        nZerocoinStartTime = 1561852800; // Sun, 30 Jun 2019 00:00:00 +0000
+        nZerocoinStartHeight = 999999999; // Block # should start at
+        nZerocoinStartTime = 999999999; // Sun, 30 Jun 2019 00:00:00 +0000
         nBlockEnforceSerialRange = 2147483646; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = 2147483646; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = 2147483646; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 2147483646; //Last valid accumulator checkpoint
-        //nBlockEnforceInvalidUTXO = 902850; //Start enforcing the invalid UTXO's
+        nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
+        //nBlockEnforceInvalidUTXO = 999999999; //Start enforcing the invalid UTXO's
         nInvalidAmountFiltered = 0*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
-        nBlockZerocoinV2 = 2147483646; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
-        nBlockDoubleAccumulated = 1050010;
+        nBlockZerocoinV2 = 999999999; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
+        nBlockDoubleAccumulated = 999999999;
         nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
 
         // Public coin spend enforcement
-        nPublicZCSpends = 1880000;
+        nPublicZCSpends = 999999999;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 0;        // We werent subjected by this, therefore shouldn't be anything to recalculate
@@ -166,7 +166,7 @@ public:
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 50 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("04c10e83b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9") << OP_CHECKSIG;
-        genesis.vtx.push_back(txNew);
+        genesis.vtx.emplace_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
@@ -178,10 +178,10 @@ public:
         assert(hashGenesisBlock == uint256("0x00000ccaa671bbab8d6f72eb853466d5af0e33491fddd2861d52b394553f96f9"));
         assert(genesis.hashMerkleRoot == uint256("0xe456c7b894fe91492a94361376809abe1b7894ca75cbe30641b309e6d9d6b0a0"));
 
-        vSeeds.push_back(CDNSSeedData("seed1.block-logic.com", "seed1.block-logic.com"));     // DNS Seeder
-        vSeeds.push_back(CDNSSeedData("seed2.block-logic.com", "seed2.block-logic.com"));    // Secondary DNS Seeder
-        vSeeds.push_back(CDNSSeedData("seed3.block-logic.com", "seed3.block-logic.com"));         // Single node address
-        vSeeds.push_back(CDNSSeedData("seed4.block-logic.com", "seed4.block-logic.com")); // Single node address
+        vSeeds.emplace_back("seed1.block-logic.com", "seed1.block-logic.com");     // DNS Seeder
+        vSeeds.emplace_back("seed2.block-logic.com", "seed2.block-logic.com");    // Secondary DNS Seeder
+        vSeeds.emplace_back("seed3.block-logic.com", "seed3.block-logic.com");         // Single node address
+        vSeeds.emplace_back("seed4.block-logic.com", "seed4.block-logic.com"); // Single node address
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,25);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,13);
@@ -222,7 +222,7 @@ public:
         nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
         nRequiredAccumulation = 1;
         nDefaultSecurityLevel = 100; //full security level for accumulators
-        nZerocoinHeaderVersion = 4; //Block headers must be this version once zerocoin is active
+        nZerocoinHeaderVersion = 3; //Block headers must be this version once zerocoin is active
         nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zbltg to be stakable
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
@@ -263,20 +263,20 @@ public:
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
-        //nZerocoinStartHeight = 300000;
-        //nZerocoinStartTime = 1558172837;
+        nZerocoinStartHeight = 999999999;
+        nZerocoinStartTime = 999999999;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = -9908000; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = -9891737; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = -9891730; //Last valid accumulator checkpoint
-        //nBlockEnforceInvalidUTXO = 9902850; //Start enforcing the invalid UTXO's
+        nBlockRecalculateAccumulators = 999999999; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
+        //nBlockEnforceInvalidUTXO = 999999999; //Start enforcing the invalid UTXO's
         //nInvalidAmountFiltered = 0; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = 444020; //!> The block that zerocoin v2 becomes active
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
 
         // Public coin spend enforcement
-        nPublicZCSpends = 1106100;
+        nPublicZCSpends = 999999999;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 0;
@@ -291,10 +291,10 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("192.145.126.148", "192.145.126.148"));
-        vSeeds.push_back(CDNSSeedData("", ""));
-        vSeeds.push_back(CDNSSeedData("", ""));
-        vSeeds.push_back(CDNSSeedData("", ""));
+        vSeeds.emplace_back("192.145.126.148", "192.145.126.148");
+        vSeeds.emplace_back("", "");
+        vSeeds.emplace_back("", "");
+        vSeeds.emplace_back("", "");
 
         //base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
         //base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);  // Testnet bltg script addresses start with '8' or '9'
