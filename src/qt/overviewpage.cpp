@@ -304,7 +304,7 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     // Percent split
     bool showPercentages = ! (zerocoinBalance == 0 && nTotalBalance == 0);
     ui->labelBLTGPercent->setVisible(showPercentages);
-    ui->labelzBLTGPercent->setVisible(showPercentages);
+//    ui->labelzBLTGPercent->setVisible(showPercentages);
 
     static int cachedTxLocks = 0;
 
