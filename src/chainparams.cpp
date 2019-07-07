@@ -59,12 +59,13 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
 		(500, uint256("0x922d74ba02ba0d95cf0f053dcd29524a8df38c97753d89d614dce5ed526b6ea2"))
 		(76901, uint256("0xa1a994c88e415a8e86a7fe2f6ba604d9743fdd77ac766d05da61eea7be2245aa"))
 		(150000, uint256("0xade2e03464a19579a894ea05a38721f85f0b65357d03109bc62625e1c40c872c"))
-		(300000, uint256("0xe085884a471bb5e726fe04bbef3920404b414188c008582826f6b88bc61804fd"));
+		(300000, uint256("0xe085884a471bb5e726fe04bbef3920404b414188c008582826f6b88bc61804fd"))
+        (350000, uint256("0x86860b05213436edf9201afac86fe0274459205264bfd385ef9c2f657d6ba5f1"));
 		
 static const Checkpoints::CCheckpointData data = {
         &mapCheckpoints,
-        1558172837, // * UNIX timestamp of last checkpoint block
-        299999,    // * total number of transactions between genesis and last checkpoint
+        1561142646, // * UNIX timestamp of last checkpoint block
+        745814,    // * total number of transactions between genesis and last checkpoint
         //   (the tx=... number in the SetBestChain debug.log lines)
         1440        // * estimated number of transactions per day after checkpoint
 };
@@ -139,21 +140,21 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 300; // Ensure we have enough to jump start the network.
         nModifierUpdateBlock = 0;
-        nZerocoinStartHeight = 999999999; // Block # should start at
-        nZerocoinStartTime = 999999999; // Sun, 30 Jun 2019 00:00:00 +0000
-        nBlockEnforceSerialRange = 2147483646; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = 2147483646; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
+        nZerocoinStartHeight = 2147483647; // Block # should start at
+        nZerocoinStartTime = 2147483647; // Tue, 19 Jan 2038 03:14:07 +0000
+        nBlockEnforceSerialRange = 2147483647; //Enforce serial range starting this block
+        nBlockRecalculateAccumulators = 2147483647; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = 2147483647; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = 2147483647; //Last valid accumulator checkpoint
         //nBlockEnforceInvalidUTXO = 999999999; //Start enforcing the invalid UTXO's
         nInvalidAmountFiltered = 0*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
-        nBlockZerocoinV2 = 999999999; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
-        nBlockDoubleAccumulated = 999999999;
+        nBlockZerocoinV2 = 2147483647; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
+        nBlockDoubleAccumulated = 2147483647;
         nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
 
         // Public coin spend enforcement
-        nPublicZCSpends = 999999999;
+        nPublicZCSpends = 2147483647;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 0;        // We werent subjected by this, therefore shouldn't be anything to recalculate
@@ -263,20 +264,20 @@ public:
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
-        nZerocoinStartHeight = 999999999;
-        nZerocoinStartTime = 999999999;
+        nZerocoinStartHeight = 2147483647;
+        nZerocoinStartTime = 2147483647;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = 999999999; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
-        //nBlockEnforceInvalidUTXO = 999999999; //Start enforcing the invalid UTXO's
+        nBlockRecalculateAccumulators = 2147483647; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = 2147483647; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = 2147483647; //Last valid accumulator checkpoint
+        //nBlockEnforceInvalidUTXO = 2147483647; //Start enforcing the invalid UTXO's
         //nInvalidAmountFiltered = 0; //Amount of invalid coins filtered through exchanges, that should be considered valid
-        nBlockZerocoinV2 = 444020; //!> The block that zerocoin v2 becomes active
+        nBlockZerocoinV2 = 2147483647; //!> The block that zerocoin v2 becomes active
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
 
         // Public coin spend enforcement
-        nPublicZCSpends = 999999999;
+        nPublicZCSpends = 2147483647;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 0;
@@ -361,11 +362,11 @@ public:
         nMaxMoneyOut = 43199500 * COIN;
         nZerocoinStartHeight = 300;
         nBlockZerocoinV2 = 300;
-        nZerocoinStartTime = 1501776000;
+        nZerocoinStartTime = 2147483647;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = 999999999; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = 999999999; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 999999999; //Last valid accumulator checkpoint
+        nBlockRecalculateAccumulators = 2147483647; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = 2147483647; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = 2147483647; //Last valid accumulator checkpoint
 
         // Public coin spend enforcement
         nPublicZCSpends = 350;
