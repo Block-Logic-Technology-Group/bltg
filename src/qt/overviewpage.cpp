@@ -227,10 +227,10 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     ui->labelWatchTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nTotalWatchBalance, false, BitcoinUnits::separatorAlways));
 
     // zBLTG labels
-    ui->labelzBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, zerocoinBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelzBalanceUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedZerocoinBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelzBalanceMature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, matureZerocoinBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelzBalanceImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureZerocoinBalance, false, BitcoinUnits::separatorAlways));
+//    ui->labelzBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, zerocoinBalance, false, BitcoinUnits::separatorAlways));
+//    ui->labelzBalanceUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedZerocoinBalance, false, BitcoinUnits::separatorAlways));
+//    ui->labelzBalanceMature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, matureZerocoinBalance, false, BitcoinUnits::separatorAlways));
+//    ui->labelzBalanceImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureZerocoinBalance, false, BitcoinUnits::separatorAlways));
 
     // Combined labels
     ui->labelBalancez->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, availableTotalBalance, false, BitcoinUnits::separatorAlways));
@@ -238,7 +238,7 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
 
     // Percentage labels
     ui->labelBLTGPercent->setText(sPercentage);
-    ui->labelzBLTGPercent->setText(szPercentage);
+//    ui->labelzBLTGPercent->setText(szPercentage);
 
     // Adjust bubble-help according to AutoMint settings
     QString automintHelp = tr("Current percentage of zBLTG.\nIf AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).\n");
@@ -294,12 +294,12 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     bool showzBLTGAvailable = settingShowAllBalances || zerocoinBalance != matureZerocoinBalance;
     bool showzBLTGUnconfirmed = settingShowAllBalances || unconfirmedZerocoinBalance != 0;
     bool showzBLTGImmature = settingShowAllBalances || immatureZerocoinBalance != 0;
-    ui->labelzBalanceMature->setVisible(showzBLTGAvailable);
-    ui->labelzBalanceMatureText->setVisible(showzBLTGAvailable);
-    ui->labelzBalanceUnconfirmed->setVisible(showzBLTGUnconfirmed);
-    ui->labelzBalanceUnconfirmedText->setVisible(showzBLTGUnconfirmed);
-    ui->labelzBalanceImmature->setVisible(showzBLTGImmature);
-    ui->labelzBalanceImmatureText->setVisible(showzBLTGImmature);
+//    ui->labelzBalanceMature->setVisible(showzBLTGAvailable);
+//    ui->labelzBalanceMatureText->setVisible(showzBLTGAvailable);
+//    ui->labelzBalanceUnconfirmed->setVisible(showzBLTGUnconfirmed);
+//    ui->labelzBalanceUnconfirmedText->setVisible(showzBLTGUnconfirmed);
+//    ui->labelzBalanceImmature->setVisible(showzBLTGImmature);
+//    ui->labelzBalanceImmatureText->setVisible(showzBLTGImmature);
 
     // Percent split
     bool showPercentages = ! (zerocoinBalance == 0 && nTotalBalance == 0);
