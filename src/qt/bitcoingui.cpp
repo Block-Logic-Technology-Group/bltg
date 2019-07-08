@@ -389,7 +389,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     connect(sendCoinsAction, SIGNAL(triggered()), this, SLOT(gotoSendCoinsPage()));
     connect(receiveCoinsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(receiveCoinsAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
-    connect(privacyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+//    connect(privacyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
 //    connect(privacyAction, SIGNAL(triggered()), this, SLOT(gotoPrivacyPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));

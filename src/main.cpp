@@ -4057,6 +4057,7 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
             return state.DoS(50, error("CheckBlockHeader() : block version must be above 4 after ZerocoinStartHeight"),
             REJECT_INVALID, "block-version");
     } else {
+        //block.nVersion = 3 / nZerocoinHeaderVersion = 4
         if (block.nVersion >= Params().Zerocoin_HeaderVersion())
             return state.DoS(50, error("CheckBlockHeader() : block version must be below 4 before ZerocoinStartHeight"),
             REJECT_INVALID, "block-version");
