@@ -97,19 +97,19 @@ static bool SelectBlockFromCandidates(
             break;
 
         //if the lowest block height (vSortedByTimestamp[0]) is >= switch height, use new modifier calc
-        if (fFirstRun){
-            fModifierV2 = pindex->nHeight >= Params().ModifierUpgradeBlock();
-            fFirstRun = false;
-        }
+//        if (fFirstRun){
+//            fModifierV2 = pindex->nHeight >= Params().ModifierUpgradeBlock();
+//            fFirstRun = false;
+//        }
 
         if (mapSelectedBlocks.count(pindex->GetBlockHash()) > 0)
             continue;
 
         // compute the selection hash by hashing an input that is unique to that block
         uint256 hashProof;
-        if(fModifierV2)
-            hashProof = pindex->GetBlockHash();
-        else
+//        if(fModifierV2)
+//            hashProof = pindex->GetBlockHash();
+//        else
             hashProof = pindex->IsProofOfStake() ? 0 : pindex->GetBlockHash();
 
         CDataStream ss(SER_GETHASH, 0);
