@@ -1996,7 +1996,7 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 3000000 * COIN;
     } else if (nHeight < 20201 && nHeight >= 11) { // ~1 week for grace period
         nSubsidy = 1 * COIN;
-    } else if (nHeight < 279400 && nHeight >= 20201) { // ~6 month period
+    } else if (nHeight <= 279400 && nHeight >= 20201) { // ~6 month period
         nSubsidy = 10 * COIN;
     } else if (nHeight <= 538600 && nHeight >= 279401) { // ~6 month period
         nSubsidy = 9 * COIN;
@@ -6503,7 +6503,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 int nDoS;
                 if(state.IsInvalid(nDoS)) {
                     pfrom->PushMessage("reject", strCommand, state.GetRejectCode(),
-                                       state.GetRejectReason().substr(0, MAX_REJECT_MESSAGE_LENGTH), inv.hash);
+                                       state.GetRejectReason().tr(0, MAX_REJECT_MESSAGE_LENGTH), inv.hash);
                     if(nDoS > 0) {
                         TRY_LOCK(cs_main, lockMain);
                         if(lockMain) Misbehaving(pfrom->GetId(), nDoS);
