@@ -89,7 +89,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
                                                                             aboutAction(0),
                                                                             receiveCoinsAction(0),
                                                                             governanceAction(0),
-                                                                            privacyAction(0),
+//                                                                            privacyAction(0),
                                                                             optionsAction(0),
                                                                             toggleHideAction(0),
                                                                             encryptWalletAction(0),
@@ -572,9 +572,9 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
-        toolbar->addAction(privacyAction);
+//        toolbar->addAction(privacyAction);
         toolbar->addAction(historyAction);
-        toolbar->addAction(privacyAction);
+//        toolbar->addAction(privacyAction);
         QSettings settings;
         if (settings.value("fShowMasternodesTab").toBool()) {
             toolbar->addAction(masternodeAction);
@@ -678,7 +678,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     overviewAction->setEnabled(enabled);
     sendCoinsAction->setEnabled(enabled);
     receiveCoinsAction->setEnabled(enabled);
-    privacyAction->setEnabled(enabled);
+//    privacyAction->setEnabled(enabled);
     historyAction->setEnabled(enabled);
     QSettings settings;
     if (settings.value("fShowMasternodesTab").toBool()) {
@@ -735,7 +735,7 @@ void BitcoinGUI::createTrayIconMenu()
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(sendCoinsAction);
     trayIconMenu->addAction(receiveCoinsAction);
-    trayIconMenu->addAction(privacyAction);
+//    trayIconMenu->addAction(privacyAction);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(signMessageAction);
     trayIconMenu->addAction(verifyMessageAction);
