@@ -281,7 +281,7 @@ struct CNodeStateStats {
 };
 
 struct CDiskTxPos : public CDiskBlockPos {
-    unsigned int nTxOffset; // after header
+    unsigned int nTxOffset{}; // after header
 
     ADD_SERIALIZE_METHODS;
 
