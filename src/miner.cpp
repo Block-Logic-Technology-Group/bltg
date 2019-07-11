@@ -120,7 +120,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
     // Make sure to create the correct block version after zerocoin is enabled
     bool fZerocoinActive = nHeight >= Params().Zerocoin_StartHeight();
-    pblock->nVersion = 4;   // Supports CLTV activation
+    pblock->nVersion = 3;   // version 4 Supports CLTV activation
 
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
