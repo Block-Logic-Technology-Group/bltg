@@ -1582,13 +1582,13 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
                 nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
 
 
-        bool fCLTVHasMajority = CBlockIndex::IsSuperMajority(4, chainActive.Tip(), Params().EnforceBlockUpgradeMajority());
+//        bool fCLTVHasMajority = CBlockIndex::IsSuperMajority(4, chainActive.Tip(), Params().EnforceBlockUpgradeMajority());
 
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
         int flags = STANDARD_SCRIPT_VERIFY_FLAGS;
-        if (fCLTVHasMajority)
-            flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
+//        if (fCLTVHasMajority)
+//            flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
         if (!CheckInputs(tx, state, view, true, flags, true)) {
             return error("AcceptToMemoryPool: : ConnectInputs failed %s", hash.ToString());
         }
@@ -1603,8 +1603,8 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
         // invalid blocks, however allowing such transactions into the mempool
         // can be exploited as a DoS attack.
         flags = MANDATORY_SCRIPT_VERIFY_FLAGS;
-        if (fCLTVHasMajority)
-            flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
+//        if (fCLTVHasMajority)
+//            flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
         if (!CheckInputs(tx, state, view, true, flags, true)) {
             return error("AcceptToMemoryPool: : BUG! PLEASE REPORT THIS! ConnectInputs failed against MANDATORY but not STANDARD flags %s", hash.ToString());
         }
@@ -1790,13 +1790,13 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
                 hash.ToString(),
                 nFees, ::minRelayTxFee.GetFee(nSize) * 10000);
 
-        bool fCLTVHasMajority = CBlockIndex::IsSuperMajority(4, chainActive.Tip(), Params().EnforceBlockUpgradeMajority());
+//        bool fCLTVHasMajority = CBlockIndex::IsSuperMajority(4, chainActive.Tip(), Params().EnforceBlockUpgradeMajority());
 
         // Check against previous transactions
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
         int flags = STANDARD_SCRIPT_VERIFY_FLAGS;
-        if (fCLTVHasMajority)
-            flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
+//        if (fCLTVHasMajority)
+//            flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
         if (!CheckInputs(tx, state, view, false, flags, true)) {
             return error("AcceptableInputs: : ConnectInputs failed %s", hash.ToString());
         }
@@ -2181,7 +2181,7 @@ void UpdateCoins(const CTransaction& tx, CValidationState& state, CCoinsViewCach
     if (!tx.IsCoinBase() && !tx.HasZerocoinSpendInputs()) {
         txundo.vprevout.reserve(tx.vin.size());
         for (const CTxIn& txin : tx.vin) {
-            txundo.vprevout.push_back(CTxInUndo());
+            txundo.vprevout.emplace_back();
             bool ret = inputs.ModifyCoins(txin.prevout.hash)->Spend(txin.prevout, txundo.vprevout.back());
             assert(ret);
         }
@@ -2575,34 +2575,34 @@ void ThreadScriptCheck()
     scriptcheckqueue.Thread();
 }
 
-void AddWrappedSerialsInflation()
-{
-    CBlockIndex* pindex = chainActive[Params().Zerocoin_Block_EndFakeSerial()];
-    if (pindex->nHeight > chainActive.Height())
-        return;
-
-    uiInterface.ShowProgress(_("Adding Wrapped Serials supply..."), 0);
-    while (true) {
-        if (pindex->nHeight % 1000 == 0) {
-            LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
-            int percent = std::max(1, std::min(99, (int)((double)(pindex->nHeight - Params().Zerocoin_Block_EndFakeSerial()) * 100 / (chainActive.Height() - Params().Zerocoin_Block_EndFakeSerial()))));
-            uiInterface.ShowProgress(_("Adding Wrapped Serials supply..."), percent);
-        }
-
-        // Add inflated denominations to block index mapSupply
-        for (auto denom : libzerocoin::zerocoinDenomList) {
-            pindex->mapZerocoinSupply.at(denom) += GetWrapppedSerialInflation(denom);
-        }
-        // Update current block index to disk
-        assert(pblocktree->WriteBlockIndex(CDiskBlockIndex(pindex)));
-        // next block
-        if (pindex->nHeight < chainActive.Height())
-            pindex = chainActive.Next(pindex);
-        else
-            break;
-    }
-    uiInterface.ShowProgress("", 100);
-}
+//void AddWrappedSerialsInflation()
+//{
+//    CBlockIndex* pindex = chainActive[Params().Zerocoin_Block_EndFakeSerial()];
+//    if (pindex->nHeight > chainActive.Height())
+//        return;
+//
+//    uiInterface.ShowProgress(_("Adding Wrapped Serials supply..."), 0);
+//    while (true) {
+//        if (pindex->nHeight % 1000 == 0) {
+//            LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
+//            int percent = std::max(1, std::min(99, (int)((double)(pindex->nHeight - Params().Zerocoin_Block_EndFakeSerial()) * 100 / (chainActive.Height() - Params().Zerocoin_Block_EndFakeSerial()))));
+//            uiInterface.ShowProgress(_("Adding Wrapped Serials supply..."), percent);
+//        }
+//
+//        // Add inflated denominations to block index mapSupply
+//        for (auto denom : libzerocoin::zerocoinDenomList) {
+//            pindex->mapZerocoinSupply.at(denom) += GetWrapppedSerialInflation(denom);
+//        }
+//        // Update current block index to disk
+//        assert(pblocktree->WriteBlockIndex(CDiskBlockIndex(pindex)));
+//        // next block
+//        if (pindex->nHeight < chainActive.Height())
+//            pindex = chainActive.Next(pindex);
+//        else
+//            break;
+//    }
+//    uiInterface.ShowProgress("", 100);
+//}
 
 void RecalculateZBLTGMinted()
 {
@@ -2915,10 +2915,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     bool fScriptChecks = pindex->nHeight >= Checkpoints::GetTotalBlocksEstimate();
 
     // If scripts won't be checked anyways, don't bother seeing if CLTV is activated
-    bool fCLTVHasMajority = false;
-    if (fScriptChecks && pindex->pprev) {
-        fCLTVHasMajority = CBlockIndex::IsSuperMajority(4, pindex->pprev, Params().EnforceBlockUpgradeMajority());
-    }
+//    bool fCLTVHasMajority = false;
+//    if (fScriptChecks && pindex->pprev) {
+//        fCLTVHasMajority = CBlockIndex::IsSuperMajority(4, pindex->pprev, Params().EnforceBlockUpgradeMajority());
+//    }
 
     // Do not allow blocks that contain transactions which 'overwrite' older transactions,
     // unless those are already completely spent.
@@ -4309,10 +4309,10 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     }
 
     // Reject block.nVersion=3 blocks when 95% (75% on testnet) of the network has upgraded:
-    if (block.nVersion < 4 && CBlockIndex::IsSuperMajority(4, pindexPrev, Params().RejectBlockOutdatedMajority())) {
-        return state.Invalid(error("%s : rejected nVersion=3 block", __func__),
-                             REJECT_OBSOLETE, "bad-version");
-    }
+//    if (block.nVersion < 4 && CBlockIndex::IsSuperMajority(4, pindexPrev, Params().RejectBlockOutdatedMajority())) {
+//        return state.Invalid(error("%s : rejected nVersion=3 block", __func__),
+//                             REJECT_OBSOLETE, "bad-version");
+//    }
 
     return true;
 }

@@ -368,7 +368,7 @@ bool IsTransactionInChain(const uint256& txId, int& nHeightTx, CTransaction& tx)
 bool IsTransactionInChain(const uint256& txId, int& nHeightTx);
 bool IsBlockHashInChain(const uint256& hashBlock);
 bool ValidOutPoint(const COutPoint out, int nHeight);
-void AddWrappedSerialsInflation();
+//void AddWrappedSerialsInflation();
 void RecalculateZBLTGSpent();
 void RecalculateZBLTGMinted();
 bool RecalculateBLTGSupply(int nHeightStart);

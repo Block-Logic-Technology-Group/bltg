@@ -1511,27 +1511,27 @@ bool AppInit2()
                 bool reindexDueWrappedSerials = false;
                 bool reindexZerocoin = false;
                 int chainHeight = chainActive.Height();
-                if(Params().NetworkID() == CBaseChainParams::MAIN && chainHeight > Params().Zerocoin_Block_EndFakeSerial()) {
+//                if(Params().NetworkID() == CBaseChainParams::MAIN && chainHeight > Params().Zerocoin_Block_EndFakeSerial()) {
 
                     // Supply needs to be exactly GetSupplyBeforeFakeSerial + GetWrapppedSerialInflationAmount
-                    CBlockIndex* pblockindex = chainActive[Params().Zerocoin_Block_EndFakeSerial() + 1];
-                    CAmount zbltgSupplyCheckpoint = Params().GetSupplyBeforeFakeSerial() + GetWrapppedSerialInflationAmount();
+//                    CBlockIndex* pblockindex = chainActive[Params().Zerocoin_Block_EndFakeSerial() + 1];
+//                    CAmount zbltgSupplyCheckpoint = Params().GetSupplyBeforeFakeSerial() + GetWrapppedSerialInflationAmount();
+//
+//                    if (pblockindex->GetZerocoinSupply() < zbltgSupplyCheckpoint) {
+//                        // Trigger reindex due wrapping serials
+//                        LogPrintf("Current GetZerocoinSupply: %d vs %d\n", pblockindex->GetZerocoinSupply()/COIN , zbltgSupplyCheckpoint/COIN);
+//                        reindexDueWrappedSerials = true;
+//                    } else if (pblockindex->GetZerocoinSupply() > zbltgSupplyCheckpoint) {
+//                        // Trigger global zBLTG reindex
+//                        reindexZerocoin = true;
+//                        LogPrintf("Current GetZerocoinSupply: %d vs %d\n", pblockindex->GetZerocoinSupply()/COIN , zbltgSupplyCheckpoint/COIN);
+//                    }
 
-                    if (pblockindex->GetZerocoinSupply() < zbltgSupplyCheckpoint) {
-                        // Trigger reindex due wrapping serials
-                        LogPrintf("Current GetZerocoinSupply: %d vs %d\n", pblockindex->GetZerocoinSupply()/COIN , zbltgSupplyCheckpoint/COIN);
-                        reindexDueWrappedSerials = true;
-                    } else if (pblockindex->GetZerocoinSupply() > zbltgSupplyCheckpoint) {
-                        // Trigger global zBLTG reindex
-                        reindexZerocoin = true;
-                        LogPrintf("Current GetZerocoinSupply: %d vs %d\n", pblockindex->GetZerocoinSupply()/COIN , zbltgSupplyCheckpoint/COIN);
-                    }
-
-                }
+//                }
 
                 // Reindex only for wrapped serials inflation.
-                if (reindexDueWrappedSerials)
-                    AddWrappedSerialsInflation();
+//                if (reindexDueWrappedSerials)
+//                    AddWrappedSerialsInflation();
 
                 // Recalculate money supply for blocks that are impacted by accounting issue after zerocoin activation
                 if (GetBoolArg("-reindexmoneysupply", false) || reindexZerocoin) {
