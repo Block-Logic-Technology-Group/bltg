@@ -267,11 +267,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop PIVX server.");
+            "\nStop BLTG server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "PIVX server stopping";
+    return "BLTG server stopping";
 }
 
 
@@ -301,12 +301,12 @@ static const CRPCCommand vRPCCommands[] =
         {"network", "clearbanned", &clearbanned, true, false, false},
 
         /* Block chain and UTXO */
-        {"blockchain", "findserial", &findserial, true, false, false},
-        {"blockchain", "getaccumulatorvalues", &getaccumulatorvalues, true, false, false},
-        {"blockchain", "getaccumulatorwitness", &getaccumulatorwitness, true, false, false},
+//        {"blockchain", "findserial", &findserial, true, false, false},
+//        {"blockchain", "getaccumulatorvalues", &getaccumulatorvalues, true, false, false},
+//        {"blockchain", "getaccumulatorwitness", &getaccumulatorwitness, true, false, false},
         {"blockchain", "getblockindexstats", &getblockindexstats, true, false, false},
-        {"blockchain", "getmintsinblocks", &getmintsinblocks, true, false, false},
-        {"blockchain", "getserials", &getserials, true, false, false},
+//        {"blockchain", "getmintsinblocks", &getmintsinblocks, true, false, false},
+//        {"blockchain", "getserials", &getserials, true, false, false},
         {"blockchain", "getblockchaininfo", &getblockchaininfo, true, false, false},
         {"blockchain", "getbestblockhash", &getbestblockhash, true, false, false},
         {"blockchain", "getblockcount", &getblockcount, true, false, false},
@@ -326,45 +326,45 @@ static const CRPCCommand vRPCCommands[] =
         {"blockchain", "verifychain", &verifychain, true, false, false},
 
         /* Mining */
-        {"mining", "getblocktemplate", &getblocktemplate, true, false, false},
-        {"mining", "getmininginfo", &getmininginfo, true, false, false},
-        {"mining", "getnetworkhashps", &getnetworkhashps, true, false, false},
-        {"mining", "prioritisetransaction", &prioritisetransaction, true, false, false},
-        {"mining", "submitblock", &submitblock, true, true, false},
-        {"mining", "reservebalance", &reservebalance, true, true, false},
+        {"mining", "getblocktemplate", &getblocktemplate, true, false, false },
+        {"mining", "getmininginfo", &getmininginfo, true, false, false },
+        {"mining", "getnetworkhashps", &getnetworkhashps, true, false, false },
+        {"mining", "prioritisetransaction", &prioritisetransaction, true, false, false },
+        {"mining", "submitblock", &submitblock, true, true, false },
+        {"mining", "reservebalance", &reservebalance, true, true, false },
 
 #ifdef ENABLE_WALLET
         /* Coin generation */
-        {"generating", "getgenerate", &getgenerate, true, false, false},
-        {"generating", "gethashespersec", &gethashespersec, true, false, false},
-        {"generating", "setgenerate", &setgenerate, true, true, false},
-        {"generating", "generate", &generate, true, true, false},
+        {"generating", "getgenerate", &getgenerate, true, false, false },
+        {"generating", "gethashespersec", &gethashespersec, true, false, false },
+        {"generating", "setgenerate", &setgenerate, true, true, false },
+        {"generating", "generate", &generate, true, true, false },
 #endif
 
         /* Raw transactions */
-        {"rawtransactions", "createrawtransaction", &createrawtransaction, true, false, false},
-        {"rawtransactions", "decoderawtransaction", &decoderawtransaction, true, false, false},
-        {"rawtransactions", "decodescript", &decodescript, true, false, false},
-        {"rawtransactions", "getrawtransaction", &getrawtransaction, true, false, false},
-        {"rawtransactions", "sendrawtransaction", &sendrawtransaction, false, false, false},
-        {"rawtransactions", "signrawtransaction", &signrawtransaction, false, false, false}, /* uses wallet if enabled */
+        {"rawtransactions", "createrawtransaction", &createrawtransaction, true, false, false },
+        {"rawtransactions", "decoderawtransaction", &decoderawtransaction, true, false, false },
+        {"rawtransactions", "decodescript", &decodescript, true, false, false },
+        {"rawtransactions", "getrawtransaction", &getrawtransaction, true, false, false },
+        {"rawtransactions", "sendrawtransaction", &sendrawtransaction, false, false, false },
+        {"rawtransactions", "signrawtransaction", &signrawtransaction, false, false, false }, /* uses wallet if enabled */
 
         /* Utility functions */
-        {"util", "createmultisig", &createmultisig, true, true, false},
-        {"util", "validateaddress", &validateaddress, true, false, false}, /* uses wallet if enabled */
-        {"util", "verifymessage", &verifymessage, true, false, false},
-        {"util", "estimatefee", &estimatefee, true, true, false},
-        {"util", "estimatepriority", &estimatepriority, true, true, false},
+        {"util", "createmultisig", &createmultisig, true, true, false },
+        {"util", "validateaddress", &validateaddress, true, false, false }, /* uses wallet if enabled */
+        {"util", "verifymessage", &verifymessage, true, false, false },
+        {"util", "estimatefee", &estimatefee, true, true, false },
+        {"util", "estimatepriority", &estimatepriority, true, true, false },
 
         /* Not shown in help */
-        {"hidden", "invalidateblock", &invalidateblock, true, true, false},
-        {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
-        {"hidden", "setmocktime", &setmocktime, true, false, false},
-        { "hidden",             "waitfornewblock",        &waitfornewblock,        true,  true,  false  },
-        { "hidden",             "waitforblock",           &waitforblock,           true,  true,  false  },
-        { "hidden",             "waitforblockheight",     &waitforblockheight,     true,  true,  false  },
+        {"hidden", "invalidateblock", &invalidateblock, true, true, false },
+        {"hidden", "reconsiderblock", &reconsiderblock, true, true, false },
+        {"hidden", "setmocktime", &setmocktime, true, false, false },
+        { "hidden","waitfornewblock", &waitfornewblock,true,  true,  false },
+        { "hidden","waitforblock", &waitforblock,true,true,false },
+        { "hidden","waitforblockheight", &waitforblockheight,true,true,false },
 
-        /* PIVX features */
+        /* BLTG features */
         {"bltg", "listmasternodes", &listmasternodes, true, true, false},
         {"bltg", "getmasternodecount", &getmasternodecount, true, true, false},
         {"bltg", "masternodeconnect", &masternodeconnect, true, true, false},
@@ -399,8 +399,8 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
         {"wallet", "autocombinerewards", &autocombinerewards, false, false, true},
         {"wallet", "backupwallet", &backupwallet, true, false, true},
-        {"wallet", "enableautomintaddress", &enableautomintaddress, true, false, true},
-        {"wallet", "createautomintaddress", &createautomintaddress, true, false, true},
+//        {"wallet", "enableautomintaddress", &enableautomintaddress, true, false, true},
+//        {"wallet", "createautomintaddress", &createautomintaddress, true, false, true},
         {"wallet", "dumpprivkey", &dumpprivkey, true, false, true},
         {"wallet", "dumpwallet", &dumpwallet, true, false, true},
         {"wallet", "bip38encrypt", &bip38encrypt, true, false, true},
@@ -446,29 +446,29 @@ static const CRPCCommand vRPCCommands[] =
         {"wallet", "walletpassphrasechange", &walletpassphrasechange, true, false, true},
         {"wallet", "walletpassphrase", &walletpassphrase, true, false, true},
 
-        {"zerocoin", "createrawzerocoinstake", &createrawzerocoinstake, false, false, true},
-        {"zerocoin", "createrawzerocoinpublicspend", &createrawzerocoinpublicspend, false, false, true},
-        {"zerocoin", "getzerocoinbalance", &getzerocoinbalance, false, false, true},
-        {"zerocoin", "listmintedzerocoins", &listmintedzerocoins, false, false, true},
-        {"zerocoin", "listspentzerocoins", &listspentzerocoins, false, false, true},
-        {"zerocoin", "listzerocoinamounts", &listzerocoinamounts, false, false, true},
-        {"zerocoin", "mintzerocoin", &mintzerocoin, false, false, true},
-        {"zerocoin", "spendzerocoin", &spendzerocoin, false, false, true},
-        {"zerocoin", "spendrawzerocoin", &spendrawzerocoin, true, false, false},
-        {"zerocoin", "spendzerocoinmints", &spendzerocoinmints, false, false, true},
-        {"zerocoin", "resetmintzerocoin", &resetmintzerocoin, false, false, true},
-        {"zerocoin", "resetspentzerocoin", &resetspentzerocoin, false, false, true},
-        {"zerocoin", "getarchivedzerocoin", &getarchivedzerocoin, false, false, true},
-        {"zerocoin", "importzerocoins", &importzerocoins, false, false, true},
-        {"zerocoin", "exportzerocoins", &exportzerocoins, false, false, true},
-        {"zerocoin", "reconsiderzerocoins", &reconsiderzerocoins, false, false, true},
-        {"zerocoin", "getspentzerocoinamount", &getspentzerocoinamount, false, false, false},
-        {"zerocoin", "getzbltgseed", &getzbltgseed, false, false, true},
-        {"zerocoin", "setzbltgseed", &setzbltgseed, false, false, true},
-        {"zerocoin", "generatemintlist", &generatemintlist, false, false, true},
-        {"zerocoin", "searchdzbltg", &searchdzbltg, false, false, true},
-        {"zerocoin", "dzbltgstate", &dzbltgstate, false, false, true},
-        {"zerocoin", "clearspendcache", &clearspendcache, false, false, true}
+//        {"zerocoin", "createrawzerocoinstake", &createrawzerocoinstake, false, false, true},
+//        {"zerocoin", "createrawzerocoinpublicspend", &createrawzerocoinpublicspend, false, false, true},
+//        {"zerocoin", "getzerocoinbalance", &getzerocoinbalance, false, false, true},
+//        {"zerocoin", "listmintedzerocoins", &listmintedzerocoins, false, false, true},
+//        {"zerocoin", "listspentzerocoins", &listspentzerocoins, false, false, true},
+//        {"zerocoin", "listzerocoinamounts", &listzerocoinamounts, false, false, true},
+//        {"zerocoin", "mintzerocoin", &mintzerocoin, false, false, true},
+//        {"zerocoin", "spendzerocoin", &spendzerocoin, false, false, true},
+//        {"zerocoin", "spendrawzerocoin", &spendrawzerocoin, true, false, false},
+//        {"zerocoin", "spendzerocoinmints", &spendzerocoinmints, false, false, true},
+//        {"zerocoin", "resetmintzerocoin", &resetmintzerocoin, false, false, true},
+//        {"zerocoin", "resetspentzerocoin", &resetspentzerocoin, false, false, true},
+//        {"zerocoin", "getarchivedzerocoin", &getarchivedzerocoin, false, false, true},
+//        {"zerocoin", "importzerocoins", &importzerocoins, false, false, true},
+//        {"zerocoin", "exportzerocoins", &exportzerocoins, false, false, true},
+//        {"zerocoin", "reconsiderzerocoins", &reconsiderzerocoins, false, false, true},
+//        {"zerocoin", "getspentzerocoinamount", &getspentzerocoinamount, false, false, false},
+//        {"zerocoin", "getzbltgseed", &getzbltgseed, false, false, true},
+//        {"zerocoin", "setzbltgseed", &setzbltgseed, false, false, true},
+//        {"zerocoin", "generatemintlist", &generatemintlist, false, false, true},
+//        {"zerocoin", "searchdzbltg", &searchdzbltg, false, false, true},
+//        {"zerocoin", "dzbltgstate", &dzbltgstate, false, false, true},
+//        {"zerocoin", "clearspendcache", &clearspendcache, false, false, true}
 
 #endif // ENABLE_WALLET
 };
