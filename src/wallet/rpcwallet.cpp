@@ -2696,38 +2696,38 @@ UniValue listzerocoinamounts(const UniValue& params, bool fHelp)
     return ret;
 }
 
-UniValue listspentzerocoins(const UniValue& params, bool fHelp)
-{
-
-    if (fHelp || params.size() != 0)
-        throw runtime_error(
-            "listspentzerocoins\n"
-            "\nList all the spent zBLTG mints in the wallet.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nResult:\n"
-            "[\n"
-            "  \"xxx\"      (string) Pubcoin in hex format.\n"
-            "  ,...\n"
-            "]\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("listspentzerocoins", "") + HelpExampleRpc("listspentzerocoins", ""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    EnsureWalletIsUnlocked(true);
-
-    CWalletDB walletdb(pwalletMain->strWalletFile);
-    list<CBigNum> listPubCoin = walletdb.ListSpentCoinsSerial();
-
-    UniValue jsonList(UniValue::VARR);
-    for (const CBigNum& pubCoinItem : listPubCoin) {
-        jsonList.push_back(pubCoinItem.GetHex());
-    }
-
-    return jsonList;
-}
+//UniValue listspentzerocoins(const UniValue& params, bool fHelp)
+//{
+//
+//    if (fHelp || params.size() != 0)
+//        throw runtime_error(
+//            "listspentzerocoins\n"
+//            "\nList all the spent zBLTG mints in the wallet.\n" +
+//            HelpRequiringPassphrase() + "\n"
+//
+//            "\nResult:\n"
+//            "[\n"
+//            "  \"xxx\"      (string) Pubcoin in hex format.\n"
+//            "  ,...\n"
+//            "]\n"
+//
+//            "\nExamples:\n" +
+//            HelpExampleCli("listspentzerocoins", "") + HelpExampleRpc("listspentzerocoins", ""));
+//
+//    LOCK2(cs_main, pwalletMain->cs_wallet);
+//
+//    EnsureWalletIsUnlocked(true);
+//
+//    CWalletDB walletdb(pwalletMain->strWalletFile);
+//    list<CBigNum> listPubCoin = walletdb.ListSpentCoinsSerial();
+//
+//    UniValue jsonList(UniValue::VARR);
+//    for (const CBigNum& pubCoinItem : listPubCoin) {
+//        jsonList.push_back(pubCoinItem.GetHex());
+//    }
+//
+//    return jsonList;
+//}
 
 UniValue mintzerocoin(const UniValue& params, bool fHelp)
 {
