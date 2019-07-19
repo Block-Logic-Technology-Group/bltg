@@ -1306,59 +1306,59 @@ void validaterange(const UniValue& params, int& heightStart, int& heightEnd, int
     }
 }
 
-UniValue getmintsinblocks(const UniValue& params, bool fHelp) {
-    if (fHelp || params.size() != 3)
-        throw runtime_error(
-                "getmintsinblocks height range coinDenomination\n"
-                "\nReturns the number of mints of a certain denomination"
-                "\noccurred in blocks [height, height+1, height+2, ..., height+range-1]\n"
-
-                "\nArguments:\n"
-                "1. height             (numeric, required) block height where the search starts.\n"
-                "2. range              (numeric, required) number of blocks to include.\n"
-                "3. coinDenomination   (numeric, required) coin denomination.\n"
-
-                "\nResult:\n"
-                "{\n"
-                "  \"Starting block\": \"x\"           (integer) First counted block\n"
-                "  \"Ending block\": \"x\"             (integer) Last counted block\n"
-                "  \"Number of d-denom mints\": \"x\"  (integer) number of mints of the required d denomination\n"
-                "}\n"
-
-                "\nExamples:\n" +
-                HelpExampleCli("getmintsinblocks", "1200000 1000 5") +
-                HelpExampleRpc("getmintsinblocks", "1200000, 1000, 5"));
-
-    int heightStart, heightEnd;
-    validaterange(params, heightStart, heightEnd, Params().Zerocoin_StartHeight());
-
-    int d = params[2].get_int();
-    libzerocoin::CoinDenomination denom = libzerocoin::IntToZerocoinDenomination(d);
-    if (denom == libzerocoin::CoinDenomination::ZQ_ERROR)
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid denomination. Must be in {1, 5, 10, 50, 100, 500, 1000, 5000}");
-
-    int num_of_mints = 0;
-    {
-        LOCK(cs_main);
-        CBlockIndex* pindex = chainActive[heightStart];
-
-        while (true) {
-            num_of_mints += count(pindex->vMintDenominationsInBlock.begin(), pindex->vMintDenominationsInBlock.end(), denom);
-            if (pindex->nHeight < heightEnd) {
-                pindex = chainActive.Next(pindex);
-            } else {
-                break;
-            }
-        }
-    }
-
-    UniValue obj(UniValue::VOBJ);
-    obj.push_back(Pair("Starting block", heightStart));
-    obj.push_back(Pair("Ending block", heightEnd-1));
-    obj.push_back(Pair("Number of "+ std::to_string(d) +"-denom mints", num_of_mints));
-
-    return obj;
-}
+//UniValue getmintsinblocks(const UniValue& params, bool fHelp) {
+//    if (fHelp || params.size() != 3)
+//        throw runtime_error(
+//                "getmintsinblocks height range coinDenomination\n"
+//                "\nReturns the number of mints of a certain denomination"
+//                "\noccurred in blocks [height, height+1, height+2, ..., height+range-1]\n"
+//
+//                "\nArguments:\n"
+//                "1. height             (numeric, required) block height where the search starts.\n"
+//                "2. range              (numeric, required) number of blocks to include.\n"
+//                "3. coinDenomination   (numeric, required) coin denomination.\n"
+//
+//                "\nResult:\n"
+//                "{\n"
+//                "  \"Starting block\": \"x\"           (integer) First counted block\n"
+//                "  \"Ending block\": \"x\"             (integer) Last counted block\n"
+//                "  \"Number of d-denom mints\": \"x\"  (integer) number of mints of the required d denomination\n"
+//                "}\n"
+//
+//                "\nExamples:\n" +
+//                HelpExampleCli("getmintsinblocks", "1200000 1000 5") +
+//                HelpExampleRpc("getmintsinblocks", "1200000, 1000, 5"));
+//
+//    int heightStart, heightEnd;
+//    validaterange(params, heightStart, heightEnd, Params().Zerocoin_StartHeight());
+//
+//    int d = params[2].get_int();
+//    libzerocoin::CoinDenomination denom = libzerocoin::IntToZerocoinDenomination(d);
+//    if (denom == libzerocoin::CoinDenomination::ZQ_ERROR)
+//        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid denomination. Must be in {1, 5, 10, 50, 100, 500, 1000, 5000}");
+//
+//    int num_of_mints = 0;
+//    {
+//        LOCK(cs_main);
+//        CBlockIndex* pindex = chainActive[heightStart];
+//
+//        while (true) {
+//            num_of_mints += count(pindex->vMintDenominationsInBlock.begin(), pindex->vMintDenominationsInBlock.end(), denom);
+//            if (pindex->nHeight < heightEnd) {
+//                pindex = chainActive.Next(pindex);
+//            } else {
+//                break;
+//            }
+//        }
+//    }
+//
+//    UniValue obj(UniValue::VOBJ);
+//    obj.push_back(Pair("Starting block", heightStart));
+//    obj.push_back(Pair("Ending block", heightEnd-1));
+//    obj.push_back(Pair("Number of "+ std::to_string(d) +"-denom mints", num_of_mints));
+//
+//    return obj;
+//}
 
 
 UniValue getserials(const UniValue& params, bool fHelp) {
