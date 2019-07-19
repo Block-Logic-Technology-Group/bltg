@@ -269,7 +269,7 @@ extern UniValue setzbltgseed(const UniValue& params, bool fHelp);
 extern UniValue getzbltgseed(const UniValue& params, bool fHelp);
 extern UniValue generatemintlist(const UniValue& params, bool fHelp);
 extern UniValue searchdzbltg(const UniValue& params, bool fHelp);
-extern UniValue dzbltgstate(const UniValue& params, bool fHelp);
+//extern UniValue dzbltgstate(const UniValue& params, bool fHelp);
 //extern UniValue clearspendcache(const UniValue& params, bool fHelp);
 extern UniValue enableautomintaddress(const UniValue& params, bool fHelp);
 extern UniValue createautomintaddress(const UniValue& params, bool fHelp);
