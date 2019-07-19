@@ -266,7 +266,7 @@ extern UniValue importzerocoins(const UniValue& params, bool fHelp);
 extern UniValue reconsiderzerocoins(const UniValue& params, bool fHelp);
 //extern UniValue getspentzerocoinamount(const UniValue& params, bool fHelp);
 extern UniValue setzbltgseed(const UniValue& params, bool fHelp);
-extern UniValue getzbltgseed(const UniValue& params, bool fHelp);
+//extern UniValue getzbltgseed(const UniValue& params, bool fHelp);
 //extern UniValue generatemintlist(const UniValue& params, bool fHelp);
 extern UniValue searchdzbltg(const UniValue& params, bool fHelp);
 //extern UniValue dzbltgstate(const UniValue& params, bool fHelp);

@@ -3505,30 +3505,30 @@ UniValue setzbltgseed(const UniValue& params, bool fHelp)
     return ret;
 }
 
-UniValue getzbltgseed(const UniValue& params, bool fHelp)
-{
-    if(fHelp || !params.empty())
-        throw runtime_error(
-            "getzbltgseed\n"
-            "\nCheck archived zBLTG list to see if any mints were added to the blockchain.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nResult\n"
-            "\"seed\" : s,  (string) The deterministic zBLTG seed.\n"
-
-            "\nExamples\n" +
-            HelpExampleCli("getzbltgseed", "") + HelpExampleRpc("getzbltgseed", ""));
-
-    EnsureWalletIsUnlocked();
-
-    CzBLTGWallet* zwallet = pwalletMain->getZWallet();
-    uint256 seed = zwallet->GetMasterSeed();
-
-    UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("seed", seed.GetHex()));
-
-    return ret;
-}
+//UniValue getzbltgseed(const UniValue& params, bool fHelp)
+//{
+//    if(fHelp || !params.empty())
+//        throw runtime_error(
+//            "getzbltgseed\n"
+//            "\nCheck archived zBLTG list to see if any mints were added to the blockchain.\n" +
+//            HelpRequiringPassphrase() + "\n"
+//
+//            "\nResult\n"
+//            "\"seed\" : s,  (string) The deterministic zBLTG seed.\n"
+//
+//            "\nExamples\n" +
+//            HelpExampleCli("getzbltgseed", "") + HelpExampleRpc("getzbltgseed", ""));
+//
+//    EnsureWalletIsUnlocked();
+//
+//    CzBLTGWallet* zwallet = pwalletMain->getZWallet();
+//    uint256 seed = zwallet->GetMasterSeed();
+//
+//    UniValue ret(UniValue::VOBJ);
+//    ret.push_back(Pair("seed", seed.GetHex()));
+//
+//    return ret;
+//}
 
 //UniValue generatemintlist(const UniValue& params, bool fHelp)
 //{
