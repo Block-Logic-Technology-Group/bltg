@@ -1151,39 +1151,39 @@ UniValue reconsiderblock(const UniValue& params, bool fHelp)
     return NullUniValue;
 }
 
-UniValue findserial(const UniValue& params, bool fHelp)
-{
-    if(fHelp || params.size() != 1)
-        throw runtime_error(
-            "findserial \"serial\"\n"
-            "\nSearches the zerocoin database for a zerocoin spend transaction that contains the specified serial\n"
-
-            "\nArguments:\n"
-            "1. serial   (string, required) the serial of a zerocoin spend to search for.\n"
-
-            "\nResult:\n"
-            "{\n"
-            "  \"success\": true|false        (boolean) Whether the serial was found\n"
-            "  \"txid\": \"xxx\"              (string) The transaction that contains the spent serial\n"
-            "}\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("findserial", "\"serial\"") + HelpExampleRpc("findserial", "\"serial\""));
-
-    std::string strSerial = params[0].get_str();
-    CBigNum bnSerial = 0;
-    bnSerial.SetHex(strSerial);
-    if (!bnSerial)
-	throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid serial");
-
-    uint256 txid = 0;
-    bool fSuccess = zerocoinDB->ReadCoinSpend(bnSerial, txid);
-
-    UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("success", fSuccess));
-    ret.push_back(Pair("txid", txid.GetHex()));
-    return ret;
-}
+//UniValue findserial(const UniValue& params, bool fHelp)
+//{
+//    if(fHelp || params.size() != 1)
+//        throw runtime_error(
+//            "findserial \"serial\"\n"
+//            "\nSearches the zerocoin database for a zerocoin spend transaction that contains the specified serial\n"
+//
+//            "\nArguments:\n"
+//            "1. serial   (string, required) the serial of a zerocoin spend to search for.\n"
+//
+//            "\nResult:\n"
+//            "{\n"
+//            "  \"success\": true|false        (boolean) Whether the serial was found\n"
+//            "  \"txid\": \"xxx\"              (string) The transaction that contains the spent serial\n"
+//            "}\n"
+//
+//            "\nExamples:\n" +
+//            HelpExampleCli("findserial", "\"serial\"") + HelpExampleRpc("findserial", "\"serial\""));
+//
+//    std::string strSerial = params[0].get_str();
+//    CBigNum bnSerial = 0;
+//    bnSerial.SetHex(strSerial);
+//    if (!bnSerial)
+//	throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid serial");
+//
+//    uint256 txid = 0;
+//    bool fSuccess = zerocoinDB->ReadCoinSpend(bnSerial, txid);
+//
+//    UniValue ret(UniValue::VOBJ);
+//    ret.push_back(Pair("success", fSuccess));
+//    ret.push_back(Pair("txid", txid.GetHex()));
+//    return ret;
+//}
 
 UniValue getaccumulatorvalues(const UniValue& params, bool fHelp)
 {
