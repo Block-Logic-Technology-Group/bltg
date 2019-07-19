@@ -1483,25 +1483,25 @@ UniValue getblockindexstats(const UniValue& params, bool fHelp) {
                 "  \"last_block\": \"x\"             (integer) Last counted block\n"
                 "  \"txcount\": xxxxx                (numeric) tx count (excluding coinbase/coinstake)\n"
                 "  \"txcount_all\": xxxxx            (numeric) tx count (including coinbase/coinstake)\n"
-                "  \"mintcount\": {              [if fFeeOnly=False]\n"
-                "        \"denom_1\": xxxx           (numeric) number of mints of denom_1 occurred over the block range\n"
-                "        \"denom_5\": xxxx           (numeric) number of mints of denom_5 occurred over the block range\n"
-                "         ...                    ... number of mints of other denominations: ..., 10, 50, 100, 500, 1000, 5000\n"
-                "  }\n"
-                "  \"spendcount\": {             [if fFeeOnly=False]\n"
-                "        \"denom_1\": xxxx           (numeric) number of spends of denom_1 occurred over the block range\n"
-                "        \"denom_5\": xxxx           (numeric) number of spends of denom_5 occurred over the block range\n"
-                "         ...                    ... number of spends of other denominations: ..., 10, 50, 100, 500, 1000, 5000\n"
-                "  }\n"
-                "  \"pubspendcount\": {             [if fFeeOnly=False]\n"
-                "        \"denom_1\": xxxx           (numeric) number of PUBLIC spends of denom_1 occurred over the block range\n"
-                "        \"denom_5\": xxxx           (numeric) number of PUBLIC spends of denom_5 occurred over the block range\n"
-                "         ...                    ... number of PUBLIC spends of other denominations: ..., 10, 50, 100, 500, 1000, 5000\n"
-                "  }\n"
-                "  \"txbytes\": xxxxx                (numeric) Sum of the size of all txes (zBLTG excluded) over block range\n"
-                "  \"ttlfee\": xxxxx                 (numeric) Sum of the fee amount of all txes (zBLTG mints excluded) over block range\n"
-                "  \"ttlfee_all\": xxxxx             (numeric) Sum of the fee amount of all txes (zBLTG mints included) over block range\n"
-                "  \"feeperkb\": xxxxx               (numeric) Average fee per kb (excluding zc txes)\n"
+//                "  \"mintcount\": {              [if fFeeOnly=False]\n"
+//                "        \"denom_1\": xxxx           (numeric) number of mints of denom_1 occurred over the block range\n"
+//                "        \"denom_5\": xxxx           (numeric) number of mints of denom_5 occurred over the block range\n"
+//                "         ...                    ... number of mints of other denominations: ..., 10, 50, 100, 500, 1000, 5000\n"
+//                "  }\n"
+//                "  \"spendcount\": {             [if fFeeOnly=False]\n"
+//                "        \"denom_1\": xxxx           (numeric) number of spends of denom_1 occurred over the block range\n"
+//                "        \"denom_5\": xxxx           (numeric) number of spends of denom_5 occurred over the block range\n"
+//                "         ...                    ... number of spends of other denominations: ..., 10, 50, 100, 500, 1000, 5000\n"
+//                "  }\n"
+//                "  \"pubspendcount\": {             [if fFeeOnly=False]\n"
+//                "        \"denom_1\": xxxx           (numeric) number of PUBLIC spends of denom_1 occurred over the block range\n"
+//                "        \"denom_5\": xxxx           (numeric) number of PUBLIC spends of denom_5 occurred over the block range\n"
+//                "         ...                    ... number of PUBLIC spends of other denominations: ..., 10, 50, 100, 500, 1000, 5000\n"
+//                "  }\n"
+                "  \"txbytes\": xxxxx                (numeric) Sum of the size of all txes over block range\n"
+                "  \"ttlfee\": xxxxx                 (numeric) Sum of the fee amount of all txes over block range\n"
+                "  \"ttlfee_all\": xxxxx             (numeric) Sum of the fee amount of all txes over block range\n"
+                "  \"feeperkb\": xxxxx               (numeric) Average fee per kb\n"
                 "}\n"
 
                 "\nExamples:\n" +
@@ -1526,14 +1526,14 @@ UniValue getblockindexstats(const UniValue& params, bool fHelp) {
     int64_t nTxCount = 0;
     int64_t nTxCount_all = 0;
 
-    std::map<libzerocoin::CoinDenomination, int64_t> mapMintCount;
-    std::map<libzerocoin::CoinDenomination, int64_t> mapSpendCount;
-    std::map<libzerocoin::CoinDenomination, int64_t> mapPublicSpendCount;
-    for (auto& denom : libzerocoin::zerocoinDenomList) {
-        mapMintCount.insert(make_pair(denom, 0));
-        mapSpendCount.insert(make_pair(denom, 0));
-        mapPublicSpendCount.insert(make_pair(denom, 0));
-    }
+//    std::map<libzerocoin::CoinDenomination, int64_t> mapMintCount;
+//    std::map<libzerocoin::CoinDenomination, int64_t> mapSpendCount;
+//    std::map<libzerocoin::CoinDenomination, int64_t> mapPublicSpendCount;
+//    for (auto& denom : libzerocoin::zerocoinDenomList) {
+//        mapMintCount.insert(make_pair(denom, 0));
+//        mapSpendCount.insert(make_pair(denom, 0));
+//        mapPublicSpendCount.insert(make_pair(denom, 0));
+//    }
 
     CBlockIndex* pindex = nullptr;
     {
@@ -1558,21 +1558,21 @@ UniValue getblockindexstats(const UniValue& params, bool fHelp) {
 
         // loop through each tx in block and save size and fee
         for (const CTransaction& tx : block.vtx) {
-            if (tx.IsCoinBase() || (tx.IsCoinStake() && !tx.HasZerocoinSpendInputs()))
+            if (tx.IsCoinBase() || (tx.IsCoinStake()))
                 continue;
 
             // fetch input value from prevouts and count spends
             for (unsigned int j = 0; j < tx.vin.size(); j++) {
-                if (tx.vin[j].IsZerocoinSpend()) {
-                    if (!fFeeOnly)
-                        mapSpendCount[libzerocoin::IntToZerocoinDenomination(tx.vin[j].nSequence)]++;
-                    continue;
-                }
-                if (tx.vin[j].IsZerocoinPublicSpend()) {
-                    if (!fFeeOnly)
-                        mapPublicSpendCount[libzerocoin::IntToZerocoinDenomination(tx.vin[j].nSequence)]++;
-                    continue;
-                }
+//                if (tx.vin[j].IsZerocoinSpend()) {
+//                    if (!fFeeOnly)
+//                        mapSpendCount[libzerocoin::IntToZerocoinDenomination(tx.vin[j].nSequence)]++;
+//                    continue;
+//                }
+//                if (tx.vin[j].IsZerocoinPublicSpend()) {
+//                    if (!fFeeOnly)
+//                        mapPublicSpendCount[libzerocoin::IntToZerocoinDenomination(tx.vin[j].nSequence)]++;
+//                    continue;
+//                }
 
                 COutPoint prevout = tx.vin[j].prevout;
                 CTransaction txPrev;
@@ -1583,8 +1583,8 @@ UniValue getblockindexstats(const UniValue& params, bool fHelp) {
             }
 
             // zc spends have no fee
-            if (tx.HasZerocoinSpendInputs())
-                continue;
+//            if (tx.HasZerocoinSpendInputs())
+//                continue;
 
             // sum output values in nValueOut
             for (unsigned int j = 0; j < tx.vout.size(); j++) {
@@ -1593,18 +1593,18 @@ UniValue getblockindexstats(const UniValue& params, bool fHelp) {
 
             // update sums
             nFees_all += nValueIn - nValueOut;
-            if (!tx.HasZerocoinMintOutputs()) {
+//            if (!tx.HasZerocoinMintOutputs()) {
                 nFees += nValueIn - nValueOut;
                 nBytes += tx.GetSerializeSize(SER_NETWORK, CLIENT_VERSION);
-            }
+//            }
         }
 
         // add mints to map
-        if (!fFeeOnly) {
-            for (auto& denom : libzerocoin::zerocoinDenomList) {
-                mapMintCount[denom] += count(pindex->vMintDenominationsInBlock.begin(), pindex->vMintDenominationsInBlock.end(), denom);
-            }
-        }
+//        if (!fFeeOnly) {
+//            for (auto& denom : libzerocoin::zerocoinDenomList) {
+//                mapMintCount[denom] += count(pindex->vMintDenominationsInBlock.begin(), pindex->vMintDenominationsInBlock.end(), denom);
+//            }
+//        }
 
         if (pindex->nHeight < heightEnd) {
             LOCK(cs_main);
@@ -1620,20 +1620,20 @@ UniValue getblockindexstats(const UniValue& params, bool fHelp) {
     // return UniValue object
     ret.push_back(Pair("txcount", (int64_t)nTxCount));
     ret.push_back(Pair("txcount_all", (int64_t)nTxCount_all));
-    if (!fFeeOnly) {
-        UniValue mint_obj(UniValue::VOBJ);
-        UniValue spend_obj(UniValue::VOBJ);
-        UniValue pubspend_obj(UniValue::VOBJ);
-        for (auto& denom : libzerocoin::zerocoinDenomList) {
-            mint_obj.push_back(Pair(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapMintCount[denom]));
-            spend_obj.push_back(Pair(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapSpendCount[denom]));
-            pubspend_obj.push_back(Pair(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapPublicSpendCount[denom]));
-        }
-        ret.push_back(Pair("mintcount", mint_obj));
-        ret.push_back(Pair("spendcount", spend_obj));
-        ret.push_back(Pair("publicspendcount", pubspend_obj));
-
-    }
+//    if (!fFeeOnly) {
+//        UniValue mint_obj(UniValue::VOBJ);
+//        UniValue spend_obj(UniValue::VOBJ);
+//        UniValue pubspend_obj(UniValue::VOBJ);
+//        for (auto& denom : libzerocoin::zerocoinDenomList) {
+//            mint_obj.push_back(Pair(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapMintCount[denom]));
+//            spend_obj.push_back(Pair(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapSpendCount[denom]));
+//            pubspend_obj.push_back(Pair(strprintf("denom_%d", ZerocoinDenominationToInt(denom)), mapPublicSpendCount[denom]));
+//        }
+//        ret.push_back(Pair("mintcount", mint_obj));
+//        ret.push_back(Pair("spendcount", spend_obj));
+//        ret.push_back(Pair("publicspendcount", pubspend_obj));
+//
+//    }
     ret.push_back(Pair("txbytes", (int64_t)nBytes));
     ret.push_back(Pair("ttlfee", FormatMoney(nFees)));
     ret.push_back(Pair("ttlfee_all", FormatMoney(nFees_all)));
