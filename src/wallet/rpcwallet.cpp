@@ -2652,49 +2652,49 @@ UniValue multisend(const UniValue& params, bool fHelp)
 //    return jsonList;
 //}
 
-UniValue listzerocoinamounts(const UniValue& params, bool fHelp)
-{
-
-    if (fHelp || params.size() != 0)
-        throw runtime_error(
-            "listzerocoinamounts\n"
-            "\nGet information about your zerocoin amounts.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nResult:\n"
-            "[\n"
-            "  {\n"
-            "    \"denomination\": n,   (numeric) Denomination Value.\n"
-            "    \"mints\": n           (numeric) Number of mints.\n"
-            "  }\n"
-            "  ,..."
-            "]\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("listzerocoinamounts", "") + HelpExampleRpc("listzerocoinamounts", ""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    EnsureWalletIsUnlocked(true);
-
-    CWalletDB walletdb(pwalletMain->strWalletFile);
-    set<CMintMeta> setMints = pwalletMain->zbltgTracker->ListMints(true, true, true);
-
-    std::map<libzerocoin::CoinDenomination, CAmount> spread;
-    for (const auto& denom : libzerocoin::zerocoinDenomList)
-        spread.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, 0));
-    for (auto& meta : setMints) spread.at(meta.denom)++;
-
-
-    UniValue ret(UniValue::VARR);
-    for (const auto& m : libzerocoin::zerocoinDenomList) {
-        UniValue val(UniValue::VOBJ);
-        val.push_back(Pair("denomination", libzerocoin::ZerocoinDenominationToInt(m)));
-        val.push_back(Pair("mints", (int64_t)spread.at(m)));
-        ret.push_back(val);
-    }
-    return ret;
-}
+//UniValue listzerocoinamounts(const UniValue& params, bool fHelp)
+//{
+//
+//    if (fHelp || params.size() != 0)
+//        throw runtime_error(
+//            "listzerocoinamounts\n"
+//            "\nGet information about your zerocoin amounts.\n" +
+//            HelpRequiringPassphrase() + "\n"
+//
+//            "\nResult:\n"
+//            "[\n"
+//            "  {\n"
+//            "    \"denomination\": n,   (numeric) Denomination Value.\n"
+//            "    \"mints\": n           (numeric) Number of mints.\n"
+//            "  }\n"
+//            "  ,..."
+//            "]\n"
+//
+//            "\nExamples:\n" +
+//            HelpExampleCli("listzerocoinamounts", "") + HelpExampleRpc("listzerocoinamounts", ""));
+//
+//    LOCK2(cs_main, pwalletMain->cs_wallet);
+//
+//    EnsureWalletIsUnlocked(true);
+//
+//    CWalletDB walletdb(pwalletMain->strWalletFile);
+//    set<CMintMeta> setMints = pwalletMain->zbltgTracker->ListMints(true, true, true);
+//
+//    std::map<libzerocoin::CoinDenomination, CAmount> spread;
+//    for (const auto& denom : libzerocoin::zerocoinDenomList)
+//        spread.insert(std::pair<libzerocoin::CoinDenomination, CAmount>(denom, 0));
+//    for (auto& meta : setMints) spread.at(meta.denom)++;
+//
+//
+//    UniValue ret(UniValue::VARR);
+//    for (const auto& m : libzerocoin::zerocoinDenomList) {
+//        UniValue val(UniValue::VOBJ);
+//        val.push_back(Pair("denomination", libzerocoin::ZerocoinDenominationToInt(m)));
+//        val.push_back(Pair("mints", (int64_t)spread.at(m)));
+//        ret.push_back(val);
+//    }
+//    return ret;
+//}
 
 //UniValue listspentzerocoins(const UniValue& params, bool fHelp)
 //{
