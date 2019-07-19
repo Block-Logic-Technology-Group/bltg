@@ -258,7 +258,7 @@ extern UniValue autocombinerewards(const UniValue& params, bool fHelp);
 extern UniValue spendzerocoin(const UniValue& params, bool fHelp);
 extern UniValue spendrawzerocoin(const UniValue& params, bool fHelp);
 extern UniValue spendzerocoinmints(const UniValue& params, bool fHelp);
-extern UniValue resetmintzerocoin(const UniValue& params, bool fHelp);
+//extern UniValue resetmintzerocoin(const UniValue& params, bool fHelp);
 extern UniValue resetspentzerocoin(const UniValue& params, bool fHelp);
 //extern UniValue getarchivedzerocoin(const UniValue& params, bool fHelp);
 //extern UniValue importzerocoins(const UniValue& params, bool fHelp);
