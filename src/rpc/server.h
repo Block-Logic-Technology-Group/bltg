@@ -263,7 +263,7 @@ extern UniValue resetspentzerocoin(const UniValue& params, bool fHelp);
 //extern UniValue getarchivedzerocoin(const UniValue& params, bool fHelp);
 //extern UniValue importzerocoins(const UniValue& params, bool fHelp);
 //extern UniValue exportzerocoins(const UniValue& params, bool fHelp);
-extern UniValue reconsiderzerocoins(const UniValue& params, bool fHelp);
+//extern UniValue reconsiderzerocoins(const UniValue& params, bool fHelp);
 //extern UniValue getspentzerocoinamount(const UniValue& params, bool fHelp);
 extern UniValue setzbltgseed(const UniValue& params, bool fHelp);
 //extern UniValue getzbltgseed(const UniValue& params, bool fHelp);
