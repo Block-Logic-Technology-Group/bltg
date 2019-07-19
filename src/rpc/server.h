@@ -256,7 +256,7 @@ extern UniValue autocombinerewards(const UniValue& params, bool fHelp);
 //extern UniValue listzerocoinamounts(const UniValue& params, bool fHelp);
 //extern UniValue mintzerocoin(const UniValue& params, bool fHelp);
 extern UniValue spendzerocoin(const UniValue& params, bool fHelp);
-extern UniValue spendrawzerocoin(const UniValue& params, bool fHelp);
+//extern UniValue spendrawzerocoin(const UniValue& params, bool fHelp);
 extern UniValue spendzerocoinmints(const UniValue& params, bool fHelp);
 //extern UniValue resetmintzerocoin(const UniValue& params, bool fHelp);
 //extern UniValue resetspentzerocoin(const UniValue& params, bool fHelp);
