@@ -3630,55 +3630,55 @@ void static SearchThread(CzBLTGWallet* zwallet, int nCountStart, int nCountEnd)
     }
 }
 
-UniValue searchdzbltg(const UniValue& params, bool fHelp)
-{
-    if(fHelp || params.size() != 3)
-        throw runtime_error(
-            "searchdzbltg\n"
-            "\nMake an extended search for deterministically generated zBLTG that have not yet been recognized by the wallet.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nArguments\n"
-            "1. \"count\"       (numeric) Which sequential zBLTG to start with.\n"
-            "2. \"range\"       (numeric) How many zBLTG to generate.\n"
-            "3. \"threads\"     (numeric) How many threads should this operation consume.\n"
-
-            "\nExamples\n" +
-            HelpExampleCli("searchdzbltg", "1, 100, 2") + HelpExampleRpc("searchdzbltg", "1, 100, 2"));
-
-    EnsureWalletIsUnlocked();
-
-    int nCount = params[0].get_int();
-    if (nCount < 0)
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Count cannot be less than 0");
-
-    int nRange = params[1].get_int();
-    if (nRange < 1)
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Range has to be at least 1");
-
-    int nThreads = params[2].get_int();
-
-    CzBLTGWallet* zwallet = pwalletMain->zwalletMain;
-
-    boost::thread_group* dzbltgThreads = new boost::thread_group();
-    int nRangePerThread = nRange / nThreads;
-
-    int nPrevThreadEnd = nCount - 1;
-    for (int i = 0; i < nThreads; i++) {
-        int nStart = nPrevThreadEnd + 1;;
-        int nEnd = nStart + nRangePerThread;
-        nPrevThreadEnd = nEnd;
-        dzbltgThreads->create_thread(boost::bind(&SearchThread, zwallet, nStart, nEnd));
-    }
-
-    dzbltgThreads->join_all();
-
-    zwallet->RemoveMintsFromPool(pwalletMain->zbltgTracker->GetSerialHashes());
-    zwallet->SyncWithChain(false);
-
-    //todo: better response
-    return "done";
-}
+//UniValue searchdzbltg(const UniValue& params, bool fHelp)
+//{
+//    if(fHelp || params.size() != 3)
+//        throw runtime_error(
+//            "searchdzbltg\n"
+//            "\nMake an extended search for deterministically generated zBLTG that have not yet been recognized by the wallet.\n" +
+//            HelpRequiringPassphrase() + "\n"
+//
+//            "\nArguments\n"
+//            "1. \"count\"       (numeric) Which sequential zBLTG to start with.\n"
+//            "2. \"range\"       (numeric) How many zBLTG to generate.\n"
+//            "3. \"threads\"     (numeric) How many threads should this operation consume.\n"
+//
+//            "\nExamples\n" +
+//            HelpExampleCli("searchdzbltg", "1, 100, 2") + HelpExampleRpc("searchdzbltg", "1, 100, 2"));
+//
+//    EnsureWalletIsUnlocked();
+//
+//    int nCount = params[0].get_int();
+//    if (nCount < 0)
+//        throw JSONRPCError(RPC_INVALID_PARAMETER, "Count cannot be less than 0");
+//
+//    int nRange = params[1].get_int();
+//    if (nRange < 1)
+//        throw JSONRPCError(RPC_INVALID_PARAMETER, "Range has to be at least 1");
+//
+//    int nThreads = params[2].get_int();
+//
+//    CzBLTGWallet* zwallet = pwalletMain->zwalletMain;
+//
+//    boost::thread_group* dzbltgThreads = new boost::thread_group();
+//    int nRangePerThread = nRange / nThreads;
+//
+//    int nPrevThreadEnd = nCount - 1;
+//    for (int i = 0; i < nThreads; i++) {
+//        int nStart = nPrevThreadEnd + 1;;
+//        int nEnd = nStart + nRangePerThread;
+//        nPrevThreadEnd = nEnd;
+//        dzbltgThreads->create_thread(boost::bind(&SearchThread, zwallet, nStart, nEnd));
+//    }
+//
+//    dzbltgThreads->join_all();
+//
+//    zwallet->RemoveMintsFromPool(pwalletMain->zbltgTracker->GetSerialHashes());
+//    zwallet->SyncWithChain(false);
+//
+//    //todo: better response
+//    return "done";
+//}
 
 UniValue enableautomintaddress(const UniValue& params, bool fHelp)
 {
