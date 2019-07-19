@@ -250,7 +250,7 @@ extern UniValue setstakesplitthreshold(const UniValue& params, bool fHelp);
 extern UniValue getstakesplitthreshold(const UniValue& params, bool fHelp);
 extern UniValue multisend(const UniValue& params, bool fHelp);
 extern UniValue autocombinerewards(const UniValue& params, bool fHelp);
-extern UniValue getzerocoinbalance(const UniValue& params, bool fHelp);
+//extern UniValue getzerocoinbalance(const UniValue& params, bool fHelp);
 extern UniValue listmintedzerocoins(const UniValue& params, bool fHelp);
 extern UniValue listspentzerocoins(const UniValue& params, bool fHelp);
 extern UniValue listzerocoinamounts(const UniValue& params, bool fHelp);
