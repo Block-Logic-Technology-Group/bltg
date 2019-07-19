@@ -3778,38 +3778,38 @@ UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
     return DoZbltgSpend(nAmount, false, true, vMintsSelected, address_str);
 }
 
-UniValue clearspendcache(const UniValue& params, bool fHelp)
-{
-    if(fHelp || params.size() != 0)
-        throw runtime_error(
-            "clearspendcache\n"
-            "\nClear the pre-computed zBLTG spend cache, and database.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nExamples\n" +
-            HelpExampleCli("clearspendcache", "") + HelpExampleRpc("clearspendcache", ""));
-
-    EnsureWalletIsUnlocked();
-
-    CzBLTGTracker* zbltgTracker = pwalletMain->zbltgTracker.get();
-
-    {
-        int nTries = 0;
-        while (nTries < 100) {
-            TRY_LOCK(zbltgTracker->cs_spendcache, fLocked);
-            if (fLocked) {
-                if (zbltgTracker->ClearSpendCache()) {
-                    fClearSpendCache = true;
-                    CWalletDB walletdb("precomputes.dat", "cr+");
-                    walletdb.EraseAllPrecomputes();
-                    return "Successfully Cleared the Precompute Spend Cache and Database";
-                }
-            } else {
-                fGlobalUnlockSpendCache = true;
-                nTries++;
-                MilliSleep(100);
-            }
-        }
-    }
-    throw JSONRPCError(RPC_WALLET_ERROR, "Error: Spend cache not cleared!");
-}
+//UniValue clearspendcache(const UniValue& params, bool fHelp)
+//{
+//    if(fHelp || params.size() != 0)
+//        throw runtime_error(
+//            "clearspendcache\n"
+//            "\nClear the pre-computed zBLTG spend cache, and database.\n" +
+//            HelpRequiringPassphrase() + "\n"
+//
+//            "\nExamples\n" +
+//            HelpExampleCli("clearspendcache", "") + HelpExampleRpc("clearspendcache", ""));
+//
+//    EnsureWalletIsUnlocked();
+//
+//    CzBLTGTracker* zbltgTracker = pwalletMain->zbltgTracker.get();
+//
+//    {
+//        int nTries = 0;
+//        while (nTries < 100) {
+//            TRY_LOCK(zbltgTracker->cs_spendcache, fLocked);
+//            if (fLocked) {
+//                if (zbltgTracker->ClearSpendCache()) {
+//                    fClearSpendCache = true;
+//                    CWalletDB walletdb("precomputes.dat", "cr+");
+//                    walletdb.EraseAllPrecomputes();
+//                    return "Successfully Cleared the Precompute Spend Cache and Database";
+//                }
+//            } else {
+//                fGlobalUnlockSpendCache = true;
+//                nTries++;
+//                MilliSleep(100);
+//            }
+//        }
+//    }
+//    throw JSONRPCError(RPC_WALLET_ERROR, "Error: Spend cache not cleared!");
+//}

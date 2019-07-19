@@ -4834,14 +4834,14 @@ void CWallet::PrecomputeSpends()
 
     while (true) {
         // Check to see if we need to clear the cache
-        if (fClearSpendCache) {
-            fClearSpendCache = false;
-            item_map.clear();
-            item_list.clear();
-            mapDirtyWitnessData.clear();
-            nLastCacheCleanUpTime = GetTime();
-            nLastCacheWriteDB = nLastCacheCleanUpTime;
-        }
+//        if (fClearSpendCache) {
+//            fClearSpendCache = false;
+//            item_map.clear();
+//            item_list.clear();
+//            mapDirtyWitnessData.clear();
+//            nLastCacheCleanUpTime = GetTime();
+//            nLastCacheWriteDB = nLastCacheCleanUpTime;
+//        }
 
         // Get the list of zBLTG inputs
         std::list <std::unique_ptr<CStakeInput>> listInputs;
@@ -4889,9 +4889,9 @@ void CWallet::PrecomputeSpends()
 
                 // When we see a clear spend cache bool set to true, break out of the loop
                 // All cache data will be cleared at the beginning of the while loop above
-                if (fClearSpendCache) {
-                    break;
-                }
+//                if (fClearSpendCache) {
+//                    break;
+//                }
 
                 uint256 serialHash = stakeInput->GetSerialHash();
                 setInputHashes.insert(serialHash);
