@@ -3600,35 +3600,35 @@ UniValue multisend(const UniValue& params, bool fHelp)
 //}
 
 
-void static SearchThread(CzBLTGWallet* zwallet, int nCountStart, int nCountEnd)
-{
-    LogPrintf("%s: start=%d end=%d\n", __func__, nCountStart, nCountEnd);
-    CWalletDB walletDB(pwalletMain->strWalletFile);
-    try {
-        uint256 seedMaster = zwallet->GetMasterSeed();
-        uint256 hashSeed = Hash(seedMaster.begin(), seedMaster.end());
-        for(int i = nCountStart; i < nCountEnd; i++) {
-            boost::this_thread::interruption_point();
-            CDataStream ss(SER_GETHASH, 0);
-            ss << seedMaster << i;
-            uint512 zerocoinSeed = Hash512(ss.begin(), ss.end());
-
-            CBigNum bnValue;
-            CBigNum bnSerial;
-            CBigNum bnRandomness;
-            CKey key;
-            zwallet->SeedToZBLTG(zerocoinSeed, bnValue, bnSerial, bnRandomness, key);
-
-            uint256 hashPubcoin = GetPubCoinHash(bnValue);
-            zwallet->AddToMintPool(make_pair(hashPubcoin, i), true);
-            walletDB.WriteMintPoolPair(hashSeed, hashPubcoin, i);
-        }
-    } catch (std::exception& e) {
-        LogPrintf("SearchThread() exception");
-    } catch (...) {
-        LogPrintf("SearchThread() exception");
-    }
-}
+//void static SearchThread(CzBLTGWallet* zwallet, int nCountStart, int nCountEnd)
+//{
+//    LogPrintf("%s: start=%d end=%d\n", __func__, nCountStart, nCountEnd);
+//    CWalletDB walletDB(pwalletMain->strWalletFile);
+//    try {
+//        uint256 seedMaster = zwallet->GetMasterSeed();
+//        uint256 hashSeed = Hash(seedMaster.begin(), seedMaster.end());
+//        for(int i = nCountStart; i < nCountEnd; i++) {
+//            boost::this_thread::interruption_point();
+//            CDataStream ss(SER_GETHASH, 0);
+//            ss << seedMaster << i;
+//            uint512 zerocoinSeed = Hash512(ss.begin(), ss.end());
+//
+//            CBigNum bnValue;
+//            CBigNum bnSerial;
+//            CBigNum bnRandomness;
+//            CKey key;
+//            zwallet->SeedToZBLTG(zerocoinSeed, bnValue, bnSerial, bnRandomness, key);
+//
+//            uint256 hashPubcoin = GetPubCoinHash(bnValue);
+//            zwallet->AddToMintPool(make_pair(hashPubcoin, i), true);
+//            walletDB.WriteMintPoolPair(hashSeed, hashPubcoin, i);
+//        }
+//    } catch (std::exception& e) {
+//        LogPrintf("SearchThread() exception");
+//    } catch (...) {
+//        LogPrintf("SearchThread() exception");
+//    }
+//}
 
 //UniValue searchdzbltg(const UniValue& params, bool fHelp)
 //{
