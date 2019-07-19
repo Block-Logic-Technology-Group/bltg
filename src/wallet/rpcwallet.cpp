@@ -3698,24 +3698,24 @@ void static SearchThread(CzBLTGWallet* zwallet, int nCountStart, int nCountEnd)
 //    return NullUniValue;
 //}
 
-UniValue createautomintaddress(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() != 0)
-        throw std::runtime_error(
-                "createautomintaddress\n"
-                "\nGenerates new auto mint address\n" +
-                HelpRequiringPassphrase() + "\n"
-
-                "\nResult\n"
-                "\"address\"     (string) BLTG address for auto minting\n" +
-                HelpExampleCli("createautomintaddress", "") +
-                HelpExampleRpc("createautomintaddress", ""));
-
-    EnsureWalletIsUnlocked();
-    LOCK(pwalletMain->cs_wallet);
-    CBitcoinAddress address = pwalletMain->GenerateNewAutoMintKey();
-    return address.ToString();
-}
+//UniValue createautomintaddress(const UniValue& params, bool fHelp)
+//{
+//    if (fHelp || params.size() != 0)
+//        throw std::runtime_error(
+//                "createautomintaddress\n"
+//                "\nGenerates new auto mint address\n" +
+//                HelpRequiringPassphrase() + "\n"
+//
+//                "\nResult\n"
+//                "\"address\"     (string) BLTG address for auto minting\n" +
+//                HelpExampleCli("createautomintaddress", "") +
+//                HelpExampleRpc("createautomintaddress", ""));
+//
+//    EnsureWalletIsUnlocked();
+//    LOCK(pwalletMain->cs_wallet);
+//    CBitcoinAddress address = pwalletMain->GenerateNewAutoMintKey();
+//    return address.ToString();
+//}
 
 //UniValue spendrawzerocoin(const UniValue& params, bool fHelp)
 //{
