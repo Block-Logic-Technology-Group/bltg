@@ -3006,69 +3006,69 @@ UniValue multisend(const UniValue& params, bool fHelp)
 //}
 
 
-extern UniValue DoZbltgSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, vector<CZerocoinMint>& vMintsSelected, std::string address_str, bool ispublicspend)
-{
-    // zerocoin MINT is disabled. fMintChange should be false here. Double check
-    if (fMintChange && Params().NetworkID() != CBaseChainParams::REGTEST)
-        throw JSONRPCError(RPC_WALLET_ERROR, "zBLTG minting is DISABLED, cannot mint change");
-
-    int64_t nTimeStart = GetTimeMillis();
-    CBitcoinAddress address = CBitcoinAddress(); // Optional sending address. Dummy initialization here.
-    CWalletTx wtx;
-    CZerocoinSpendReceipt receipt;
-    bool fSuccess;
-
-    if(address_str != "") { // Spend to supplied destination address
-        address = CBitcoinAddress(address_str);
-        if(!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BLTG address");
-        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, &address, ispublicspend);
-    } else                   // Spend to newly generated local address
-        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, nullptr, ispublicspend);
-
-    if (!fSuccess)
-        throw JSONRPCError(RPC_WALLET_ERROR, receipt.GetStatusMessage());
-
-    CAmount nValueIn = 0;
-    UniValue arrSpends(UniValue::VARR);
-    for (CZerocoinSpend spend : receipt.GetSpends()) {
-        UniValue obj(UniValue::VOBJ);
-        obj.push_back(Pair("denomination", spend.GetDenomination()));
-        obj.push_back(Pair("pubcoin", spend.GetPubCoin().GetHex()));
-        obj.push_back(Pair("serial", spend.GetSerial().GetHex()));
-        uint32_t nChecksum = spend.GetAccumulatorChecksum();
-        obj.push_back(Pair("acc_checksum", HexStr(BEGIN(nChecksum), END(nChecksum))));
-        arrSpends.push_back(obj);
-        nValueIn += libzerocoin::ZerocoinDenominationToAmount(spend.GetDenomination());
-    }
-
-    CAmount nValueOut = 0;
-    UniValue vout(UniValue::VARR);
-    for (unsigned int i = 0; i < wtx.vout.size(); i++) {
-        const CTxOut& txout = wtx.vout[i];
-        UniValue out(UniValue::VOBJ);
-        out.push_back(Pair("value", ValueFromAmount(txout.nValue)));
-        nValueOut += txout.nValue;
-
-        CTxDestination dest;
-        if(txout.IsZerocoinMint())
-            out.push_back(Pair("address", "zerocoinmint"));
-        else if(ExtractDestination(txout.scriptPubKey, dest))
-            out.push_back(Pair("address", CBitcoinAddress(dest).ToString()));
-        vout.push_back(out);
-    }
-
-    //construct JSON to return
-    UniValue ret(UniValue::VOBJ);
-    ret.push_back(Pair("txid", wtx.GetHash().ToString()));
-    ret.push_back(Pair("bytes", (int64_t)wtx.GetSerializeSize(SER_NETWORK, CTransaction::CURRENT_VERSION)));
-    ret.push_back(Pair("fee", ValueFromAmount(nValueIn - nValueOut)));
-    ret.push_back(Pair("duration_millis", (GetTimeMillis() - nTimeStart)));
-    ret.push_back(Pair("spends", arrSpends));
-    ret.push_back(Pair("outputs", vout));
-
-    return ret;
-}
+//extern UniValue DoZbltgSpend(const CAmount nAmount, bool fMintChange, bool fMinimizeChange, vector<CZerocoinMint>& vMintsSelected, std::string address_str, bool ispublicspend)
+//{
+//    // zerocoin MINT is disabled. fMintChange should be false here. Double check
+//    if (fMintChange && Params().NetworkID() != CBaseChainParams::REGTEST)
+//        throw JSONRPCError(RPC_WALLET_ERROR, "zBLTG minting is DISABLED, cannot mint change");
+//
+//    int64_t nTimeStart = GetTimeMillis();
+//    CBitcoinAddress address = CBitcoinAddress(); // Optional sending address. Dummy initialization here.
+//    CWalletTx wtx;
+//    CZerocoinSpendReceipt receipt;
+//    bool fSuccess;
+//
+//    if(address_str != "") { // Spend to supplied destination address
+//        address = CBitcoinAddress(address_str);
+//        if(!address.IsValid())
+//            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BLTG address");
+//        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, &address, ispublicspend);
+//    } else                   // Spend to newly generated local address
+//        fSuccess = pwalletMain->SpendZerocoin(nAmount, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, nullptr, ispublicspend);
+//
+//    if (!fSuccess)
+//        throw JSONRPCError(RPC_WALLET_ERROR, receipt.GetStatusMessage());
+//
+//    CAmount nValueIn = 0;
+//    UniValue arrSpends(UniValue::VARR);
+//    for (CZerocoinSpend spend : receipt.GetSpends()) {
+//        UniValue obj(UniValue::VOBJ);
+//        obj.push_back(Pair("denomination", spend.GetDenomination()));
+//        obj.push_back(Pair("pubcoin", spend.GetPubCoin().GetHex()));
+//        obj.push_back(Pair("serial", spend.GetSerial().GetHex()));
+//        uint32_t nChecksum = spend.GetAccumulatorChecksum();
+//        obj.push_back(Pair("acc_checksum", HexStr(BEGIN(nChecksum), END(nChecksum))));
+//        arrSpends.push_back(obj);
+//        nValueIn += libzerocoin::ZerocoinDenominationToAmount(spend.GetDenomination());
+//    }
+//
+//    CAmount nValueOut = 0;
+//    UniValue vout(UniValue::VARR);
+//    for (unsigned int i = 0; i < wtx.vout.size(); i++) {
+//        const CTxOut& txout = wtx.vout[i];
+//        UniValue out(UniValue::VOBJ);
+//        out.push_back(Pair("value", ValueFromAmount(txout.nValue)));
+//        nValueOut += txout.nValue;
+//
+//        CTxDestination dest;
+//        if(txout.IsZerocoinMint())
+//            out.push_back(Pair("address", "zerocoinmint"));
+//        else if(ExtractDestination(txout.scriptPubKey, dest))
+//            out.push_back(Pair("address", CBitcoinAddress(dest).ToString()));
+//        vout.push_back(out);
+//    }
+//
+//    //construct JSON to return
+//    UniValue ret(UniValue::VOBJ);
+//    ret.push_back(Pair("txid", wtx.GetHash().ToString()));
+//    ret.push_back(Pair("bytes", (int64_t)wtx.GetSerializeSize(SER_NETWORK, CTransaction::CURRENT_VERSION)));
+//    ret.push_back(Pair("fee", ValueFromAmount(nValueIn - nValueOut)));
+//    ret.push_back(Pair("duration_millis", (GetTimeMillis() - nTimeStart)));
+//    ret.push_back(Pair("spends", arrSpends));
+//    ret.push_back(Pair("outputs", vout));
+//
+//    return ret;
+//}
 
 
 //UniValue resetmintzerocoin(const UniValue& params, bool fHelp)
