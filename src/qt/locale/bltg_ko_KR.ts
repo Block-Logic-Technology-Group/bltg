@@ -2249,20 +2249,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
         <translation>현재 zBLTG의 백분율 .
 자동 저장 기능이 활성화 된 경우이 비율은 구성된 자동 저장 비율 (기본값 = 10 %)을 기준으로 정해집니다.</translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>자동 생성기능이 현재 작동중 그리고 </translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>자동생성 기능을 사용하지 않으시려면, bltg.conf 화일에 enablezeromint=0 를 추가하세요.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>자동 저장 기능이 현재 사용 중지되었습니다 .
-자동 변환을 사용하려면 bltgotx.conf에서 'enablezeromint = 0'에서 'enablezeromint = 1'로 변경하십시오.</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2573,33 +2559,7 @@ zBLTG는 성명서가 20 개 이상 있고 명칭이 동일하지 않은 2 개 �
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>미확인 : 20 회 미만 확인
 미성숙 : 확인되었지만 발행 된 후 같은 종파 1 개 미만</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>현재 zBLTG 자동 생성 상태를 보여줍니다.
-
-자동생성 상태를 변경하시려면 (지갑 재시작 필요함):
-- 활성화: 'enablezeromint=1' 를 bltg.conf 파일에 추가
-- 비활성화: 'enablezeromint=0' 를 bltg.conf 파일에 추가
-
-자동 생성 비율 변경하시려면 (지갑 재시작 필요없음):
-- 메뉴 설정-&gt;옵션-&gt;zBLTG 자동생성 비율
-
-</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>자동생성 상태</translation>
-    </message>
+</message>
     <message>
         <source>Global Supply:</source>
         <translation>총 공급량:</translation>

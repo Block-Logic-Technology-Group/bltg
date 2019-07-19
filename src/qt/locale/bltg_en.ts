@@ -2846,22 +2846,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
 </source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location line="+4"/>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>To disable AutoMint add &apos;enablezeromint=0&apos; in bltg.conf.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change &apos;enablezeromint=0&apos; to &apos;enablezeromint=1&apos; in bltg.conf</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -3283,25 +3267,6 @@ zBLTG are mature when they have more than 20 confirmations AND more than 2 mints
         <location line="+53"/>
         <source>Unconfirmed: less than 20 confirmations
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+40"/>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add &apos;enablezeromint=1&apos; to bltg.conf
-- disable: add &apos;enablezeromint=0&apos; to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>AutoMint Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

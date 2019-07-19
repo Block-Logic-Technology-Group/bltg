@@ -2249,20 +2249,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
 Если АвтоЧеканка включена, этот процент будет располагаться на настроенном проценте АвтоЧеканка  (по умолчанию = 10%).
 </translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>Авточеканка в данный момен включена и установлена в</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>Авточеканка  в настоящее время отключена.
-Чтобы включить Авточеканку, измените 'enablezeromint = 0' на 'enablezeromint = 1' в файле bltg.conf</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2573,30 +2559,6 @@ zBLTG are mature when they have more than 20 confirmations AND more than 2 mints
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Неподтверждено: менее 20 подтверждений
 Незрелый: подтвержден, но менее 1 чеканок того же наименования после того, как он был отчеканен</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>Показать текущий статус автоматической чеканки zBLTG.
-
-Чтобы изменить статус (требуется перезагрузка):
-- включить: добавить 'enablezeromint = 1' в bltg.conf
-- отключить: добавить 'enablezeromint = 0' в bltg.conf
-
-Чтобы изменить процент (не требуется перезагрузка):
-- меню Настройки-&gt; Параметры-&gt; Процент авторизованного zBLTG</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>Состояние автообмена</translation>
     </message>
     <message>
         <source>Global Supply:</source>

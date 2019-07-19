@@ -2225,20 +2225,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
 Om AutoMint är tillåten så kommer denna procent att vara som den konfigurerade AutoMint procenten (standard = 10%).
 </translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint är för tillfället aktiverat och inställt på</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>För att inaktivera AutoMint, lägg till 'enablezeromint=0' i bltg.conf.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>AutoMint är för närvarande inaktiverat.
-För att aktivera AutoMint ändra 'enablezeromint=0' till 'enablezeromint=1' i bltg.conf</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2549,32 +2535,6 @@ zBLTG är mogna när de har över 20 bekräftelser OCH över 2 präglingar av sa
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Obekräftade: Under 20 bekräftelser
 Omogna: bekräftade men under 1 mint av samma valör efter den blev mintad</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>Visa den nuvarande statusen av automatisk zBLTG minting.
-
-För att ändra statusen (omstart krävs):
--aktivera: lägg till 'enablezeromint=1' i bltg.conf
--inaktivera: lägg till 'enablezeromint=0' i bltg.conf
-
-För att ändra procenten (ingen omstart krävs):
--meny Inställningar-&gt;Alternativ-&gt;Procent på autominted zBLTG
-
-</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>AutoPräglings Status</translation>
     </message>
     <message>
         <source>Global Supply:</source>

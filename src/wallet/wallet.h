@@ -43,7 +43,7 @@
 extern CFeeRate payTxFee;
 extern CAmount maxTxFee;
 extern unsigned int nTxConfirmTarget;
-extern bool bSpendZeroConfChange;
+//extern bool bSpendZeroConfChange;
 extern bool bdisableSystemnotifications;
 extern bool fSendFreeTransactions;
 extern bool fPayAtLeastCustomFee;
@@ -332,10 +332,10 @@ public:
         nAutoCombineThreshold = 0;
     }
 
-    int getZeromintPercentage()
-    {
-        return nZeromintPercentage;
-    }
+//    int getZeromintPercentage()
+//    {
+//        return nZeromintPercentage;
+//    }
 
     void setZWallet(CzBLTGWallet* zwallet)
     {
@@ -345,10 +345,10 @@ public:
 
     CzBLTGWallet* getZWallet() { return zwalletMain; }
 
-    bool isZeromintEnabled()
-    {
-        return fEnableZeromint || fEnableAutoConvert;
-    }
+//    bool isZeromintEnabled()
+//    {
+//        return fEnableZeromint || fEnableAutoConvert;
+//    }
 
     void setZBltgAutoBackups(bool fEnabled)
     {
@@ -510,8 +510,8 @@ public:
     bool MultiSend();
     void AutoCombineDust();
     void AutoZeromint();
-    void AutoZeromintForAddress();
-    void CreateAutoMintTransaction(const CAmount& nMintAmount, CCoinControl* coinControl = nullptr);
+//    void AutoZeromintForAddress();
+//    void CreateAutoMintTransaction(const CAmount& nMintAmount, CCoinControl* coinControl = nullptr);
 
     static CFeeRate minTxFee;
     static CAmount GetMinimumFee(unsigned int nTxBytes, unsigned int nConfirmTarget, const CTxMemPool& pool);
@@ -1017,7 +1017,7 @@ public:
             return true;
         if (nDepth < 0)
             return false;
-        if (!bSpendZeroConfChange || !IsFromMe(ISMINE_ALL)) // using wtx's cached debit
+        if (!IsFromMe(ISMINE_ALL)) // using wtx's cached debit
             return false;
 
         // Trusted if all inputs are from us and are in the mempool:

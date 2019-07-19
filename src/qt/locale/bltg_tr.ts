@@ -2173,28 +2173,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <source>out of sync</source>
         <translation>senkronizasyon dışı</translation>
     </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>Mevcut zBLTG yüzdesi.
-AutoMint etkinleştirilirse, bu yüzde, yapılandırılmış AutoMint yüzdesi etrafında düzelir (varsayılan = 10%).
-</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint şu anda etkinleştirilmiş ve</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>AutoMint kapatmak için ekle  'enablezeromint=0'  bltg.conf. dosyasına</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>AutoMint şu anda aktif değil.
- AutoMint aktive etmek için  değiştir 'enablezeromint=0' yazan kısmı 'enablezeromint=1' şeklinde bltg.conf dosyasında</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>

@@ -44,11 +44,11 @@ public:
         CoinControlFeatures, // bool
         ThreadsScriptVerif,  // int
         DatabaseCache,       // int
-        SpendZeroConfChange, // bool
-        ZeromintEnable,      // bool
-        ZeromintAddresses,   // bool
-        ZeromintPercentage,  // int
-        ZeromintPrefDenom,   // int
+//        SpendZeroConfChange, // bool
+//        ZeromintEnable,      // bool
+//        ZeromintAddresses,   // bool
+//        ZeromintPercentage,  // int
+//        ZeromintPrefDenom,   // int
         HideZeroBalances,    // bool
         HideOrphans,    // bool
         AnonymizeBltgAmount, //int
@@ -101,11 +101,11 @@ private:
 
 signals:
     void displayUnitChanged(int unit);
-    void zeromintEnableChanged(bool);
-    void zeromintAddressesChanged(bool);
-    void zeromintPercentageChanged(int);
-    void preferredDenomChanged(int);
-    void anonymizeBltgAmountChanged(int);
+//    void zeromintEnableChanged(bool);
+//    void zeromintAddressesChanged(bool);
+//    void zeromintPercentageChanged(int);
+//    void preferredDenomChanged(int);
+//    void anonymizeBltgAmountChanged(int);
     void coinControlFeaturesChanged(bool);
     void hideZeroBalancesChanged(bool);
     void hideOrphansChanged(bool);

@@ -135,8 +135,8 @@ void PrivacyDialog::setModel(WalletModel* walletModel)
 
         connect(walletModel, SIGNAL(balanceChanged(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)), this,
                                SLOT(setBalance(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
-        connect(walletModel->getOptionsModel(), SIGNAL(zeromintEnableChanged(bool)), this, SLOT(updateAutomintStatus()));
-        connect(walletModel->getOptionsModel(), SIGNAL(zeromintPercentageChanged(int)), this, SLOT(updateAutomintStatus()));
+//        connect(walletModel->getOptionsModel(), SIGNAL(zeromintEnableChanged(bool)), this, SLOT(updateAutomintStatus()));
+//        connect(walletModel->getOptionsModel(), SIGNAL(zeromintPercentageChanged(int)), this, SLOT(updateAutomintStatus()));
     }
 }
 
@@ -717,7 +717,7 @@ void PrivacyDialog::setBalance(const CAmount& balance, const CAmount& unconfirme
     ui->labelzAvailableAmount_4->setText(QString::number(zerocoinBalance/COIN) + QString(" zBLTG "));
 
     // Display AutoMint status
-    updateAutomintStatus();
+//    updateAutomintStatus();
 
     // Update/enable labels and buttons depending on the current SPORK_16 status
     updateSPORK16Status();
@@ -788,20 +788,20 @@ void PrivacyDialog::keyPressEvent(QKeyEvent* event)
     }
 }
 
-void PrivacyDialog::updateAutomintStatus()
-{
-    QString strAutomintStatus = tr("AutoMint Status:");
-
-    if (pwalletMain->isZeromintEnabled ()) {
-       strAutomintStatus += tr(" <b>enabled</b>.");
-    }
-    else {
-       strAutomintStatus += tr(" <b>disabled</b>.");
-    }
-
-    strAutomintStatus += tr(" Configured target percentage: <b>") + QString::number(pwalletMain->getZeromintPercentage()) + "%</b>";
-    ui->label_AutoMintStatus->setText(strAutomintStatus);
-}
+//void PrivacyDialog::updateAutomintStatus()
+//{
+//    QString strAutomintStatus = tr("AutoMint Status:");
+//
+//    if (pwalletMain->isZeromintEnabled ()) {
+//       strAutomintStatus += tr(" <b>enabled</b>.");
+//    }
+//    else {
+//       strAutomintStatus += tr(" <b>disabled</b>.");
+//    }
+//
+//    strAutomintStatus += tr(" Configured target percentage: <b>") + QString::number(pwalletMain->getZeromintPercentage()) + "%</b>";
+//    ui->label_AutoMintStatus->setText(strAutomintStatus);
+//}
 
 void PrivacyDialog::updateSPORK16Status()
 {

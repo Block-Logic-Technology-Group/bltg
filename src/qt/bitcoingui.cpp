@@ -630,8 +630,8 @@ void BitcoinGUI::setClientModel(ClientModel* clientModel)
             walletFrame->setClientModel(clientModel);
         }
 #endif // ENABLE_WALLET
-        unitDisplayControl->setOptionsModel(clientModel->getOptionsModel());
-        connect(clientModel->getOptionsModel(), SIGNAL(zeromintEnableChanged(bool)), this, SLOT(setAutoMintStatus()));
+//        unitDisplayControl->setOptionsModel(clientModel->getOptionsModel());
+//        connect(clientModel->getOptionsModel(), SIGNAL(zeromintEnableChanged(bool)), this, SLOT(setAutoMintStatus()));
 
         //Show trayIcon
         if (trayIcon)
@@ -1207,19 +1207,19 @@ void BitcoinGUI::setStakingStatus()
 
 void BitcoinGUI::setAutoMintStatus()
 {
-    if (walletFrame) {
-        if (fEnableZeromint) {
-            labelAutoMintIcon->show();
-            labelAutoMintIcon->setIcon(QIcon(":/icons/automint_active").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
-            labelAutoMintIcon->setToolTip(
-                    tr("AutoMint is currently enabled and set to ") + QString::number(nZeromintPercentage) + "%.\n");
-        } else {
-            labelAutoMintIcon->show();
-            labelAutoMintIcon->setIcon(
-                    QIcon(":/icons/automint_inactive").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
-            labelAutoMintIcon->setToolTip(tr("AutoMint is disabled"));
-        }
-    }
+//    if (walletFrame) {
+//        if (fEnableZeromint) {
+//            labelAutoMintIcon->show();
+//            labelAutoMintIcon->setIcon(QIcon(":/icons/automint_active").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+//            labelAutoMintIcon->setToolTip(
+//                    tr("AutoMint is currently enabled and set to ") + QString::number(nZeromintPercentage) + "%.\n");
+//        } else {
+//            labelAutoMintIcon->show();
+//            labelAutoMintIcon->setIcon(
+//                    QIcon(":/icons/automint_inactive").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+//            labelAutoMintIcon->setToolTip(tr("AutoMint is disabled"));
+//        }
+//    }
 }
 
 bool BitcoinGUI::handlePaymentRequest(const SendCoinsRecipient& recipient)

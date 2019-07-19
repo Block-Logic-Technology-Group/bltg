@@ -399,8 +399,6 @@ void CObfuscationPool::ChargeRandomFees()
 //
 void CObfuscationPool::CheckTimeout()
 {
-    if (!fEnableZeromint && !fMasterNode) return;
-
     // catching hanging sessions
     if (!fMasterNode) {
         switch (state) {
@@ -484,8 +482,6 @@ void CObfuscationPool::CheckTimeout()
 //
 void CObfuscationPool::CheckForCompleteQueue()
 {
-    if (!fEnableZeromint && !fMasterNode) return;
-
     /* Check to see if we're ready for submissions from clients */
     //
     // After receiving multiple dsa messages, the queue will switch to "accepting entries"

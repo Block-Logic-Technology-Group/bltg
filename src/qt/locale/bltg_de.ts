@@ -2241,20 +2241,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
 Falls das automatische Prägen aktiviert ist, wird sich dieser Prozentsatz um den eingestellten Prozentsatz fürs automatisierte Prägen einpendeln (Standard = 10%).
 </translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>Automatisches Prägen ist aktiv und eingestellt auf</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>Um das automatische Prägen zu deaktivieren, füge 'enablezeromint=0' in bltg.conf ein.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>Das automatische Prägen ist deaktiviert.
-Um das automatische Prägen zu aktivieren ändere 'enablezeromint=0' zu 'enablezeromint=1' in bltg.conf</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2565,31 +2551,6 @@ zBLTG sind ausgereift wenn sie mehr als 20 Bestätigungen und mehr als 2 Prägun
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Unbestätigt: Weniger als 20 Bestätigungen
 Unreif: Bestätigt, aber keine Prägung in der selben Stückelung seit erfolgter Prägung</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>Zeigt den aktuellen Status der automatischen zBLTG-Prägung an
-
-Um den Status zu ändern (Neustart erforderlich): 
-- enable: füge 'enablezeromint = 1' zu bltg.conf hinzu
-- disable: füge 'enablezeromint = 0' zu bltg.conf hinzu
-
-Um den Prozentsatz zu ändern (kein Neustart erforderlich): 
-- Menü Einstellungen-&gt; Optionen-&gt; Prozentsatz der autom. zBLTG
-</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>AutoMint-Status</translation>
     </message>
     <message>
         <source>Global Supply:</source>

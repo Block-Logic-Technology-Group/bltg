@@ -1873,20 +1873,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
 Se il conio automatico è attivato questa percentuale si stabilizzerà all'incirca sulla percentuale stabilita per il conio automatico (percentuale prestabilita = 10%).
 </translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint è attivo e impostato su</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>Per disabilitare il conio automatico aggiungi 'enablezeromint=0' in bltg.conf.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>Conio automatico è correntemente disattivato.
-Per attivare il Conio automatico cambiare 'enablezeromint=0' in 'enablezeromint=1' in bltg.conf</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2046,31 +2032,6 @@ Gli zBLTG sono maturi quando hanno più di 20 conferme E più di 2 conii della s
     <message>
         <source>Total Zerocoin  Balance:</source>
         <translation>Saldo totale Zerocoin:</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>Mostra lo stato corrente del conio automatico zBLTG.
-Per cambiare lo stato (riavvio necessario):
-- attivato: aggiungi 'enablezeromint=1' a bltg.conf
-- disattivato: aggiungi 'enablezeromint=0' a bltg.conf
-
-Per cambiare la percentuale (riavvio non necessario):
-- menu Impostazioni-&gt;Opzioni-&gt;Percentuale di zBLTG da coniare automaticamente
-
-</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>Stato Conio automatico</translation>
     </message>
     <message>
         <source>Denom. 1:</source>

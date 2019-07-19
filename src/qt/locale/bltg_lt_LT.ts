@@ -2136,14 +2136,6 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <source>out of sync</source>
         <translation>nesinchronizuotas</translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint šiuo metu įgalintas ir nustatytas</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>Norėdami išjungti Automatinį Kalimą pridėkite 'enablezeromint=0' bltg.conf faile.</translation>
-    </message>
     </context>
 <context>
     <name>PaymentServer</name>

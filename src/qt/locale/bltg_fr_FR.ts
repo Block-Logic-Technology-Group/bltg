@@ -2184,20 +2184,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
         <translation>Le pourcentage actuel de zBLTG.
 Si Auto-monnayage est activé, ce pourcentage sera réglé autour du pourcentage Auto-monnayage configuré (par défaut = 10%).</translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>Auto-monnayage est actuellement activé et mis à</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>Pour désactiver Auto-monnayage, ajoutez 'enablezeromint = 0' dans bltg.conf.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>Auto-monnayage est actuellement désactivé.
-Pour activer Auto-monnayage, changez 'enablezeromint = 0' en 'enablezeromint = 1' dans le fichier bltg.conf</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2508,33 +2494,6 @@ Les zBLTG sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 mo
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Non confirmé: moins de 20 confirmations
 Immature: confirmé, mais moins de 1 monnayer de la même dénomination après sa frappe</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>Afficher l'état actuel de monnayage automatique zBLTG.
-
-Pour changer le statut (redémarrage requis):
-- enable: ajoute 'enablezeromint = 1' au fichier bltg.conf
-- disable: ajoute 'enablezeromint = 0' au fichier bltg.conf
-
-Pour changer le pourcentage (pas de redémarrage requis):
-- menu Paramètres-&gt; Options-&gt; Pourcentage de zBLTG auto-monnayé
-
-</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>Statut Auto-monnayage</translation>
-    </message>
     <message>
         <source>Global Supply:</source>
         <translation>Approvisionnement total:</translation>

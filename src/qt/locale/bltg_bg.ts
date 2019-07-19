@@ -2238,20 +2238,6 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <source>out of sync</source>
         <translation>не е синхронизиран</translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>АвтоЕмисията е включена и настроена на</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>Да изключите АвтоЕмисия добавете  'enablezeromint=0' в bltg.conf файла.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>АвтоЕмисия е изключено.
-За да включите АвтоЕмисия сменете 'enablezeromint=0' на 'enablezeromint=1' в bltg.conf файла.</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2562,31 +2548,6 @@ zBLTG са узрели, тогава когато имат повече от 20
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Непотвърдени: по-малко от 20 потвърждения
 Неузрели: потвърдени, но с по-малко от 1 емисии от същата деноминация след като са биле емитирани</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>Покажи състоянието на автоматичното zBLTG емитиране.
-
-За да пормените състоянието (изисква рестарт):
-- вклчване: добавете 'enablezeromint=1' в bltg.conf
-- изключване: добавете 'enablezeromint=0' в bltg.conf
-
-За промяна в процентите (не изисква рестарт):
-- меню Настройки -&gt; Опции -&gt; Процент на автоемитиран zBLTG
-</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>Състояние АвтоЕмисия</translation>
     </message>
     <message>
         <source>Global Supply:</source>

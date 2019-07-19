@@ -2250,20 +2250,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
 Ako je omogućeno automatsko navođenje, ovaj postotak će se podmiriti oko konfiguriranog postotka automatskog navođenja (zadano = 10%).
 </translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint je trenutno omogućen i podešen na</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>Da biste onemogućili AutoMint, dodajte 'enablezeromint=0' u bltg.conf.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>AutoMint je trenutno onemogućen.
-Da biste omogućili, promjenite postavke AutoMint 'enablezeromint=0' na 'enablezeromint=1' u bltg.conf</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2574,30 +2560,6 @@ zBLTG su zreli kada imaju više od 20 potvrda I više od 2 mint od iste denomina
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Nepotvrđeno: manje od 20 potvrda
 Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>Pokažite trenutačni status automatskog zBLTG mintanja.
-
-Da biste promijenili status (potrebno je ponovno pokretanje):
-- omogući: dodajte 'enablezeromint = 1' u bltg.conf
-- onemogućiti: dodajte 'enablezeromint = 0' na bltg.conf
-
-Promjena postotka (nije potrebno ponovno pokretanje):
-- izbornik Postavke-&gt; Opcije-&gt; Postotak zBLTG</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>AutoMint Status</translation>
     </message>
     <message>
         <source>Global Supply:</source>

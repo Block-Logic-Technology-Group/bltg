@@ -2249,20 +2249,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
         <translation>Nuværende procentdel af zBLTG
 Hvis AutoMint er aktiveret, vil denne procentdel sætte sig omkring den konfigurerede AutoMint-procent (default = 10%)</translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint er i øjeblikket aktiveret og indstillet til</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>AutoMint er for øjeblikket deaktiveret
-For at aktivere AutoMint-ændring 'enablezeromint = 0' til 'enablezeromint = 1' i bltg.conf</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2573,31 +2559,6 @@ zBLTG er modne, når de har mere end 20 bekræftelser OG mere end 2 minutter med
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Ubekræftet: mindre end 20 bekræftelser
 Uplettet: bekræftet, men mindre end 1 minutter med samme betegnelse, efter at den blev mønnet</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>Vis den aktuelle status for automatisk zBLTG minting.øj
-
-For at ændre status (genstart kræves):.
-- aktiver: tilføj 'enablezeromint = 1' til bltg.conf
-- deaktiver: tilføj 'enablezeromint = 0' til bltg.conf
-
-For at ændre procentdelen (ingen genstart kræves):.
-- menu Indstillinger-&gt; Indstillinger-&gt; Procentdel af automatiseret zBLTG
-</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>AutoMint-status</translation>
     </message>
     <message>
         <source>Global Supply:</source>

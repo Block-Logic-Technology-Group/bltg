@@ -2250,20 +2250,6 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
 Si AutoMint está habilitado, este porcentaje se establecerá alrededor del porcentaje de AutoMint configurado (predeterminado = 10%).
 </translation>
     </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint está actualmente habilitado y configurado en</translation>
-    </message>
-    <message>
-        <source>To disable AutoMint add 'enablezeromint=0' in bltg.conf.</source>
-        <translation>Para desactivar AutoMint agrega 'enablezeromint=0' en bltg.conf.</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently disabled.
-To enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in bltg.conf</source>
-        <translation>AutoMint está actualmente desactivado.
-Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en bltg.conf</translation>
-    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -2574,31 +2560,6 @@ zBLTG son maduros cuando tienen más de 20 confirmaciones Y más de 2 mints de l
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Sin confirmar: menos de 20 confirmaciones
 Inmaduro: confirmado, pero menos de 1 acuñación de la misma denominación después de ser acuñado</translation>
-    </message>
-    <message>
-        <source>Show the current status of automatic zBLTG minting.
-
-To change the status (restart required):
-- enable: add 'enablezeromint=1' to bltg.conf
-- disable: add 'enablezeromint=0' to bltg.conf
-
-To change the percentage (no restart required):
-- menu Settings-&gt;Options-&gt;Percentage of autominted zBLTG
-
-</source>
-        <translation>Muestra el estado actual de zBLTG minting automática.
-
-Para cambiar el estado (reinicio requerido):
-- activar: añade 'enablezeromint = 1' en bltg.conf
-- desctivar: añade 'enablezeromint = 0' en bltg.conf
-
-Para cambiar el porcentaje (no se requiere reiniciar):
-- menú Configuración-&gt;Opciones-&gt;Porcentaje de zBLTG automint
-</translation>
-    </message>
-    <message>
-        <source>AutoMint Status</source>
-        <translation>Estado de AutoMint</translation>
     </message>
     <message>
         <source>Global Supply:</source>
