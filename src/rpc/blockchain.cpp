@@ -1219,59 +1219,59 @@ UniValue reconsiderblock(const UniValue& params, bool fHelp)
 //}
 
 
-UniValue getaccumulatorwitness(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() != 2)
-        throw runtime_error(
-                "getaccumulatorwitness \"commitmentCoinValue, coinDenomination\"\n"
-                "\nReturns the accumulator witness value associated with the coin\n"
-
-                "\nArguments:\n"
-                "1. coinValue             (string, required) the commitment value of the coin in HEX.\n"
-                "2. coinDenomination      (numeric, required) the coin denomination.\n"
-
-                "\nResult:\n"
-                "{\n"
-                "  \"Accumulator Value\": \"xxx\"  (string) Accumulator hex value\n"
-                "  \"Denomination\": \"d\"         (integer) Accumulator denomination\n"
-                "  \"Mints added\": \"d\"          (integer) Number of mints added to the accumulator\n"
-                "  \"Witness Value\": \"xxx\"      (string) Witness hex value\n"
-                "}\n"
-
-                "\nExamples:\n" +
-                HelpExampleCli("getaccumulatorwitness", "\"5fb87fb7bb638e83bfc14bcf33ac6f8064c9884dc72a4e652666abcf42cc47f9da0a7aca58076b0122a19b25629a6b6e7461f188baa7c00865b862cdb270d934873648aa12dd66e3242da40e4c17c78b70fded35e2d9c72933b455fadce9684586b1d48b10570d66feebe51ccebb1d98595217d06f41e66d5a0d9246d46ec3dd\" 5") + HelpExampleRpc("getaccumulatorwitness", "\"5fb87fb7bb638e83bfc14bcf33ac6f8064c9884dc72a4e652666abcf42cc47f9da0a7aca58076b0122a19b25629a6b6e7461f188baa7c00865b862cdb270d934873648aa12dd66e3242da40e4c17c78b70fded35e2d9c72933b455fadce9684586b1d48b10570d66feebe51ccebb1d98595217d06f41e66d5a0d9246d46ec3dd\", 5"));
-
-
-    CBigNum coinValue;
-    coinValue.SetHex(params[0].get_str());
-
-    int d = params[1].get_int();
-    libzerocoin::CoinDenomination denomination = libzerocoin::IntToZerocoinDenomination(d);
-    libzerocoin::ZerocoinParams* zcparams = Params().Zerocoin_Params(false);
-
-    // Public coin
-    libzerocoin::PublicCoin pubCoin(zcparams, coinValue, denomination);
-
-    //Compute Accumulator and Witness
-    libzerocoin::Accumulator accumulator(zcparams, pubCoin.getDenomination());
-    libzerocoin::AccumulatorWitness witness(zcparams, accumulator, pubCoin);
-    string strFailReason = "";
-    int nMintsAdded = 0;
-    CZerocoinSpendReceipt receipt;
-
-    if (!GenerateAccumulatorWitness(pubCoin, accumulator, witness, nMintsAdded, strFailReason)) {
-        receipt.SetStatus(_(strFailReason.c_str()), ZBLTG_FAILED_ACCUMULATOR_INITIALIZATION);
-        throw JSONRPCError(RPC_DATABASE_ERROR, receipt.GetStatusMessage());
-    }
-
-    UniValue obj(UniValue::VOBJ);
-    obj.push_back(Pair("Accumulator Value", accumulator.getValue().GetHex()));
-    obj.push_back(Pair("Denomination", accumulator.getDenomination()));
-    obj.push_back(Pair("Mints added",nMintsAdded));
-    obj.push_back(Pair("Witness Value", witness.getValue().GetHex()));
-
-    return obj;
-}
+//UniValue getaccumulatorwitness(const UniValue& params, bool fHelp)
+//{
+//    if (fHelp || params.size() != 2)
+//        throw runtime_error(
+//                "getaccumulatorwitness \"commitmentCoinValue, coinDenomination\"\n"
+//                "\nReturns the accumulator witness value associated with the coin\n"
+//
+//                "\nArguments:\n"
+//                "1. coinValue             (string, required) the commitment value of the coin in HEX.\n"
+//                "2. coinDenomination      (numeric, required) the coin denomination.\n"
+//
+//                "\nResult:\n"
+//                "{\n"
+//                "  \"Accumulator Value\": \"xxx\"  (string) Accumulator hex value\n"
+//                "  \"Denomination\": \"d\"         (integer) Accumulator denomination\n"
+//                "  \"Mints added\": \"d\"          (integer) Number of mints added to the accumulator\n"
+//                "  \"Witness Value\": \"xxx\"      (string) Witness hex value\n"
+//                "}\n"
+//
+//                "\nExamples:\n" +
+//                HelpExampleCli("getaccumulatorwitness", "\"5fb87fb7bb638e83bfc14bcf33ac6f8064c9884dc72a4e652666abcf42cc47f9da0a7aca58076b0122a19b25629a6b6e7461f188baa7c00865b862cdb270d934873648aa12dd66e3242da40e4c17c78b70fded35e2d9c72933b455fadce9684586b1d48b10570d66feebe51ccebb1d98595217d06f41e66d5a0d9246d46ec3dd\" 5") + HelpExampleRpc("getaccumulatorwitness", "\"5fb87fb7bb638e83bfc14bcf33ac6f8064c9884dc72a4e652666abcf42cc47f9da0a7aca58076b0122a19b25629a6b6e7461f188baa7c00865b862cdb270d934873648aa12dd66e3242da40e4c17c78b70fded35e2d9c72933b455fadce9684586b1d48b10570d66feebe51ccebb1d98595217d06f41e66d5a0d9246d46ec3dd\", 5"));
+//
+//
+//    CBigNum coinValue;
+//    coinValue.SetHex(params[0].get_str());
+//
+//    int d = params[1].get_int();
+//    libzerocoin::CoinDenomination denomination = libzerocoin::IntToZerocoinDenomination(d);
+//    libzerocoin::ZerocoinParams* zcparams = Params().Zerocoin_Params(false);
+//
+//    // Public coin
+//    libzerocoin::PublicCoin pubCoin(zcparams, coinValue, denomination);
+//
+//    //Compute Accumulator and Witness
+//    libzerocoin::Accumulator accumulator(zcparams, pubCoin.getDenomination());
+//    libzerocoin::AccumulatorWitness witness(zcparams, accumulator, pubCoin);
+//    string strFailReason = "";
+//    int nMintsAdded = 0;
+//    CZerocoinSpendReceipt receipt;
+//
+//    if (!GenerateAccumulatorWitness(pubCoin, accumulator, witness, nMintsAdded, strFailReason)) {
+//        receipt.SetStatus(_(strFailReason.c_str()), ZBLTG_FAILED_ACCUMULATOR_INITIALIZATION);
+//        throw JSONRPCError(RPC_DATABASE_ERROR, receipt.GetStatusMessage());
+//    }
+//
+//    UniValue obj(UniValue::VOBJ);
+//    obj.push_back(Pair("Accumulator Value", accumulator.getValue().GetHex()));
+//    obj.push_back(Pair("Denomination", accumulator.getDenomination()));
+//    obj.push_back(Pair("Mints added",nMintsAdded));
+//    obj.push_back(Pair("Witness Value", witness.getValue().GetHex()));
+//
+//    return obj;
+//}
 
 void validaterange(const UniValue& params, int& heightStart, int& heightEnd, int minHeightStart)
 {
