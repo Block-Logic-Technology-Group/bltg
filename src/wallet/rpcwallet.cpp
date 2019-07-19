@@ -3530,54 +3530,54 @@ UniValue getzbltgseed(const UniValue& params, bool fHelp)
     return ret;
 }
 
-UniValue generatemintlist(const UniValue& params, bool fHelp)
-{
-    if(fHelp || params.size() != 2)
-        throw runtime_error(
-            "generatemintlist\n"
-            "\nShow mints that are derived from the deterministic zBLTG seed.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nArguments\n"
-            "1. \"count\"  : n,  (numeric) Which sequential zBLTG to start with.\n"
-            "2. \"range\"  : n,  (numeric) How many zBLTG to generate.\n"
-
-            "\nResult:\n"
-            "[\n"
-            "  {\n"
-            "    \"count\": n,          (numeric) Deterministic Count.\n"
-            "    \"value\": \"xxx\",    (string) Hex encoded pubcoin value.\n"
-            "    \"randomness\": \"xxx\",   (string) Hex encoded randomness.\n"
-            "    \"serial\": \"xxx\"        (string) Hex encoded Serial.\n"
-            "  }\n"
-            "  ,...\n"
-            "]\n"
-
-            "\nExamples\n" +
-            HelpExampleCli("generatemintlist", "1, 100") + HelpExampleRpc("generatemintlist", "1, 100"));
-
-    EnsureWalletIsUnlocked();
-
-    int nCount = params[0].get_int();
-    int nRange = params[1].get_int();
-    CzBLTGWallet* zwallet = pwalletMain->zwalletMain;
-
-    UniValue arrRet(UniValue::VARR);
-    for (int i = nCount; i < nCount + nRange; i++) {
-        libzerocoin::CoinDenomination denom = libzerocoin::CoinDenomination::ZQ_ONE;
-        libzerocoin::PrivateCoin coin(Params().Zerocoin_Params(false), denom, false);
-        CDeterministicMint dMint;
-        zwallet->GenerateMint(i, denom, coin, dMint);
-        UniValue obj(UniValue::VOBJ);
-        obj.push_back(Pair("count", i));
-        obj.push_back(Pair("value", coin.getPublicCoin().getValue().GetHex()));
-        obj.push_back(Pair("randomness", coin.getRandomness().GetHex()));
-        obj.push_back(Pair("serial", coin.getSerialNumber().GetHex()));
-        arrRet.push_back(obj);
-    }
-
-    return arrRet;
-}
+//UniValue generatemintlist(const UniValue& params, bool fHelp)
+//{
+//    if(fHelp || params.size() != 2)
+//        throw runtime_error(
+//            "generatemintlist\n"
+//            "\nShow mints that are derived from the deterministic zBLTG seed.\n" +
+//            HelpRequiringPassphrase() + "\n"
+//
+//            "\nArguments\n"
+//            "1. \"count\"  : n,  (numeric) Which sequential zBLTG to start with.\n"
+//            "2. \"range\"  : n,  (numeric) How many zBLTG to generate.\n"
+//
+//            "\nResult:\n"
+//            "[\n"
+//            "  {\n"
+//            "    \"count\": n,          (numeric) Deterministic Count.\n"
+//            "    \"value\": \"xxx\",    (string) Hex encoded pubcoin value.\n"
+//            "    \"randomness\": \"xxx\",   (string) Hex encoded randomness.\n"
+//            "    \"serial\": \"xxx\"        (string) Hex encoded Serial.\n"
+//            "  }\n"
+//            "  ,...\n"
+//            "]\n"
+//
+//            "\nExamples\n" +
+//            HelpExampleCli("generatemintlist", "1, 100") + HelpExampleRpc("generatemintlist", "1, 100"));
+//
+//    EnsureWalletIsUnlocked();
+//
+//    int nCount = params[0].get_int();
+//    int nRange = params[1].get_int();
+//    CzBLTGWallet* zwallet = pwalletMain->zwalletMain;
+//
+//    UniValue arrRet(UniValue::VARR);
+//    for (int i = nCount; i < nCount + nRange; i++) {
+//        libzerocoin::CoinDenomination denom = libzerocoin::CoinDenomination::ZQ_ONE;
+//        libzerocoin::PrivateCoin coin(Params().Zerocoin_Params(false), denom, false);
+//        CDeterministicMint dMint;
+//        zwallet->GenerateMint(i, denom, coin, dMint);
+//        UniValue obj(UniValue::VOBJ);
+//        obj.push_back(Pair("count", i));
+//        obj.push_back(Pair("value", coin.getPublicCoin().getValue().GetHex()));
+//        obj.push_back(Pair("randomness", coin.getRandomness().GetHex()));
+//        obj.push_back(Pair("serial", coin.getSerialNumber().GetHex()));
+//        arrRet.push_back(obj);
+//    }
+//
+//    return arrRet;
+//}
 
 //UniValue dzbltgstate(const UniValue& params, bool fHelp) {
 //    if (fHelp || params.size() != 0)
