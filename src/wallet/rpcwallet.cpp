@@ -2844,72 +2844,72 @@ UniValue multisend(const UniValue& params, bool fHelp)
 //    return arrMints;
 //}
 
-UniValue spendzerocoin(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() > 4 || params.size() < 3)
-        throw runtime_error(
-            "spendzerocoin amount mintchange minimizechange ( \"address\" )\n"
-            "\nSpend zBLTG to a BLTG address.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nArguments:\n"
-            "1. amount          (numeric, required) Amount to spend.\n"
-            "2. mintchange      (boolean, required) Re-mint any leftover change.\n"
-            "3. minimizechange  (boolean, required) Try to minimize the returning change  [false]\n"
-            "4. \"address\"     (string, optional, default=change) Send to specified address or to a new change address.\n"
-            "                       If there is change then an address is required\n"
-            "5. ispublicspend (boolean, optional, default=true) create a public zc spend instead of use the old code (only for regression tests)"
-
-            "\nResult:\n"
-            "{\n"
-            "  \"txid\": \"xxx\",             (string) Transaction hash.\n"
-            "  \"bytes\": nnn,              (numeric) Transaction size.\n"
-            "  \"fee\": amount,             (numeric) Transaction fee (if any).\n"
-            "  \"spends\": [                (array) JSON array of input objects.\n"
-            "    {\n"
-            "      \"denomination\": nnn,   (numeric) Denomination value.\n"
-            "      \"pubcoin\": \"xxx\",      (string) Pubcoin in hex format.\n"
-            "      \"serial\": \"xxx\",       (string) Serial number in hex format.\n"
-            "      \"acc_checksum\": \"xxx\", (string) Accumulator checksum in hex format.\n"
-            "    }\n"
-            "    ,...\n"
-            "  ],\n"
-            "  \"outputs\": [                 (array) JSON array of output objects.\n"
-            "    {\n"
-            "      \"value\": amount,         (numeric) Value in BLTG.\n"
-            "      \"address\": \"xxx\"         (string) BLTG address or \"zerocoinmint\" for reminted change.\n"
-            "    }\n"
-            "    ,...\n"
-            "  ]\n"
-            "}\n"
-
-            "\nExamples\n" +
-            HelpExampleCli("spendzerocoin", "5000 false true \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\"") +
-            HelpExampleRpc("spendzerocoin", "5000 false true \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\""));
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
-        throw JSONRPCError(RPC_WALLET_ERROR, "zBLTG is currently disabled due to maintenance.");
-
-    EnsureWalletIsUnlocked();
-
-    CAmount nAmount = AmountFromValue(params[0]);   // Spending amount
-    bool fMintChange = params[1].get_bool();        // Mint change to zBLTG
-    if (fMintChange && Params().NetworkID() != CBaseChainParams::REGTEST)
-        throw JSONRPCError(RPC_WALLET_ERROR, "zBLTG minting is DISABLED, cannot mint change");
-    bool fMinimizeChange = params[2].get_bool();    // Minimize change
-    std::string address_str = params.size() > 3 ? params[3].get_str() : "";
-    bool ispublicspend = params.size() > 4 ? params[3].get_bool() : true;
-
-    vector<CZerocoinMint> vMintsSelected;
-
-    if (!ispublicspend && Params().NetworkID() != CBaseChainParams::REGTEST) {
-        throw JSONRPCError(RPC_WALLET_ERROR, "zBLTG old spend only available in regtest for tests purposes");
-    }
-
-    return DoZbltgSpend(nAmount, fMintChange, fMinimizeChange, vMintsSelected, address_str, ispublicspend);
-}
+//UniValue spendzerocoin(const UniValue& params, bool fHelp)
+//{
+//    if (fHelp || params.size() > 4 || params.size() < 3)
+//        throw runtime_error(
+//            "spendzerocoin amount mintchange minimizechange ( \"address\" )\n"
+//            "\nSpend zBLTG to a BLTG address.\n" +
+//            HelpRequiringPassphrase() + "\n"
+//
+//            "\nArguments:\n"
+//            "1. amount          (numeric, required) Amount to spend.\n"
+//            "2. mintchange      (boolean, required) Re-mint any leftover change.\n"
+//            "3. minimizechange  (boolean, required) Try to minimize the returning change  [false]\n"
+//            "4. \"address\"     (string, optional, default=change) Send to specified address or to a new change address.\n"
+//            "                       If there is change then an address is required\n"
+//            "5. ispublicspend (boolean, optional, default=true) create a public zc spend instead of use the old code (only for regression tests)"
+//
+//            "\nResult:\n"
+//            "{\n"
+//            "  \"txid\": \"xxx\",             (string) Transaction hash.\n"
+//            "  \"bytes\": nnn,              (numeric) Transaction size.\n"
+//            "  \"fee\": amount,             (numeric) Transaction fee (if any).\n"
+//            "  \"spends\": [                (array) JSON array of input objects.\n"
+//            "    {\n"
+//            "      \"denomination\": nnn,   (numeric) Denomination value.\n"
+//            "      \"pubcoin\": \"xxx\",      (string) Pubcoin in hex format.\n"
+//            "      \"serial\": \"xxx\",       (string) Serial number in hex format.\n"
+//            "      \"acc_checksum\": \"xxx\", (string) Accumulator checksum in hex format.\n"
+//            "    }\n"
+//            "    ,...\n"
+//            "  ],\n"
+//            "  \"outputs\": [                 (array) JSON array of output objects.\n"
+//            "    {\n"
+//            "      \"value\": amount,         (numeric) Value in BLTG.\n"
+//            "      \"address\": \"xxx\"         (string) BLTG address or \"zerocoinmint\" for reminted change.\n"
+//            "    }\n"
+//            "    ,...\n"
+//            "  ]\n"
+//            "}\n"
+//
+//            "\nExamples\n" +
+//            HelpExampleCli("spendzerocoin", "5000 false true \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\"") +
+//            HelpExampleRpc("spendzerocoin", "5000 false true \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\""));
+//
+//    LOCK2(cs_main, pwalletMain->cs_wallet);
+//
+//    if(GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE))
+//        throw JSONRPCError(RPC_WALLET_ERROR, "zBLTG is currently disabled due to maintenance.");
+//
+//    EnsureWalletIsUnlocked();
+//
+//    CAmount nAmount = AmountFromValue(params[0]);   // Spending amount
+//    bool fMintChange = params[1].get_bool();        // Mint change to zBLTG
+//    if (fMintChange && Params().NetworkID() != CBaseChainParams::REGTEST)
+//        throw JSONRPCError(RPC_WALLET_ERROR, "zBLTG minting is DISABLED, cannot mint change");
+//    bool fMinimizeChange = params[2].get_bool();    // Minimize change
+//    std::string address_str = params.size() > 3 ? params[3].get_str() : "";
+//    bool ispublicspend = params.size() > 4 ? params[3].get_bool() : true;
+//
+//    vector<CZerocoinMint> vMintsSelected;
+//
+//    if (!ispublicspend && Params().NetworkID() != CBaseChainParams::REGTEST) {
+//        throw JSONRPCError(RPC_WALLET_ERROR, "zBLTG old spend only available in regtest for tests purposes");
+//    }
+//
+//    return DoZbltgSpend(nAmount, fMintChange, fMinimizeChange, vMintsSelected, address_str, ispublicspend);
+//}
 
 
 UniValue spendzerocoinmints(const UniValue& params, bool fHelp)
