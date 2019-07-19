@@ -160,8 +160,8 @@ static const CRPCConvertParam vRPCConvertParams[] =
 //        {"getserials", 1},
 //        {"getserials", 2},
         {"getfeeinfo", 0},
-        {"getchecksumblock", 1},
-        {"getchecksumblock", 2},
+//        {"getchecksumblock", 1},
+//        {"getchecksumblock", 2},
     };
 
 class CRPCConvertTable
