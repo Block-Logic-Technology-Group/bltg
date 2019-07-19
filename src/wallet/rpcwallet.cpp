@@ -2567,90 +2567,90 @@ UniValue multisend(const UniValue& params, bool fHelp)
 //
 //}
 
-UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
-{
-
-    if (fHelp || params.size() > 2)
-        throw runtime_error(
-            "listmintedzerocoins (fVerbose) (fMatureOnly)\n"
-            "\nList all zBLTG mints in the wallet.\n" +
-            HelpRequiringPassphrase() + "\n"
-
-            "\nArguments:\n"
-            "1. fVerbose      (boolean, optional, default=false) Output mints metadata.\n"
-            "2. fMatureOnly      (boolean, optional, default=false) List only mature mints. (Set only if fVerbose is specified)\n"
-
-            "\nResult (with fVerbose=false):\n"
-            "[\n"
-            "  \"xxx\"      (string) Pubcoin in hex format.\n"
-            "  ,...\n"
-            "]\n"
-
-            "\nResult (with fVerbose=true):\n"
-            "[\n"
-            "  {\n"
-            "    \"serial hash\": \"xxx\",   (string) Mint serial hash in hex format.\n"
-            "    \"version\": n,   (numeric) Zerocoin version number.\n"
-            "    \"zBLTG ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
-            "    \"denomination\": n,   (numeric) Coin denomination.\n"
-            "    \"mint height\": n     (numeric) Height of the block containing this mint.\n"
-            "    \"confirmations\": n   (numeric) Number of confirmations.\n"
-            "    \"hash stake\": \"xxx\",   (string) Mint serialstake hash in hex format.\n"
-            "  }\n"
-            "  ,..."
-            "]\n"
-
-            "\nExamples:\n" +
-            HelpExampleCli("listmintedzerocoins", "") + HelpExampleRpc("listmintedzerocoins", "") +
-            HelpExampleCli("listmintedzerocoins", "true") + HelpExampleRpc("listmintedzerocoins", "true") +
-            HelpExampleCli("listmintedzerocoins", "true true") + HelpExampleRpc("listmintedzerocoins", "true, true"));
-
-    bool fVerbose = (params.size() > 0) ? params[0].get_bool() : false;
-    bool fMatureOnly = (params.size() > 1) ? params[1].get_bool() : false;
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    EnsureWalletIsUnlocked(true);
-
-    CWalletDB walletdb(pwalletMain->strWalletFile);
-    set<CMintMeta> setMints = pwalletMain->zbltgTracker->ListMints(true, fMatureOnly, true);
-
-    int nBestHeight = chainActive.Height();
-
-    UniValue jsonList(UniValue::VARR);
-    if (fVerbose) {
-        for (auto m : setMints) {
-            // Construct mint object
-            UniValue objMint(UniValue::VOBJ);
-            objMint.push_back(Pair("serial hash", m.hashSerial.GetHex()));  // Serial hash
-            objMint.push_back(Pair("version", m.nVersion));                 // Zerocoin version
-            objMint.push_back(Pair("zBLTG ID", m.hashPubcoin.GetHex()));     // PubCoin
-            int denom = libzerocoin::ZerocoinDenominationToInt(m.denom);
-            objMint.push_back(Pair("denomination", denom));                 // Denomination
-            objMint.push_back(Pair("mint height", m.nHeight));              // Mint Height
-            int nConfirmations = (m.nHeight && nBestHeight > m.nHeight) ? nBestHeight - m.nHeight : 0;
-            objMint.push_back(Pair("confirmations", nConfirmations));       // Confirmations
-            // hashStake
-            if (m.hashStake == 0) {
-                CZerocoinMint mint;
-                if (pwalletMain->GetMint(m.hashSerial, mint)) {
-                    uint256 hashStake = mint.GetSerialNumber().getuint256();
-                    hashStake = Hash(hashStake.begin(), hashStake.end());
-                    m.hashStake = hashStake;
-                    pwalletMain->zbltgTracker->UpdateState(m);
-                }
-            }
-            objMint.push_back(Pair("hash stake", m.hashStake.GetHex()));       // Confirmations
-            // Push back mint object
-            jsonList.push_back(objMint);
-        }
-    } else {
-        for (const CMintMeta& m : setMints)
-            // Push back PubCoin
-            jsonList.push_back(m.hashPubcoin.GetHex());
-    }
-    return jsonList;
-}
+//UniValue listmintedzerocoins(const UniValue& params, bool fHelp)
+//{
+//
+//    if (fHelp || params.size() > 2)
+//        throw runtime_error(
+//            "listmintedzerocoins (fVerbose) (fMatureOnly)\n"
+//            "\nList all zBLTG mints in the wallet.\n" +
+//            HelpRequiringPassphrase() + "\n"
+//
+//            "\nArguments:\n"
+//            "1. fVerbose      (boolean, optional, default=false) Output mints metadata.\n"
+//            "2. fMatureOnly      (boolean, optional, default=false) List only mature mints. (Set only if fVerbose is specified)\n"
+//
+//            "\nResult (with fVerbose=false):\n"
+//            "[\n"
+//            "  \"xxx\"      (string) Pubcoin in hex format.\n"
+//            "  ,...\n"
+//            "]\n"
+//
+//            "\nResult (with fVerbose=true):\n"
+//            "[\n"
+//            "  {\n"
+//            "    \"serial hash\": \"xxx\",   (string) Mint serial hash in hex format.\n"
+//            "    \"version\": n,   (numeric) Zerocoin version number.\n"
+//            "    \"zBLTG ID\": \"xxx\",   (string) Pubcoin in hex format.\n"
+//            "    \"denomination\": n,   (numeric) Coin denomination.\n"
+//            "    \"mint height\": n     (numeric) Height of the block containing this mint.\n"
+//            "    \"confirmations\": n   (numeric) Number of confirmations.\n"
+//            "    \"hash stake\": \"xxx\",   (string) Mint serialstake hash in hex format.\n"
+//            "  }\n"
+//            "  ,..."
+//            "]\n"
+//
+//            "\nExamples:\n" +
+//            HelpExampleCli("listmintedzerocoins", "") + HelpExampleRpc("listmintedzerocoins", "") +
+//            HelpExampleCli("listmintedzerocoins", "true") + HelpExampleRpc("listmintedzerocoins", "true") +
+//            HelpExampleCli("listmintedzerocoins", "true true") + HelpExampleRpc("listmintedzerocoins", "true, true"));
+//
+//    bool fVerbose = (params.size() > 0) ? params[0].get_bool() : false;
+//    bool fMatureOnly = (params.size() > 1) ? params[1].get_bool() : false;
+//
+//    LOCK2(cs_main, pwalletMain->cs_wallet);
+//
+//    EnsureWalletIsUnlocked(true);
+//
+//    CWalletDB walletdb(pwalletMain->strWalletFile);
+//    set<CMintMeta> setMints = pwalletMain->zbltgTracker->ListMints(true, fMatureOnly, true);
+//
+//    int nBestHeight = chainActive.Height();
+//
+//    UniValue jsonList(UniValue::VARR);
+//    if (fVerbose) {
+//        for (auto m : setMints) {
+//            // Construct mint object
+//            UniValue objMint(UniValue::VOBJ);
+//            objMint.push_back(Pair("serial hash", m.hashSerial.GetHex()));  // Serial hash
+//            objMint.push_back(Pair("version", m.nVersion));                 // Zerocoin version
+//            objMint.push_back(Pair("zBLTG ID", m.hashPubcoin.GetHex()));     // PubCoin
+//            int denom = libzerocoin::ZerocoinDenominationToInt(m.denom);
+//            objMint.push_back(Pair("denomination", denom));                 // Denomination
+//            objMint.push_back(Pair("mint height", m.nHeight));              // Mint Height
+//            int nConfirmations = (m.nHeight && nBestHeight > m.nHeight) ? nBestHeight - m.nHeight : 0;
+//            objMint.push_back(Pair("confirmations", nConfirmations));       // Confirmations
+//            // hashStake
+//            if (m.hashStake == 0) {
+//                CZerocoinMint mint;
+//                if (pwalletMain->GetMint(m.hashSerial, mint)) {
+//                    uint256 hashStake = mint.GetSerialNumber().getuint256();
+//                    hashStake = Hash(hashStake.begin(), hashStake.end());
+//                    m.hashStake = hashStake;
+//                    pwalletMain->zbltgTracker->UpdateState(m);
+//                }
+//            }
+//            objMint.push_back(Pair("hash stake", m.hashStake.GetHex()));       // Confirmations
+//            // Push back mint object
+//            jsonList.push_back(objMint);
+//        }
+//    } else {
+//        for (const CMintMeta& m : setMints)
+//            // Push back PubCoin
+//            jsonList.push_back(m.hashPubcoin.GetHex());
+//    }
+//    return jsonList;
+//}
 
 UniValue listzerocoinamounts(const UniValue& params, bool fHelp)
 {
