@@ -117,16 +117,16 @@ CPubKey CWallet::GenerateNewKey()
     return pubkey;
 }
 
-CBitcoinAddress CWallet::GenerateNewAutoMintKey()
-{
-    CBitcoinAddress btcAddress;
-    CKeyID keyID = GenerateNewKey().GetID();
-    btcAddress.Set(keyID);
-    CWalletDB(strWalletFile).WriteAutoConvertKey(btcAddress);
-    SetAddressBook(keyID, "automint-address", "receive");
-    setAutoConvertAddresses.emplace(btcAddress);
-    return btcAddress;
-}
+//CBitcoinAddress CWallet::GenerateNewAutoMintKey()
+//{
+//    CBitcoinAddress btcAddress;
+//    CKeyID keyID = GenerateNewKey().GetID();
+//    btcAddress.Set(keyID);
+//    CWalletDB(strWalletFile).WriteAutoConvertKey(btcAddress);
+//    SetAddressBook(keyID, "automint-address", "receive");
+//    setAutoConvertAddresses.emplace(btcAddress);
+//    return btcAddress;
+//}
 
 bool CWallet::AddKeyPubKey(const CKey& secret, const CPubKey& pubkey)
 {

@@ -415,7 +415,7 @@ public:
     //  keystore implementation
     // Generate a new key
     CPubKey GenerateNewKey();
-    CBitcoinAddress GenerateNewAutoMintKey();
+//    CBitcoinAddress GenerateNewAutoMintKey();
 
     //! Adds a key to the store, and saves it to disk.
     bool AddKeyPubKey(const CKey& key, const CPubKey& pubkey);
