@@ -19,7 +19,7 @@
 #include "optionsmodel.h"
 #include "overviewpage.h"
 #include "receivecoinsdialog.h"
-#include "privacydialog.h"
+//#include "privacydialog.h"
 #include "sendcoinsdialog.h"
 #include "signverifymessagedialog.h"
 #include "transactiontablemodel.h"
