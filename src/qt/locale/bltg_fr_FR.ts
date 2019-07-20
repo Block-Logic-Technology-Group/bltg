@@ -2459,6 +2459,7 @@ Les zBLTG sont matures lorsqu'elles ont plus de 20 confirmations ET plus de 2 mo
 Immature: confirmed, but less than 1 mint of the same denomination after it was minted</source>
         <translation>Non confirmé: moins de 20 confirmations
 Immature: confirmé, mais moins de 1 monnayer de la même dénomination après sa frappe</translation>
+    </message>
     <message>
         <source>Global Supply:</source>
         <translation>Approvisionnement total:</translation>
