@@ -136,8 +136,8 @@
         <translation>Slår ligegyldige afsendelser fra, når operativsystemets konto er kompromitteret. Denne funktion giver ikke ægte sikkerhed</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Til anonymisering, automint og staking alene</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Til anonymisering og staking alene</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -847,14 +847,6 @@ Adresse: %4
  MultiSend: %1</source>
         <translation>"Indskydning af saldo" ikke aktiveret
 "Multisend": %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint er i øjeblikket aktiveret og indstillet til</translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>AutoMint er deaktiveret</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1948,30 +1940,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>MAP port ved hjælp af UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Aktivér automatisk mintning af BLTG-enheder til zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Aktivér zBLTG Automint</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procentdelen af indkommende BLTG, som automatisk konverteres til zBLTG via Zerocoin Protocol (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Procentdel af automatiseret zBLTG</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation>Vent med automatisk konvertering til Zerocoin, indtil nok BLTG til denne betegnelse er tilgængelig</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Foretrukket Automint zBLTG Denomination</translation>
-    </message>
-    <message>
         <source>Stake split threshold:</source>
         <translation>Indtastningsgrænse for indsats:</translation>
     </message>
@@ -2241,13 +2209,6 @@ Uplettet: bekræftet, men mindre end 1 minutter med samme betegnelse, efter at d
     <message>
         <source>out of sync</source>
         <translation>Ude af synk</translation>
-    </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>Nuværende procentdel af zBLTG
-Hvis AutoMint er aktiveret, vil denne procentdel sætte sig omkring den konfigurerede AutoMint-procent (default = 10%)</translation>
     </message>
 </context>
 <context>
@@ -2807,10 +2768,6 @@ Maksimum tilladt:</translation>
     <message>
         <source>Denom. with value &lt;b&gt;5000&lt;/b&gt;:</source>
         <translation>DENOM. med værdi &lt;b&gt;5000&lt;/b&gt;:</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>AutoMint-status:</translation>
     </message>
     <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>

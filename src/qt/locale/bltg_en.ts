@@ -171,7 +171,7 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>For anonymization, automint, and staking only</source>
+        <source>For anonymizationand staking only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1096,16 +1096,6 @@ Address: %4
         <location line="+0"/>
         <source>Staking is not active
  MultiSend: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+4"/>
-        <source>AutoMint is disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2456,37 +2446,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</source>
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <location line="-169"/>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
-        <source>Enable zBLTG Automint</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <source>Percentage of autominted zBLTG</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+30"/>
-        <location line="+16"/>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-13"/>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+37"/>
         <source>Stake split threshold:</source>
         <translation type="unfinished"></translation>
@@ -2838,13 +2797,6 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <location line="+1"/>
         <source>out of sync</source>
         <translation>out of sync</translation>
-    </message>
-    <message>
-        <location line="+106"/>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3585,12 +3537,6 @@ Maximum allowed: </source>
     <message>
         <location line="+1"/>
         <source>Denom. with value &lt;b&gt;5000&lt;/b&gt;:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <location line="+705"/>
-        <source>AutoMint Status:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

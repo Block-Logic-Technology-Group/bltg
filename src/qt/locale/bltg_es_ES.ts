@@ -136,8 +136,8 @@
         <translation>Sirve simplemente para deshabilitar el envío de dinero cuando la cuenta del SO ha sido comprometida. No suministra seguridad real.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Para solo anonimizar, automint y staking</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Para solo anonimizar y staking</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>

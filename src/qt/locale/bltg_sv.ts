@@ -136,8 +136,8 @@
         <translation>Ser till att inaktivera obetydliga skickade pengar när OS kontot är i risk. Förser ingen riktig säkerhet.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Endast för anonymisering, automint, och staking</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Endast för anonymisering och staking</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -847,14 +847,6 @@ MultiSend: %1</translation>
  MultiSend: %1</source>
         <translation>Staking inaktivt
 MultiSend: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint är för tillfället aktiverat och inställd på</translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>AutoMint är inaktiverat</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1935,30 +1927,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>Kartlägg port med &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Tillåt automatisk prägling med BLTG enheter till zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Tillåt zBLTG Autoprägling</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procent av inkommande BLTG som automatiskt konverteras till zBLTG via Zerocoin Protokollet (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Procent av autopräglade zBLTG</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation>Vänta med automatisk omvandling till Zerocoin tills tillräckligt många BLTG för denna valör är tillgängliga</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Preferens på zBLTG valör i autoprägling</translation>
-    </message>
-    <message>
         <source>Stake split threshold:</source>
         <translation>Staking delnings tröskel:</translation>
     </message>
@@ -2216,14 +2184,6 @@ Omogna: bekräftade men under 1 myntning av samma valör efter den blev präglad
     <message>
         <source>out of sync</source>
         <translation>osynkroniserad</translation>
-    </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>Nuvarande procent zBLTG.
-Om AutoMint är tillåten så kommer denna procent att vara som den konfigurerade AutoMint procenten (standard = 10%).
-</translation>
     </message>
 </context>
 <context>
@@ -2783,10 +2743,6 @@ Högsta tillåtna:</translation>
     <message>
         <source>Denom. with value &lt;b&gt;5000&lt;/b&gt;:</source>
         <translation>Valör med värde &lt;b&gt;5000&lt;/b&gt;:</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>AutoMyntnings Status:</translation>
     </message>
     <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>
@@ -5867,15 +5823,15 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
     <message>
         <source>Set maximum block size in bytes (default: %d)</source>
-        <translation>Ställ in maximala blockstorlek i bytes (standard: %d) </translation>
+        <translation>Ställ in maximala blockstorlek i bytes (standard: %d) </translation>
     </message>
     <message>
         <source>Set minimum block size in bytes (default: %u)</source>
-        <translation>Ställ in minimum blockstorlek i bytes (standard: %u) </translation>
+        <translation>Ställ in minimum blockstorlek i bytes (standard: %u) </translation>
     </message>
     <message>
         <source>Set the Maximum reorg depth (default: %u)</source>
-        <translation>Ställ in maximala reorg djup (standard: %u) </translation>
+        <translation>Ställ in maximala reorg djup (standard: %u) </translation>
     </message>
     <message>
         <source>Set the masternode private key</source>
@@ -5887,7 +5843,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
     <message>
         <source>Sets the DB_PRIVATE flag in the wallet db environment (default: %u)</source>
-        <translation>Ställer in DB_PRIVATE flaggan i plånbokens db miljö (standard: %u) </translation>
+        <translation>Ställer in DB_PRIVATE flaggan i plånbokens db miljö (standard: %u) </translation>
     </message>
     <message>
         <source>Show all debugging options (usage: --help -help-debug)</source>

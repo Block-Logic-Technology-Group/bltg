@@ -136,8 +136,8 @@
         <translation>OS hesabı tehlikeye atıldığında önemsiz para göndermeyi devre dışı bırakır. Gerçek bir güvenlik sağlamaz.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Sadece anonimleştirmek, otomatik basım ve stakelemek için</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Sadece anonimleştirmek ve stakelemek için</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -819,14 +819,6 @@ Adres: %4
  MultiSend: %1</source>
         <translation>staking inaktif
  Multisend: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint şu anda etkinleştirilmiş ve</translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>Otomatik Basım iptal edildi</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1911,26 +1903,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>zBLTG Otomatik basımı etkinleştir</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Zerocoin Protokolü üzerinden otomatik olarak zBLTG'ye dönüştürülen gelen BLTG yüzdesi (dakika: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Otomatikleştirilmiş zBLTG yüzdesi</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation>Bu mezhebi için yeterli BLTG bulunana kadar Zerocoin'e otomatik dönüşümle birlikte bekleyin</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Tercih edilen Automint zBLTG Nominal değeri</translation>
-    </message>
-    <message>
         <source>Connect to the BLTG network through a SOCKS5 proxy.</source>
         <translation>Bir SOCKS5 proxy vasıtasıyla BLTG ağına bağlanın.</translation>
     </message>
@@ -2467,10 +2439,6 @@ zBLTG, 20'den fazla teyit bulunduğunda olgunlaşır ve bundan sonra aynı mezhe
         <translation>Denom. değer 1 ile:</translation>
     </message>
     <message>
-        <source>AutoMint Status</source>
-        <translation>Otomatik Basım Durumu</translation>
-    </message>
-    <message>
         <source>Global Supply:</source>
         <translation>Küresel Arz:</translation>
     </message>
@@ -2512,7 +2480,7 @@ zBLTG, 20'den fazla teyit bulunduğunda olgunlaşır ve bundan sonra aynı mezhe
     </message>
     <message>
         <source>Denominations with value 500:</source>
-        <translation> Denom. değeri ile 500:</translation>
+        <translation> Denom. değeri ile 500:</translation>
     </message>
     <message>
         <source>Denom. with value 500:</source>
@@ -2633,10 +2601,6 @@ Maksimum bırakılan: </translation>
     <message>
         <source>zBLTG is currently undergoing maintenance.</source>
         <translation>zBLTG halen bakım alıyor.</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>Otomatik Basım Durumu:</translation>
     </message>
     <message>
         <source>Error: Your wallet is locked. Please enter the wallet passphrase first.</source>

@@ -136,7 +136,7 @@
         <translation>Pašalina nereikšmingą sendmoney, kai OS sąskaita pažeista. Nesuteikia jokio realaus saugumo.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
+        <source>For anonymization and staking only</source>
         <translation>Tik dėl anonimizacijos ir "kasimo"</translation>
     </message>
     <message>
@@ -847,14 +847,6 @@ MultiSend: %1</translation>
  MultiSend: %1</source>
         <translation>Stake'inimas neaktyvuotas
 MultiSend: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint šiuo metu įgalintas ir nustatytas</translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>AutoMint išjungtas</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1890,26 +1882,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>Įrašyti prievadą naudojant &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Įgalinti automatinį konvertavimą iš BLTG į zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Įgalinti zBLTG Automatinį nukaldinima</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procentas gauto BLTG, kuris automatiškai bus konvertuotas į zBLTG naudojant Zerocoin Protokolą (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Automatiškai sukurtų zBLTG procentas</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Pageidautinas zBLTG Automatinio Nukaldinimo Nominalas</translation>
-    </message>
-    <message>
         <source>Connect to the BLTG network through a SOCKS5 proxy.</source>
         <translation>Jungtis prie BLTG tinklo naudojant SOCKS5 tarpinį serverį.</translation>
     </message>
@@ -2556,10 +2528,6 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos tos pačio nominal
         <translation>Nomin. su verte &lt;b&gt;5000&lt;/b&gt;:</translation>
     </message>
     <message>
-        <source>AutoMint Status:</source>
-        <translation>Auto-Konvertavimo Statusas:</translation>
-    </message>
-    <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>
         <translation>Nomin.  &lt;b&gt;1&lt;/b&gt;:</translation>
     </message>
@@ -3042,7 +3010,7 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos tos pačio nominal
     </message>
     <message>
         <source>Send as zero-fee transaction if possible</source>
-        <translation> Jei galima, siųsti pavedimą be pavedimo mokesčio</translation>
+        <translation> Jei galima, siųsti pavedimą be pavedimo mokesčio</translation>
     </message>
     <message>
         <source>(confirmation may take longer)</source>

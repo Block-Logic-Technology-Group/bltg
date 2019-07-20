@@ -136,7 +136,7 @@
         <translation>운영체제 계정이 손상되었을 때 일반적인 송금을 비활성화 합니다. 실질적인 보안을 제공하지 않습니다.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
+        <source>For anonymization and staking only</source>
         <translation>익명성 스테이킹 전용 모드</translation>
     </message>
     <message>
@@ -847,14 +847,6 @@ Address: %4
  MultiSend: %1</source>
         <translation>스테이킹이 활성화 되지 않음
 다중전송: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>자동 생성기능이 현재 작동중 그리고 </translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>자동생성이 비활성화 되었습니다.</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1948,30 +1940,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>&amp;UPnp를 사용하여 포트 매핑</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>보상받은 BLTG를 zBLTG로 자동변환 활성화</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>zBLTG 자동생성 활성화</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>BLTG수신시 자동변환 zBLTG 비율 (최소값:10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>자동 변환되는 zBLTG 비율</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation>이 디노미네이션의 BLTG가 충분해질 때까지 Zerocoin으로 자동전환은 보류됩니다.</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>선호하는 자동생성 zBLTG 디노미네이션 </translation>
-    </message>
-    <message>
         <source>Stake split threshold:</source>
         <translation>Stake split threshold:</translation>
     </message>
@@ -2241,13 +2209,6 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     <message>
         <source>out of sync</source>
         <translation>동기화되지 않음</translation>
-    </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>현재 zBLTG의 백분율 .
-자동 저장 기능이 활성화 된 경우이 비율은 구성된 자동 저장 비율 (기본값 = 10 %)을 기준으로 정해집니다.</translation>
     </message>
 </context>
 <context>
@@ -2807,10 +2768,6 @@ Maximum allowed: </source>
     <message>
         <source>Denom. with value &lt;b&gt;5000&lt;/b&gt;:</source>
         <translation>Denom. 값 &lt;b&gt;5000&lt;/b&gt;:</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>자동생성 상태:</translation>
     </message>
     <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>

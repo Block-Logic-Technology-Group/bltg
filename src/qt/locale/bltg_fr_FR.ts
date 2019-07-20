@@ -136,8 +136,8 @@
         <translation>Est utilisé pour désactiver l'envoi d'argent lorsque l'utilisateur OS est compromis. Ne fournit pas de vrai sécurité.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Pour l'anonymat, l'auto-monnayage et le staking seulement</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Pour l'anonymat et le staking seulement</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -831,14 +831,6 @@ Adresse : %4
  MultiSend: %1</source>
         <translation>Staking n'est pas actif
  MultiSend: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>Auto-monnayage est actuellement activé et mis à</translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>Auto-monnayage est désactivé</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1887,26 +1879,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>Répertorier les port utilisant UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Activé l'auto-monnayage de BLTG unités en zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Activé ZBLTG Auto-monnayage</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Pourcentage des BLTG entrants qui seront automatiquement convertis en zBLTG via le protocole Zerocoin (min. 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Pourcentage de zBLTG auto-monnayé</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Dénomination préférée d'auto-monnayage zBLTG</translation>
-    </message>
-    <message>
         <source>Stake split threshold:</source>
         <translation>Seuil de partage du Stake</translation>
     </message>
@@ -2176,13 +2148,6 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
     <message>
         <source>out of sync</source>
         <translation>désynchronisé</translation>
-    </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>Le pourcentage actuel de zBLTG.
-Si Auto-monnayage est activé, ce pourcentage sera réglé autour du pourcentage Auto-monnayage configuré (par défaut = 10%).</translation>
     </message>
 </context>
 <context>
@@ -2741,10 +2706,6 @@ Maximum autorisé:</translation>
     <message>
         <source>Denom. with value &lt;b&gt;5000&lt;/b&gt;:</source>
         <translation>Dénom. avec valeur&lt;b&gt;5000&lt;/b&gt;:</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>Statut Auto-monnayage:</translation>
     </message>
     <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>

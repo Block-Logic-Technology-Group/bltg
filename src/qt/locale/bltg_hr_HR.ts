@@ -136,8 +136,8 @@
         <translation>Služi za onemogućavanje spornog slanja novca kada je OS račun ugrožen. Ne pruža nikakvu stvarnu sigurnost.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Samo za anonimizaciju, automint i staking</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Samo za anonimizaciju i staking</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -847,14 +847,6 @@ Višestruko slanje: %1</translation>
  MultiSend: %1</source>
         <translation>Staking nije aktivan
 Višestruko slanje: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint je trenutno omogućen i podešen na</translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>AutoMint je onemogućen</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1948,30 +1940,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
 </translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Omogućite automint BLTG jedinica na zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Omogući zBLTG Automint</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Postotak dolaznih BLTG koji se automatski pretvara u zBLTG putem protokola Zerocoin (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Postotak automatiziranog zBLTG</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation>Pričekajte s automatskom pretvorbom u Zerocoin dok ne bude dostupno dovoljno BLTG za apoen</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Preferirana Automint zBLTG denominacijad</translation>
-    </message>
-    <message>
         <source>Stake split threshold:</source>
         <translation>Prag razdvajanja Stake-a:</translation>
     </message>
@@ -2241,14 +2209,6 @@ Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</tran
     <message>
         <source>out of sync</source>
         <translation>nije sinkronizirano</translation>
-    </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>Trenutni postotak zBLTG.
-Ako je omogućeno automatsko navođenje, ovaj postotak će se podmiriti oko konfiguriranog postotka automatskog navođenja (zadano = 10%).
-</translation>
     </message>
 </context>
 <context>
@@ -2807,10 +2767,6 @@ Maksimalno dopušteno:</translation>
     <message>
         <source>Denom. with value &lt;b&gt;5000&lt;/b&gt;:</source>
         <translation>Denom. s vrijednošću &lt;b&gt;5000&lt;/b&gt;:</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>AutoMint Status:</translation>
     </message>
     <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>

@@ -44,7 +44,7 @@ public:
 private:
     Ui::ZBltgControlDialog *ui;
     WalletModel* model;
-    PrivacyDialog* privacyDialog;
+//    PrivacyDialog* privacyDialog;
 
     void updateList();
     void updateLabels();

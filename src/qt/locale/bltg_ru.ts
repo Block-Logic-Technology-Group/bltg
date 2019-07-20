@@ -136,8 +136,8 @@
         <translation>Служит для отключения тривиальных сендмонэй, когда учетная запись ОС скомпрометирована. Не обеспечивает реальной безопасности. </translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Только для анонимности, автосоздания и хранения</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Только для анонимности и хранения</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -847,14 +847,6 @@ MultiSend: %1</translation>
  MultiSend: %1</source>
         <translation>Хранение не активно
 MultiSend: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>Авточеканка в данный момен включена и установлена в</translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>Авточеканка отключена</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1948,30 +1940,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>Карта порта, использующего &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Невозможно автоматически отчеканить единицы BLTG для zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Невозможно авточеканка  zBLTG</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент приходящих BLTG, которые автоматически конвертируются в zBLTG благодаря Zerocoin протоколу (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Процент  авточеканненых zBLTG</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation>Подождите с автоматическим преобразованием в Zerocoin, пока не будет достаточно BLTG для этой номинации.</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Предпочитаемый номинал авточеканной  монеты  zBLTG</translation>
-    </message>
-    <message>
         <source>Stake split threshold:</source>
         <translation>Порог разделения доли:</translation>
     </message>
@@ -2156,7 +2124,7 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
     </message>
     <message>
         <source>Your current BLTG balance, unconfirmed and immature transactions included</source>
-        <translation>Ваш текущий BLTG  баланс, включая неподтвержденные и незрелые транзакции</translation>
+        <translation>Ваш текущий BLTG  баланс, включая неподтвержденные и незрелые транзакции</translation>
     </message>
     <message>
         <source>zBLTG Balance</source>
@@ -2240,14 +2208,6 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
     <message>
         <source>out of sync</source>
         <translation>несинронизировано</translation>
-    </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>Текущий процент от zBLTG.
-Если АвтоЧеканка включена, этот процент будет располагаться на настроенном проценте АвтоЧеканка  (по умолчанию = 10%).
-</translation>
     </message>
 </context>
 <context>
@@ -2412,7 +2372,7 @@ If AutoMint is enabled this percentage will settle around the configured AutoMin
     </message>
     <message>
         <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Пересканировать  завершенную блокчейн для Zerocoin  чеканки и мета данных</translation>
+        <translation>Пересканировать  завершенную блокчейн для Zerocoin  чеканки и мета данных</translation>
     </message>
     <message>
         <source>ReScan</source>
@@ -2807,10 +2767,6 @@ Maximum allowed: </source>
     <message>
         <source>Denom. with value &lt;b&gt;5000&lt;/b&gt;:</source>
         <translation>Номинал со значением &lt;b&gt;5000&lt;/b&gt;:</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>Статус АвтоЧеканки:</translation>
     </message>
     <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>
@@ -3775,7 +3731,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for BLTG transactions than the network can process.</source>
-        <translation>Платить только минимальную плату просто отлично, если в блоке меньше объема транзакции, чем места в блоке.&lt;br /&gt; Но имейте в виду, что это может закончиться никогда не подтверждающей транзакцией, если будет больше спроса на транзакции BLTG, чем сеть может обрабатывать.</translation>
+        <translation>Платить только минимальную плату просто отлично, если в блоке меньше объема транзакции, чем места в блоке.&lt;br /&gt; Но имейте в виду, что это может закончиться никогда не подтверждающей транзакцией, если будет больше спроса на транзакции BLTG, чем сеть может обрабатывать.</translation>
     </message>
     <message>
         <source>normal</source>

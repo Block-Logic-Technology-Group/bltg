@@ -136,8 +136,8 @@
         <translation>Verhindert das einfache Überweisen von Geld, falls das Systemkonto kompromittiert wurde. Bietet keine wirkliche Sicherheit.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Nur zur Anonymisierung, automatischen Prägung (automint) und Staking</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Nur zur Anonymisierung und Staking</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -842,14 +842,6 @@ Adresse: %4</translation>
  MultiSend: %1</source>
         <translation>Staking ist nicht aktiviert
  MultiSend: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>Automatisches Prägen ist aktiv und eingestellt auf </translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>Automatisches Prägen ist deaktiviert</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1939,30 +1931,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>Port mit &amp;UPnP mappen</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Aktivieren Sie die automatische Prägung von BLTG-Einheiten zu zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Aktivieren Sie zBLTG Automint</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Anteil des eingehenden BLTG, welcher automatisch zu zBLTG via Zerocoin Protokoll konvertiert wird (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Prozentsatz der automatisierten zBLTG</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation>Warte mit automatischer Konvertierung zu Zerocoin, bis genügend BLTG für diese Stückelung verfügbar ist</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Bevorzugte automatisierte zBLTG Stückelung </translation>
-    </message>
-    <message>
         <source>Stake split threshold:</source>
         <translation>Staff Split-Schwelle:</translation>
     </message>
@@ -2232,14 +2200,6 @@ Unreif: Bestätigt, aber keine Prägung in der selben Stückelung seit erfolgter
     <message>
         <source>out of sync</source>
         <translation>nicht synchron</translation>
-    </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>Aktueller Prozentsatz an zBLTG.
-Falls das automatische Prägen aktiviert ist, wird sich dieser Prozentsatz um den eingestellten Prozentsatz fürs automatisierte Prägen einpendeln (Standard = 10%).
-</translation>
     </message>
 </context>
 <context>
@@ -2799,10 +2759,6 @@ Maximal erlaubt:</translation>
     <message>
         <source>Denom. with value &lt;b&gt;5000&lt;/b&gt;:</source>
         <translation>Denom. mit Wert &lt;b&gt;5000&lt;/b&gt;:</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>AutoMint-Status:</translation>
     </message>
     <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>

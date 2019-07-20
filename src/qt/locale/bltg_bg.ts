@@ -136,7 +136,7 @@
         <translation>Служи за изключване на възможността пари да бъдат превеждани, когато акаунта на операционната система е компрометиран. Не предоставя съществено ниво на сигурност.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
+        <source>For anonymization, and staking only</source>
         <translation>За анонимизация, авто-емитиране, и единствено съхранение</translation>
     </message>
     <message>
@@ -843,14 +843,6 @@ Address: %4
  MultiSend: %1</source>
         <translation>Не стейква
 МултиИзпращане: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>АвтоЕмитирането е включено в момента и настроено на </translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>АвтоЕмитирането е изключено</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1944,30 +1936,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>Картографирай портовете използвайки &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Включи автоматичното емитиране на BLTG единици в zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Включи Автоматично емитиране на zBLTG</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Процент от входящите BLTG, който автоматично да се конвертира в zBLTG посредтвом Zerocoin Протокола (мин: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Процент автоматично сечени zBLTG</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation>Не бързай с автоматичното конвертиране в zBLTG докато не се съберат достатъчно BLTG за тази деноминация</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Предпочитани деноминации, в които да се сече автоматичен zBLTG</translation>
-    </message>
-    <message>
         <source>Stake split threshold:</source>
         <translation>Праг на споделеното съхранение:</translation>
     </message>
@@ -2798,10 +2766,6 @@ Maximum allowed: </source>
         <translation>Деном. със стойност от &lt;b&gt;5000&lt;/b&gt;:</translation>
     </message>
     <message>
-        <source>AutoMint Status:</source>
-        <translation>Състояние АвтоЕмисия:</translation>
-    </message>
-    <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>
         <translation>Деноминация. &lt;b&gt;1&lt;/b&gt;:</translation>
     </message>
@@ -2840,14 +2804,6 @@ Maximum allowed: </source>
     <message>
         <source>Message: Enter an amount &gt; 0.</source>
         <translation>Съобщение: Въведете стойност &gt; 0.</translation>
-    </message>
-    <message>
-        <source>Minting </source>
-        <translation>Сечене</translation>
-    </message>
-    <message>
-        <source>Successfully minted </source>
-        <translation>Успешно изсечени</translation>
     </message>
     <message>
         <source> zBLTG in </source>

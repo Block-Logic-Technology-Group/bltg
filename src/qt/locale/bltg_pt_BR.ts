@@ -136,8 +136,8 @@
         <translation>Server irá desabilitar o sendmoney trivial quando a conta do sistema operacional for comprometido. Não oferece segurança real.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Somente para anonimização, automint e staking</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Somente para anonimização e staking</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>

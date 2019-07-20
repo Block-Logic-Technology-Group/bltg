@@ -136,8 +136,8 @@
         <translation>Serve per impedire invii accidentali nel caso in cui l'utenza del sistema operativo sia stata compromessa. Non garantisce alcuna reale sicurezza.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Solo per anonimizzazione, conio automatico e stake</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Solo per anonimizzazione e stake</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -843,14 +843,6 @@ MultiSend: %1</translation>
  MultiSend: %1</source>
         <translation>Lo Staking non è attivo
 MultiSend: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>Conio automatico è attivo e impostato su</translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>Conio automatico disabilitato</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1713,26 +1705,6 @@ Per favore controlla l'indirizzo e riprova nuovamente.</translation>
         <translation>Mappa la porta utilizzando &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Attiva il conio automatico di unità BLTG in zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Attiva Conio automatico zBLTG</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentuale di BLTG in entrata che viene automaticamente convertita in zBLTG attraverso il protocollo Zerocoin (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Percentuale di zBLTG Percentuale di zBLTG da coniare automaticamente</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Denominazione preferita conio automatico zBLTG</translation>
-    </message>
-    <message>
         <source>Proxy &amp;IP:</source>
         <translation>Proxy &amp;IP:</translation>
     </message>
@@ -1864,14 +1836,6 @@ Questi zBLTG sono spendibili.</translation>
     <message>
         <source>Recent transactions</source>
         <translation>Transazioni recenti</translation>
-    </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>Percentuale corrente di zBLTG.
-Se il conio automatico è attivato questa percentuale si stabilizzerà all'incirca sulla percentuale stabilita per il conio automatico (percentuale prestabilita = 10%).
-</translation>
     </message>
 </context>
 <context>
@@ -2172,10 +2136,6 @@ Gli zBLTG sono maturi quando hanno più di 20 conferme E più di 2 conii della s
     <message>
         <source>zBLTG Mint</source>
         <translation>Conio zBLTG</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>Stato Conio automatico:</translation>
     </message>
     <message>
         <source>Invalid Send Amount</source>

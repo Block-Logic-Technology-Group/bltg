@@ -136,8 +136,8 @@
         <translation>Dient om de triviale sendmoney uit te schakelen wanneer het OS account in gevaar is gebracht. Geeft geen echte veiligheid.</translation>
     </message>
     <message>
-        <source>For anonymization, automint, and staking only</source>
-        <translation>Alleen voor anonimisering, automint en staking</translation>
+        <source>For anonymization and staking only</source>
+        <translation>Alleen voor anonimisering en staking</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -847,14 +847,6 @@ Multisend: %1</translation>
  MultiSend: %1</source>
         <translation>Staking is niet actief
 MultiSend: %1</translation>
-    </message>
-    <message>
-        <source>AutoMint is currently enabled and set to </source>
-        <translation>AutoMint is momenteel ingeschakeld en ingesteld op</translation>
-    </message>
-    <message>
-        <source>AutoMint is disabled</source>
-        <translation>AutoMint is uitgeschakeld</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1935,7 +1927,7 @@ Waas alsjeblieft geduldig nadat u op importeren hebt geklikt.</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting BLTG.</source>
-        <translation>De gebruikersinterface taal kan hier ingesteld worden. Deze instelling zal uitgevoerd na herstart van BLTG.</translation>
+        <translation>De gebruikersinterface taal kan hier ingesteld worden. Deze instelling zal uitgevoerd na herstart van BLTG.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1946,30 +1938,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Map poort gebruikt &amp;UPnP</translation>
-    </message>
-    <message>
-        <source>Enable automatic minting of BLTG units to zBLTG</source>
-        <translation>Schakel automatisch slaan van BLTG-eenheden in op zBLTG</translation>
-    </message>
-    <message>
-        <source>Enable zBLTG Automint</source>
-        <translation>Schakel zBLTG Automint in</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BLTG which get automatically converted to zBLTG via Zerocoin Protocol (min: 10%)</source>
-        <translation>Percentage inkomende BLTG die automatisch wordt omgezet naar zBLTG via Zerocoin Protocol (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBLTG</source>
-        <translation>Percentage autominted zBLTG</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BLTG for this denomination is available</source>
-        <translation>Wacht met automatische omzetting naar Zerocoin totdat er genoeg BLTG voor deze denominatie beschikbaar is</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBLTG Denomination</source>
-        <translation>Gewenste Automint zBLTG denominatie</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2241,14 +2209,6 @@ Onvolwassen: bevestigd, maar minder dan 1 mint van dezelfde denominatie nadat he
     <message>
         <source>out of sync</source>
         <translation>niet gesynchroniseerd</translation>
-    </message>
-    <message>
-        <source>Current percentage of zBLTG.
-If AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).
-</source>
-        <translation>Huidige percentage van zBLTG
-Als AutoMint ingeschakeld is zal deze percentage afhangen van de geconfigureerde AutoMint percentage (standaard = 10%).
-</translation>
     </message>
 </context>
 <context>
@@ -2808,10 +2768,6 @@ Maximaal toegestaan:</translation>
     <message>
         <source>Denom. with value &lt;b&gt;5000&lt;/b&gt;:</source>
         <translation>Denom. met waarde &lt;b&gt;5000&lt;/b&gt;:</translation>
-    </message>
-    <message>
-        <source>AutoMint Status:</source>
-        <translation>AutoMint-status</translation>
     </message>
     <message>
         <source>Denom. &lt;b&gt;1&lt;/b&gt;:</source>
