@@ -247,10 +247,10 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0x24;
-        pchMessageStart[1] = 0xa4;
-        pchMessageStart[2] = 0xf4;
-        pchMessageStart[3] = 0xb7;
+        pchMessageStart[0] = 0x44;
+        pchMessageStart[1] = 0x75;
+        pchMessageStart[2] = 0x64;
+        pchMessageStart[3] = 0xba;
         vAlertPubKey = ParseHex("0443db95cf8f4f523fdcfa43dbb630e854e20f8816f4f399fd70a93699aa3fe2a255383df1fe36f14cf1640410d8419285b1ed4d127c2992835c72d72ee8159a73");
         nDefaultPort = 18127;
         nEnforceBlockUpgradeMajority = 4320; // 75%
@@ -258,7 +258,7 @@ public:
         nToCheckBlockUpgradeMajority = 5760; // 4 days
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // BLTG: 1 day
-        nTargetSpacing = 1 * 60;  // BLTG: 30 seconds
+        nTargetSpacing = 1 * 30;  // BLTG: 30 seconds
         nLastPOWBlock = 300;
         nMaturity = 10;
         nMasternodeCountDrift = 4;
@@ -270,8 +270,8 @@ public:
         nBlockRecalculateAccumulators = 2147483647; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = 2147483647; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = 2147483647; //Last valid accumulator checkpoint
-        //nBlockEnforceInvalidUTXO = 2147483647; //Start enforcing the invalid UTXO's
-        //nInvalidAmountFiltered = 0; //Amount of invalid coins filtered through exchanges, that should be considered valid
+//        nBlockEnforceInvalidUTXO = 2147483647; //Start enforcing the invalid UTXO's
+        nInvalidAmountFiltered = 0; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = 2147483647; //!> The block that zerocoin v2 becomes active
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
@@ -297,12 +297,14 @@ public:
         vSeeds.emplace_back("", "");
         vSeeds.emplace_back("", "");
 
-        //base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
-        //base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);  // Testnet bltg script addresses start with '8' or '9'
-        //base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 145);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,139); // Testnet bltg addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);  // Testnet bltg script addresses start with '8' or '9'
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1,239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
+        // Testnet bltg BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
+        // Testnet bltg BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        //Testnet bltg BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet bltg BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -316,7 +318,7 @@ public:
 
         nPoolMaxTransactions = 2;
         nBudgetCycleBlocks = 144; //!< Ten cycles per day on testnet
-        //strSporkKey = "04118a7267382e19ab2d80b79a76844b2dc191fd9cd9815338363c74f50431b551beb64854d76042b920465b6055db6a72db8793c81de937ab0c371731527852f9";
+        strSporkKey = "04238a360e5b459484eb1990f1fbdcc162c577979f325b6c74569251bcdb2efe866351f32ae0755c864a3e85e50da3e242202e75dd11e8e98543a51957c4efa6d4";
         //strSporkKeyOld = "";
         strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
         nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
