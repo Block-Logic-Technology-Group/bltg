@@ -259,7 +259,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // BLTG: 1 day
         nTargetSpacing = 1 * 30;  // BLTG: 30 seconds
-        nLastPOWBlock = 300;
+        nLastPOWBlock = 600;
         nMaturity = 10;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
@@ -292,7 +292,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.emplace_back("192.145.126.148", "192.145.126.148");
+        vSeeds.emplace_back("testnet1.block-logic.com", "testnet1.block-logic.com");
         vSeeds.emplace_back("", "");
         vSeeds.emplace_back("", "");
         vSeeds.emplace_back("", "");
