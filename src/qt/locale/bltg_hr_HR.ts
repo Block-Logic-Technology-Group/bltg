@@ -2372,10 +2372,6 @@ Nezreli: potvrđeno, ali manje od 1 minta iste denominacije nakon mintanja</tran
         <translation>Iznos:</translation>
     </message>
     <message>
-        <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Ponovo skenirajte kompletnog blockchaina za Zerocoin mints i njihove meta-podataka.</translation>
-    </message>
-    <message>
         <source>ReScan</source>
         <translation>Ponovno pretraži</translation>
     </message>
@@ -4607,10 +4603,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Masternode Nagrada</translation>
     </message>
     <message>
-        <source>Zerocoin Mint</source>
-        <translation>Zerocoin Mint</translation>
-    </message>
-    <message>
         <source>Zerocoin Spend</source>
         <translation>Zerocoin utrošak</translation>
     </message>
@@ -5228,10 +5220,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Done loading</source>
         <translation>Gotovo učitavanje</translation>
-    </message>
-    <message>
-        <source>Enable automatic Zerocoin minting (0-1, default: %u)</source>
-        <translation>Omogući automatsko Zerocoin stvaranje (0-1, zadano: %u)</translation>
     </message>
     <message>
         <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>

@@ -2372,10 +2372,6 @@ Uplettet: bekræftet, men mindre end 1 minutter med samme betegnelse, efter at d
         <translation>Beløb</translation>
     </message>
     <message>
-        <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Omskrive den komplette blokchain for Zerocoin-minter og deres metadata.</translation>
-    </message>
-    <message>
         <source>ReScan</source>
         <translation>ReScan</translation>
     </message>
@@ -4605,10 +4601,6 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Masternodebelønning</translation>
     </message>
     <message>
-        <source>Zerocoin Mint</source>
-        <translation>Zerocoin Mint</translation>
-    </message>
-    <message>
         <source>Zerocoin Spend</source>
         <translation>Zerocoin Tilbring</translation>
     </message>
@@ -5226,10 +5218,6 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
     <message>
         <source>Done loading</source>
         <translation>Indlæst!</translation>
-    </message>
-    <message>
-        <source>Enable automatic Zerocoin minting (0-1, default: %u)</source>
-        <translation>Aktivér automatisk Zerocoin-mintning (0-1, standard: %u)</translation>
     </message>
     <message>
         <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>

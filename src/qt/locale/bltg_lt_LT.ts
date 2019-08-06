@@ -2218,10 +2218,6 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
         <translation>Suma:</translation>
     </message>
     <message>
-        <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Iš naujo nuskenuokite blockchain'ą Zerocoin konvertacijoms ir jų metaduomenims.</translation>
-    </message>
-    <message>
         <source>ReScan</source>
         <translation>Nuskenuoti iš naujo</translation>
     </message>

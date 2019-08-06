@@ -2307,10 +2307,6 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <translation>Tutar:</translation>
     </message>
     <message>
-        <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Zerocoin mint ve meta verileri için tam blok zinciri tekrar tarayın.</translation>
-    </message>
-    <message>
         <source>ReScan</source>
         <translation>ReScan</translation>
     </message>
@@ -4247,10 +4243,6 @@ Ya daha yüksek mezhepleri daraltın (daha az girdi gereklidir) veya harcama mik
     <message>
         <source>Masternode Reward</source>
         <translation>Masternode Ödülü </translation>
-    </message>
-    <message>
-        <source>Zerocoin Mint</source>
-        <translation>Zerocoin Mint</translation>
     </message>
     <message>
         <source>Zerocoin Spend</source>

@@ -2372,10 +2372,6 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>금액:</translation>
     </message>
     <message>
-        <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>제로코인 생성과 메타데이타를 위해 블록체인을 다시 스캔합니다.</translation>
-    </message>
-    <message>
         <source>ReScan</source>
         <translation>다시 스캔</translation>
     </message>
@@ -4606,10 +4602,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>마스터노드 보상 </translation>
     </message>
     <message>
-        <source>Zerocoin Mint</source>
-        <translation>제로코인 생성</translation>
-    </message>
-    <message>
         <source>Zerocoin Spend</source>
         <translation>제로코인 전송</translation>
     </message>
@@ -5226,10 +5218,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Done loading</source>
         <translation>로딩 완료</translation>
-    </message>
-    <message>
-        <source>Enable automatic Zerocoin minting (0-1, default: %u)</source>
-        <translation>자동 제로코인 생성 (0-1, 기본값: %u)</translation>
     </message>
     <message>
         <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>

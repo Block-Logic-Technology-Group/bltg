@@ -163,17 +163,6 @@ void OptionsModel::Init()
     if (!SoftSetArg("-lang", settings.value("language").toString().toStdString()))
         addOverriddenOption("-lang");
 
-//    if (settings.contains("fZeromintEnable"))
-//        SoftSetBoolArg("-enablezeromint", settings.value("fZeromintEnable").toBool());
-//    if (settings.contains("fEnableAutoConvert"))
-//        SoftSetBoolArg("-enableautoconvertaddress", settings.value("fEnableAutoConvert").toBool());
-//    if (settings.contains("nZeromintPercentage"))
-//        SoftSetArg("-zeromintpercentage", settings.value("nZeromintPercentage").toString().toStdString());
-//    if (settings.contains("nPreferredDenom"))
-//        SoftSetArg("-preferredDenom", settings.value("nPreferredDenom").toString().toStdString());
-//    if (settings.contains("nAnonymizeBltgAmount"))
-//        SoftSetArg("-anonymizebltgamount", settings.value("nAnonymizeBltgAmount").toString().toStdString());
-
     language = settings.value("language").toString();
 }
 

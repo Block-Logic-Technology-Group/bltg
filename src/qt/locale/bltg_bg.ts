@@ -2368,10 +2368,6 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
         <translation>Сума:</translation>
     </message>
     <message>
-        <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Сканирай повторно блокчена за Zerocoin монети и техните мета-данни.</translation>
-    </message>
-    <message>
         <source>ReScan</source>
         <translation>Сканирай</translation>
     </message>
@@ -4593,10 +4589,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Мастърноуд възнаграждение</translation>
     </message>
     <message>
-        <source>Zerocoin Mint</source>
-        <translation>Сечене на Zerocoin</translation>
-    </message>
-    <message>
         <source>Zerocoin Spend</source>
         <translation>Харчене на Zerocoin</translation>
     </message>
@@ -5209,10 +5201,6 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     <message>
         <source>Done loading</source>
         <translation>Край на зареждането</translation>
-    </message>
-    <message>
-        <source>Enable automatic Zerocoin minting (0-1, default: %u)</source>
-        <translation>Активирай автоматично сечене на Zerocoin (0-1, По подразбиране: %u)</translation>
     </message>
     <message>
         <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>

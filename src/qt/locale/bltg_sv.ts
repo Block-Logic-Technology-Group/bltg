@@ -2347,10 +2347,6 @@ Omogna: bekräftade men under 1 myntning av samma valör efter den blev präglad
         <translation>Antal:</translation>
     </message>
     <message>
-        <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Skanna om hela blockchain för att hitta Zerocoin präglingar och deras meta-data.</translation>
-    </message>
-    <message>
         <source>ReScan</source>
         <translation>Skanna om</translation>
     </message>
@@ -4520,10 +4516,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Huvudnods Belöning</translation>
     </message>
     <message>
-        <source>Zerocoin Mint</source>
-        <translation>Zerocoin Mint</translation>
-    </message>
-    <message>
         <source>Zerocoin Spend</source>
         <translation>Zerocoin Spendera</translation>
     </message>
@@ -5140,10 +5132,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Done loading</source>
         <translation>Färdigladdat</translation>
-    </message>
-    <message>
-        <source>Enable automatic Zerocoin minting (0-1, default: %u)</source>
-        <translation>Aktivera automatisk Zerocoin minting (0-1, standard: %u)</translation>
     </message>
     <message>
         <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>

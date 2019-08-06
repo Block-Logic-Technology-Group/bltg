@@ -2311,10 +2311,6 @@ Immature: confirmé, mais moins de 1 monnayer de la même dénomination après s
         <translation>Montant :</translation>
     </message>
     <message>
-        <source>Rescan the complete blockchain for  Zerocoin mints and their meta-data.</source>
-        <translation>Rebalayage la blockchain complète pour les Zerocoin Monnayer et leurs méta-données.</translation>
-    </message>
-    <message>
         <source>ReScan</source>
         <translation>ReScan</translation>
     </message>
@@ -4198,10 +4194,6 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
     <message>
         <source>Masternode Reward</source>
         <translation>Récompense Matsernode</translation>
-    </message>
-    <message>
-        <source>Zerocoin Mint</source>
-        <translation>Zerocoin Monnayez</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
