@@ -332,11 +332,6 @@ public:
         nAutoCombineThreshold = 0;
     }
 
-//    int getZeromintPercentage()
-//    {
-//        return nZeromintPercentage;
-//    }
-
     void setZWallet(CzBLTGWallet* zwallet)
     {
         zwalletMain = zwallet;
@@ -344,11 +339,6 @@ public:
     }
 
     CzBLTGWallet* getZWallet() { return zwalletMain; }
-
-//    bool isZeromintEnabled()
-//    {
-//        return fEnableZeromint || fEnableAutoConvert;
-//    }
 
     void setZBltgAutoBackups(bool fEnabled)
     {
@@ -415,7 +405,6 @@ public:
     //  keystore implementation
     // Generate a new key
     CPubKey GenerateNewKey();
-//    CBitcoinAddress GenerateNewAutoMintKey();
 
     //! Adds a key to the store, and saves it to disk.
     bool AddKeyPubKey(const CKey& key, const CPubKey& pubkey);
@@ -510,8 +499,6 @@ public:
     bool MultiSend();
     void AutoCombineDust();
     void AutoZeromint();
-//    void AutoZeromintForAddress();
-//    void CreateAutoMintTransaction(const CAmount& nMintAmount, CCoinControl* coinControl = nullptr);
 
     static CFeeRate minTxFee;
     static CAmount GetMinimumFee(unsigned int nTxBytes, unsigned int nConfirmTarget, const CTxMemPool& pool);

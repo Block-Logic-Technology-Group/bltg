@@ -8,7 +8,7 @@ Please report bugs using the issue tracker at github: <https://github.com/Block-
 Mandatory Update
 ==============
 
-BLTG Core v3.0.0 is a mandatory update for all users. This release contains new consensus rules and improvements that are not backwards compatible with older versions. Users will have a grace period of approximately one week to update their clients before enforcement of this update goes into effect.
+BLTG Core v3.0.0 is a mandatory update for all users. This release contains
 
 Masternodes will need to be restarted once both the masternode daemon and the controller wallet have been upgraded.
 
@@ -16,7 +16,6 @@ How to Upgrade
 ==============
 
 If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/BLTG-Qt (on Mac) or bltgd/bltg-qt (on Linux).
-
 
 Compatibility
 ==============
@@ -33,23 +32,19 @@ BLTG Core should also work on most other Unix-like systems but is not frequently
 Notable Changes
 ==============
 
-## zBLTG Public Spends
+## Zerocoin removal
 
-Recent exploits of the Zerocoin protocol (Wrapped serials and broken P1 proof) required us to enable the zerocoin spork and deactivate zBLTG functionality in order to secure the supply until the pertinent review process was completed.
+Recent exploits of the Zerocoin protocol (Wrapped serials and broken P1 proof) required us to enable the zerocoin spork and deactivate zBLTG functionality.
 
-Moving forward from this undesired situation, we are enabling a secure and chain storage friendly solution for the zerocoin public spend (aka zBLTG to BLTG conversion).
+Given that BLTG is a non-currency and is meant as a token to provide other services, as well as the issues presented in the Zerocoin protocol, the Zerocoin functionality has been completely disabled starting with this release.
 
-The explanation of how this works can be found in #891
+Complete removal will continue to occur over future updates. This won't negatively impact wallet performance or functionality.
 
 ## GUI Changes
 
 ### Options Dialog Cleanup
 
 The options/settings UI dialog has been cleaned up to no longer show settings that are wallet related when running in "disable wallet" (`-disablewallet`) mode.
-
-### Privacy Tab
-
-Notice text has been added to the privacy tab indicating that zPIV minting is disabled, as well as the removal of UI elements that supported such functionality. Notice text has also been added indicating that zPIV spends are currently **NOT** private.
 
 ## RPC Changes
 
@@ -64,8 +59,6 @@ Several new commands were added in v2.3.1 to replace the two aforementioned comm
 A new RPC command (`getblockindexstats`) has been introduced which serves the purpose of obtaining statistical information on a range of blocks. The information returned is as follows:
   * transaction count (not including coinbase/coinstake txes)
   * transaction count (including coinbase/coinstake txes)
-  * zBLTG per-denom mint count
-  * zBLTG per-denom spend count
   * total transaction bytes
   * total fees in block range
   * average fee per kB
@@ -88,25 +81,10 @@ Result:
   last_block: x,               (integer) Last counted block
   txcount: xxxxx,              (numeric) tx count (excluding coinbase/coinstake)
   txcount_all: xxxxx,          (numeric) tx count (including coinbase/coinstake)
-  mintcount: {              [if fFeeOnly=False]
-        denom_1: xxxx,         (numeric) number of mints of denom_1 occurred over the block range
-        denom_5: xxxx,         (numeric) number of mints of denom_5 occurred over the block range
-         ...                    ... number of mints of other denominations: ..., 10, 50, 100, 500, 1000, 5000
-  },
-  spendcount: {             [if fFeeOnly=False]
-        denom_1: xxxx,         (numeric) number of spends of denom_1 occurred over the block range
-        denom_5: xxxx,         (numeric) number of spends of denom_5 occurred over the block range
-         ...                    ... number of spends of other denominations: ..., 10, 50, 100, 500, 1000, 5000
-  },
-  pubspendcount: {          [if fFeeOnly=False]
-        denom_1: xxxx,         (numeric) number of PUBLIC spends of denom_1 occurred over the block range
-        denom_5: xxxx,         (numeric) number of PUBLIC spends of denom_5 occurred over the block range
-         ...                   ... number of PUBLIC spends of other denominations: ..., 10, 50, 100, 500, 1000, 5000
-  },
-  txbytes: xxxxx,              (numeric) Sum of the size of all txes (zBLTG excluded) over block range
-  ttlfee: xxxxx,               (numeric) Sum of the fee amount of all txes (zBLTG mints excluded) over block range
-  ttlfee_all: xxxxx,           (numeric) Sum of the fee amount of all txes (zBLTG mints included) over block range
-  feeperkb: xxxxx,             (numeric) Average fee per kb (excluding zc txes)
+  txbytes: xxxxx,              (numeric) Sum of the size of all txes over block range
+  ttlfee: xxxxx,               (numeric) Sum of the fee amount of all txes over block range
+  ttlfee_all: xxxxx,           (numeric) Sum of the fee amount of all txes over block range
+  feeperkb: xxxxx,             (numeric) Average fee per kb
 }
 ```
 
@@ -128,6 +106,8 @@ Note that it is still required to have relevant dependencies installed on the sy
 ==============
 
 Detailed release notes follow. This overview includes changes that affect behavior, not code moves, refactors and string updates. For convenience in locating the code changes and accompanying discussion, both the pull request and git merge commit are mentioned.
+
+With the exception of Zerocoin related items, this release integrates all the below changes from PIVX project
 
 ### Core
  - #875 `a99c2dd3bb` [Zerocoin] GMP BigNum: Fix limits for random number generators (random-zebra)

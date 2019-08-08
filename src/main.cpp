@@ -2575,35 +2575,6 @@ void ThreadScriptCheck()
     scriptcheckqueue.Thread();
 }
 
-//void AddWrappedSerialsInflation()
-//{
-//    CBlockIndex* pindex = chainActive[Params().Zerocoin_Block_EndFakeSerial()];
-//    if (pindex->nHeight > chainActive.Height())
-//        return;
-//
-//    uiInterface.ShowProgress(_("Adding Wrapped Serials supply..."), 0);
-//    while (true) {
-//        if (pindex->nHeight % 1000 == 0) {
-//            LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
-//            int percent = std::max(1, std::min(99, (int)((double)(pindex->nHeight - Params().Zerocoin_Block_EndFakeSerial()) * 100 / (chainActive.Height() - Params().Zerocoin_Block_EndFakeSerial()))));
-//            uiInterface.ShowProgress(_("Adding Wrapped Serials supply..."), percent);
-//        }
-//
-//        // Add inflated denominations to block index mapSupply
-//        for (auto denom : libzerocoin::zerocoinDenomList) {
-//            pindex->mapZerocoinSupply.at(denom) += GetWrapppedSerialInflation(denom);
-//        }
-//        // Update current block index to disk
-//        assert(pblocktree->WriteBlockIndex(CDiskBlockIndex(pindex)));
-//        // next block
-//        if (pindex->nHeight < chainActive.Height())
-//            pindex = chainActive.Next(pindex);
-//        else
-//            break;
-//    }
-//    uiInterface.ShowProgress("", 100);
-//}
-
 void RecalculateZBLTGMinted()
 {
     CBlockIndex *pindex = chainActive[Params().Zerocoin_StartHeight()];
