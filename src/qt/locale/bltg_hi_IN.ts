@@ -134,29 +134,6 @@
     <name>PeerTableModel</name>
     </context>
 <context>
-    <name>PrivacyDialog</name>
-    <message>
-        <source>Quantity:</source>
-        <translation>मात्रा:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>राशि:</translation>
-    </message>
-    <message>
-        <source>Fee:</source>
-        <translation>फ़ीस:</translation>
-    </message>
-    <message>
-        <source>Dust:</source>
-        <translation>धूल:</translation>
-    </message>
-    <message>
-        <source>medium</source>
-        <translation>मध्यम</translation>
-    </message>
-    </context>
-<context>
     <name>QObject</name>
     </context>
 <context>

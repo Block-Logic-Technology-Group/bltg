@@ -726,29 +726,6 @@
     <name>PeerTableModel</name>
     </context>
 <context>
-    <name>PrivacyDialog</name>
-    <message>
-        <source>Choose previously used address</source>
-        <translation>選擇之前用過的位址</translation>
-    </message>
-    <message>
-        <source>Alt+A</source>
-        <translation>Alt+A</translation>
-    </message>
-    <message>
-        <source>Paste address from clipboard</source>
-        <translation>從剪貼簿貼上</translation>
-    </message>
-    <message>
-        <source>Alt+P</source>
-        <translation>Alt+P</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>文字標籤</translation>
-    </message>
-    </context>
-<context>
     <name>QObject</name>
     </context>
 <context>

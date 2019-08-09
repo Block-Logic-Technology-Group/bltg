@@ -1082,41 +1082,6 @@ Address: %4
     <name>PeerTableModel</name>
     </context>
 <context>
-    <name>PrivacyDialog</name>
-    <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BLTG network after a connection is established, but this process has not completed yet.</source>
-        <translation>显示的信息可能已过期。建立连接后，您的钱包会自动与BLTG网络同步，但此过程尚未完成。</translation>
-    </message>
-    <message>
-        <source>Pay &amp;To:</source>
-        <translation>支&amp;付</translation>
-    </message>
-    <message>
-        <source>Choose previously used address</source>
-        <translation>选以前使用的地址</translation>
-    </message>
-    <message>
-        <source>Alt+A</source>
-        <translation>Alt+A</translation>
-    </message>
-    <message>
-        <source>Paste address from clipboard</source>
-        <translation>从剪贴板复制地址</translation>
-    </message>
-    <message>
-        <source>Alt+P</source>
-        <translation>Alt+P</translation>
-    </message>
-    <message>
-        <source>&amp;Label:</source>
-        <translation>&amp;标签</translation>
-    </message>
-    <message>
-        <source>A&amp;mount:</source>
-        <translation>A&amp;总计</translation>
-    </message>
-    </context>
-<context>
     <name>QObject</name>
     </context>
 <context>

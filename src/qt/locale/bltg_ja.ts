@@ -186,9 +186,6 @@
     <name>PeerTableModel</name>
     </context>
 <context>
-    <name>PrivacyDialog</name>
-    </context>
-<context>
     <name>QObject</name>
     </context>
 <context>
