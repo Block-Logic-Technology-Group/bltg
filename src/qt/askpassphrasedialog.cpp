@@ -75,7 +75,7 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         break;
     }
 
-    // Set checkbox "For anonymization, automint, and staking only" depending on from where we were called
+    // Set checkbox "For anonymization, and staking only" depending on from where we were called
     if (context == Context::Unlock_Menu || context == Context::BIP_38 || context == Context::UI_Vote) {
         ui->anonymizationCheckBox->setChecked(true);
     }
