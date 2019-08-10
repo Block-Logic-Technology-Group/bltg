@@ -41,7 +41,7 @@ from the root of the repository.
 Build BLTG Core
 ------------------------
 
-1. Clone the PIVX Core source code:
+1. Clone the BLTG Core source code:
 
         git clone https://github.com/Block-Logic-Technology-Group/bltg.git
         cd bltg
@@ -98,7 +98,7 @@ You can monitor the download process by looking at the debug.log file:
 Other commands:
 -------
 
-    ./src/bltgd -daemon # Starts the pivx daemon.
+    ./src/bltgd -daemon # Starts the bltg daemon.
     ./src/bltg-cli --help # Outputs a list of command-line options.
     ./src/bltg-cli help # Outputs a list of RPC commands when the daemon is running.
 

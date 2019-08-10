@@ -43,7 +43,7 @@ related to the DNS seed operation.
 
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active BLTG
-Core development teamas well as posting on the
+Core development team as well as posting on the
 [BLTG Forum](https://bock-logic.com).
 
 Behavior outside of these expectations may be reasonable in some

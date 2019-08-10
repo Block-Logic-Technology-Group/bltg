@@ -10,7 +10,7 @@
  * @license    This project is released under the MIT license.
  **/
 // Copyright (c) 2017 The PIVX developers
-// Copyright (c) 2018 The BLTG developers
+// Copyright (c) 2018-2019 The BLTG developers
 
 #ifndef COMMITMENT_H_
 #define COMMITMENT_H_
