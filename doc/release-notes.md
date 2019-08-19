@@ -42,7 +42,15 @@ Given that BLTG is a non-currency and is meant as a token to provide other servi
 
 Complete removal will continue to occur over future updates. This won't negatively impact wallet performance or functionality.
 
+## Removal of port restriction
+
+In efforts to make it more economical for users to run masternodes, given the all around market conditions of the crypto sphere, it is now possible
+to run multiple masternodes on a single vps using a single ipv4 address.
+
+
 ## GUI Changes
+
+Improved graphical interface with updated graphics.
 
 ### Options Dialog Cleanup
 
