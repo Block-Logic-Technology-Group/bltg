@@ -306,10 +306,13 @@ bool Stake(CStakeInput* stakeInput, unsigned int nBits, unsigned int nTimeBlockF
         if (nTimeTx < nTimeBlockFrom)
             return error("CheckStakeKernelHash() : nTime violation");
 
-        if ((nTimeBlockFrom + nStakeMinAge > nTimeTx)) // Min age requirement
-            return error("CheckStakeKernelHash() : min age violation - nTimeBlockFrom=%d nStakeMinAge=%d nTimeTx=%d",
-                         nTimeBlockFrom, nStakeMinAge, nTimeTx);
-
+        if ((nTimeBlockFrom + nStakeMinAge > nTimeTx)) { // Min age requirement
+            if (fDebug) { // Send this to debug, no reason to litter the logs
+                LogPrintf("CheckStakeKernelHash() : min age violation - nTimeBlockFrom=%d nStakeMinAge=%d nTimeTx=%d",
+                          nTimeBlockFrom, nStakeMinAge, nTimeTx);
+            }
+            return false;
+        }
     }
 
     //grab difficulty
