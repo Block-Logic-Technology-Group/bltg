@@ -279,7 +279,7 @@ void CzBLTGWallet::SyncWithChain(bool fGenerateMintPool)
     }
 }
 
-bool CzPIVWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const libzerocoin::CoinDenomination& denom)
+bool CzBLTGWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const libzerocoin::CoinDenomination& denom)
 {
     if (!mintPool.Has(bnValue))
         return error("%s: value not in pool", __func__);
