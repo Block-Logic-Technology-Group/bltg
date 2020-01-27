@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(zerocoin_spend_test)
 
     bool fFirstRun;
     cWallet.LoadWallet(fFirstRun);
-    cWallet.zbltgTracker = unique_ptr<CzBLTGTracker>(new CzBLTGTracker(cWallet.strWalletFile));
+    cWallet.zbltgTracker = std::unique_ptr<CzBLTGTracker>(new CzBLTGTracker(cWallet.strWalletFile));
     CMutableTransaction tx;
     CWalletTx* wtx = new CWalletTx(&cWallet, tx);
     bool fMintChange=true;
