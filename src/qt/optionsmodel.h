@@ -44,7 +44,7 @@ public:
         CoinControlFeatures, // bool
         ThreadsScriptVerif,  // int
         DatabaseCache,       // int
-//        SpendZeroConfChange, // bool
+        SpendZeroConfChange, // bool
 //        ZeromintEnable,      // bool
 //        ZeromintAddresses,   // bool
 //        ZeromintPercentage,  // int

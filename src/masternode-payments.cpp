@@ -82,7 +82,7 @@ CMasternodePaymentDB::ReadResult CMasternodePaymentDB::Read(CMasternodePayments&
     // Don't try to resize to a negative number if file is small
     if (dataSize < 0)
         dataSize = 0;
-    vector<unsigned char> vchData;
+    std::vector<unsigned char> vchData;
     vchData.resize(dataSize);
     uint256 hashIn;
 
@@ -210,14 +210,14 @@ bool IsBlockValueValid(const CBlock& block, CAmount nExpectedValue, CAmount nMin
 
         //are these blocks even enabled
         if (!IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS)) {
-	    return nMinted <= nExpectedValue || ((nHeight == nBlockModifier) && (nMinted <= nMaxMintValue));
+            return nMinted <= nExpectedValue || ((nHeight == nBlockModifier) && (nMinted <= nMaxMintValue));
         }
 
         if (budget.IsBudgetPaymentBlock(nHeight)) {
             //the value of the block is evaluated in CheckBlock
             return true;
         } else {
-           if ((nMinted > nExpectedValue && (nHeight != nBlockModifier)) || ((nHeight == nBlockModifier) && (nMinted > nMaxMintValue))) {
+            if ((nMinted > nExpectedValue && (nHeight != nBlockModifier)) || ((nHeight == nBlockModifier) && (nMinted > nMaxMintValue))) {
                 return false;
             }
         }

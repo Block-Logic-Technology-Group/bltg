@@ -662,11 +662,11 @@
     </message>
     <message>
         <source>&amp;About BLTG Core</source>
-        <translation>Pıvx core Hakkında</translation>
+        <translation>Bltg core Hakkında</translation>
     </message>
     <message>
         <source>Show information about BLTG Core</source>
-        <translation>Pıvx Core hakkında bilgi göster</translation>
+        <translation>Bltg Core hakkında bilgi göster</translation>
     </message>
     <message>
         <source>Modify configuration options for BLTG</source>

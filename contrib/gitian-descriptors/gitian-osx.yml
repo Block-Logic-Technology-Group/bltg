@@ -1,5 +1,5 @@
 ---
-name: "bltg-osx-3.0.1"
+name: "bltg-osx-3.4.99"
 enable_cache: true
 distro: "ubuntu"
 suites:

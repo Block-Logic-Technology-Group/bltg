@@ -8,6 +8,7 @@
 #include "base58.h"
 #include "checkpoints.h"
 #include "clientversion.h"
+#include "kernel.h"
 #include "main.h"
 #include "rpc/server.h"
 #include "sync.h"
@@ -28,7 +29,6 @@
 #include <numeric>
 #include <condition_variable>
 
-using namespace std;
 
 struct CUpdatedBlock
 {
@@ -136,8 +136,33 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         result.push_back(Pair("nextblockhash", pnext->GetBlockHash().GetHex()));
 
     result.push_back(Pair("modifier", strprintf("%016x", blockindex->nStakeModifier)));
+    result.push_back(Pair("modifierV2", blockindex->nStakeModifierV2.GetHex()));
 
     result.push_back(Pair("moneysupply",ValueFromAmount(blockindex->nMoneySupply)));
+
+    //////////
+    ////////// Coin stake data ////////////////
+    /////////
+    if (block.IsProofOfStake()) {
+        // First grab it
+        uint256 hashProofOfStakeRet;
+        std::unique_ptr <CStakeInput> stake;
+        // Initialize the stake object (we should look for this in some other place and not initialize it every time..)
+        if (!initStakeInput(block, stake, blockindex->nHeight - 1))
+            throw JSONRPCError(RPC_INTERNAL_ERROR, "Cannot initialize stake input");
+
+        unsigned int nTxTime = block.nTime;
+        // todo: Add the debug as param..
+        if (!GetHashProofOfStake(blockindex->pprev, stake.get(), nTxTime, false, hashProofOfStakeRet))
+            throw JSONRPCError(RPC_INTERNAL_ERROR, "Cannot get proof of stake hash");
+
+        UniValue stakeData(UniValue::VOBJ);
+        stakeData.push_back(Pair("BlockFromHash", stake.get()->GetIndexFrom()->GetBlockHash().GetHex()));
+        stakeData.push_back(Pair("BlockFromHeight", stake.get()->GetIndexFrom()->nHeight));
+        stakeData.push_back(Pair("hashProofOfStake", hashProofOfStakeRet.GetHex()));
+        stakeData.push_back(Pair("stakeModifierHeight", std::to_string(stake->getStakeModifierHeight())));
+        result.push_back(Pair("CoinStake", stakeData));
+    }
 
     return result;
 }
@@ -145,7 +170,7 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
 UniValue getblockcount(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
-        throw runtime_error(
+        throw std::runtime_error(
             "getblockcount\n"
             "\nReturns the number of blocks in the longest block chain.\n"
 
@@ -162,7 +187,7 @@ UniValue getblockcount(const UniValue& params, bool fHelp)
 UniValue getbestblockhash(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
-        throw runtime_error(
+        throw std::runtime_error(
             "getbestblockhash\n"
             "\nReturns the hash of the best (tip) block in the longest block chain.\n"
 
@@ -237,7 +262,7 @@ UniValue waitforblock(const UniValue& params, bool fHelp)
             "\nReturns the current block on timeout or exit.\n"
 
             "\nArguments:\n"
-            "1. \"blockhash\" (required, string) Block hash to wait for.\n"
+            "1. \"blockhash\" (required, std::string) Block hash to wait for.\n"
             "2. timeout       (int, optional, default=0) Time in milliseconds to wait for a response. 0 indicates no timeout.\n"
 
             "\nResult:\n"
@@ -321,7 +346,7 @@ UniValue waitforblockheight(const UniValue& params, bool fHelp)
 UniValue getdifficulty(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
-        throw runtime_error(
+        throw std::runtime_error(
             "getdifficulty\n"
             "\nReturns the proof-of-work difficulty as a multiple of the minimum difficulty.\n"
 
@@ -352,14 +377,14 @@ UniValue mempoolToJSON(bool fVerbose = false)
             info.push_back(Pair("startingpriority", e.GetPriority(e.GetHeight())));
             info.push_back(Pair("currentpriority", e.GetPriority(chainActive.Height())));
             const CTransaction& tx = e.GetTx();
-            set<string> setDepends;
+            std::set<std::string> setDepends;
             for (const CTxIn& txin : tx.vin) {
                 if (mempool.exists(txin.prevout.hash))
                     setDepends.insert(txin.prevout.hash.ToString());
             }
 
             UniValue depends(UniValue::VARR);
-            for (const string& dep : setDepends) {
+            for (const std::string& dep : setDepends) {
                 depends.push_back(dep);
             }
 
@@ -368,7 +393,7 @@ UniValue mempoolToJSON(bool fVerbose = false)
         }
         return o;
     } else {
-        vector<uint256> vtxid;
+        std::vector<uint256> vtxid;
         mempool.queryHashes(vtxid);
 
         UniValue a(UniValue::VARR);
@@ -382,7 +407,7 @@ UniValue mempoolToJSON(bool fVerbose = false)
 UniValue getrawmempool(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
-        throw runtime_error(
+        throw std::runtime_error(
             "getrawmempool ( verbose )\n"
             "\nReturns all transaction ids in memory pool as a json array of string transaction ids.\n"
 
@@ -425,7 +450,7 @@ UniValue getrawmempool(const UniValue& params, bool fHelp)
 UniValue getblockhash(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
-        throw runtime_error(
+        throw std::runtime_error(
             "getblockhash index\n"
             "\nReturns hash of block in best-block-chain at index provided.\n"
 
@@ -451,7 +476,7 @@ UniValue getblockhash(const UniValue& params, bool fHelp)
 UniValue getblock(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
-        throw runtime_error(
+        throw std::runtime_error(
             "getblock \"hash\" ( verbose )\n"
             "\nIf verbose is false, returns a string that is serialized, hex-encoded data for block 'hash'.\n"
             "If verbose is true, returns an Object with information about block <hash>.\n"
@@ -520,7 +545,7 @@ UniValue getblock(const UniValue& params, bool fHelp)
 UniValue getblockheader(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
-        throw runtime_error(
+        throw std::runtime_error(
             "getblockheader \"hash\" ( verbose )\n"
             "\nIf verbose is false, returns a string that is serialized, hex-encoded data for block 'hash' header.\n"
             "If verbose is true, returns an Object with information about block <hash> header.\n"
@@ -572,7 +597,7 @@ UniValue getblockheader(const UniValue& params, bool fHelp)
 UniValue gettxoutsetinfo(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
-        throw runtime_error(
+        throw std::runtime_error(
             "gettxoutsetinfo\n"
             "\nReturns statistics about the unspent transaction output set.\n"
             "Note this call may take some time.\n"
@@ -612,7 +637,7 @@ UniValue gettxoutsetinfo(const UniValue& params, bool fHelp)
 UniValue gettxout(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 3)
-        throw runtime_error(
+        throw std::runtime_error(
             "gettxout \"txid\" n ( includemempool )\n"
             "\nReturns details about an unspent transaction output.\n"
 
@@ -693,7 +718,7 @@ UniValue gettxout(const UniValue& params, bool fHelp)
 UniValue verifychain(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
-        throw runtime_error(
+        throw std::runtime_error(
             "verifychain ( numblocks )\n"
             "\nVerifies blockchain database.\n"
 
@@ -720,39 +745,38 @@ UniValue verifychain(const UniValue& params, bool fHelp)
     return fVerified;
 }
 
-///** Implementation of IsSuperMajority with better feedback */
-//static UniValue SoftForkMajorityDesc(int minVersion, CBlockIndex* pindex, int nRequired)
-//{
-//    int nFound = 0;
-//    CBlockIndex* pstart = pindex;
-//    for (int i = 0; i < Params().ToCheckBlockUpgradeMajority() && pstart != NULL; i++)
-//    {
-//        if (pstart->nVersion >= minVersion)
-//            ++nFound;
-//        pstart = pstart->pprev;
-//    }
-//    UniValue rv(UniValue::VOBJ);
-//    rv.push_back(Pair("status", nFound >= nRequired));
-//    rv.push_back(Pair("found", nFound));
-//    rv.push_back(Pair("required", nRequired));
-//    rv.push_back(Pair("window", Params().ToCheckBlockUpgradeMajority()));
-//    return rv;
-//}
-
-//static UniValue SoftForkDesc(const std::string &name, int version, CBlockIndex* pindex)
-//{
-//    UniValue rv(UniValue::VOBJ);
-//    rv.push_back(Pair("id", name));
-//    rv.push_back(Pair("version", version));
-//    rv.push_back(Pair("enforce", SoftForkMajorityDesc(version, pindex, Params().EnforceBlockUpgradeMajority())));
-//    rv.push_back(Pair("reject", SoftForkMajorityDesc(version, pindex, Params().RejectBlockOutdatedMajority())));
-//    return rv;
-//}
+/** Implementation of IsSuperMajority with better feedback */
+static UniValue SoftForkMajorityDesc(int minVersion, CBlockIndex* pindex, int nRequired)
+{
+    int nFound = 0;
+    CBlockIndex* pstart = pindex;
+    for (int i = 0; i < Params().ToCheckBlockUpgradeMajority() && pstart != NULL; i++)
+    {
+        if (pstart->nVersion >= minVersion)
+            ++nFound;
+        pstart = pstart->pprev;
+    }
+    UniValue rv(UniValue::VOBJ);
+    rv.push_back(Pair("status", nFound >= nRequired));
+    rv.push_back(Pair("found", nFound));
+    rv.push_back(Pair("required", nRequired));
+    rv.push_back(Pair("window", Params().ToCheckBlockUpgradeMajority()));
+    return rv;
+}
+static UniValue SoftForkDesc(const std::string &name, int version, CBlockIndex* pindex)
+{
+    UniValue rv(UniValue::VOBJ);
+    rv.push_back(Pair("id", name));
+    rv.push_back(Pair("version", version));
+    rv.push_back(Pair("enforce", SoftForkMajorityDesc(version, pindex, Params().EnforceBlockUpgradeMajority())));
+    rv.push_back(Pair("reject", SoftForkMajorityDesc(version, pindex, Params().RejectBlockOutdatedMajority())));
+    return rv;
+}
 
 UniValue getblockchaininfo(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
-        throw runtime_error(
+        throw std::runtime_error(
             "getblockchaininfo\n"
             "Returns an object containing various state info regarding block chain processing.\n"
 
@@ -765,19 +789,19 @@ UniValue getblockchaininfo(const UniValue& params, bool fHelp)
             "  \"difficulty\": xxxxxx,     (numeric) the current difficulty\n"
             "  \"verificationprogress\": xxxx, (numeric) estimate of verification progress [0..1]\n"
             "  \"chainwork\": \"xxxx\"     (string) total amount of work in active chain, in hexadecimal\n"
-//            "  \"softforks\": [            (array) status of softforks in progress\n"
-//            "     {\n"
-//            "        \"id\": \"xxxx\",        (string) name of softfork\n"
-//            "        \"version\": xx,         (numeric) block version\n"
-//            "        \"enforce\": {           (object) progress toward enforcing the softfork rules for new-version blocks\n"
-//            "           \"status\": xx,       (boolean) true if threshold reached\n"
-//            "           \"found\": xx,        (numeric) number of blocks with the new version found\n"
-//            "           \"required\": xx,     (numeric) number of blocks required to trigger\n"
-//            "           \"window\": xx,       (numeric) maximum size of examined window of recent blocks\n"
-//            "        },\n"
-//            "        \"reject\": { ... }      (object) progress toward rejecting pre-softfork blocks (same fields as \"enforce\")\n"
-//            "     }, ...\n"
-//            "  ]\n"
+            "  \"softforks\": [            (array) status of softforks in progress\n"
+            "     {\n"
+            "        \"id\": \"xxxx\",        (string) name of softfork\n"
+            "        \"version\": xx,         (numeric) block version\n"
+            "        \"enforce\": {           (object) progress toward enforcing the softfork rules for new-version blocks\n"
+            "           \"status\": xx,       (boolean) true if threshold reached\n"
+            "           \"found\": xx,        (numeric) number of blocks with the new version found\n"
+            "           \"required\": xx,     (numeric) number of blocks required to trigger\n"
+            "           \"window\": xx,       (numeric) maximum size of examined window of recent blocks\n"
+            "        },\n"
+            "        \"reject\": { ... }      (object) progress toward rejecting pre-softfork blocks (same fields as \"enforce\")\n"
+            "     }, ...\n"
+            "  ]\n"
             "}\n"
 
             "\nExamples:\n" +
@@ -793,10 +817,10 @@ UniValue getblockchaininfo(const UniValue& params, bool fHelp)
     obj.push_back(Pair("difficulty", (double)GetDifficulty()));
     obj.push_back(Pair("verificationprogress", Checkpoints::GuessVerificationProgress(chainActive.Tip())));
     obj.push_back(Pair("chainwork", chainActive.Tip()->nChainWork.GetHex()));
-//    CBlockIndex* tip = chainActive.Tip();
-//    UniValue softforks(UniValue::VARR);
-//    softforks.push_back(SoftForkDesc("bip65", 4, tip));
-//    obj.push_back(Pair("softforks",             softforks));
+    CBlockIndex* tip = chainActive.Tip();
+    UniValue softforks(UniValue::VARR);
+    softforks.push_back(SoftForkDesc("bip65", 4, tip));
+    obj.push_back(Pair("softforks",             softforks));
     return obj;
 }
 
@@ -817,7 +841,7 @@ struct CompareBlocksByHeight {
 UniValue getchaintips(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
-        throw runtime_error(
+        throw std::runtime_error(
             "getchaintips\n"
             "Return information about all known tips in the block tree,"
             " including the main chain as well as orphaned branches.\n"
@@ -875,7 +899,7 @@ UniValue getchaintips(const UniValue& params, bool fHelp)
         const int branchLen = block->nHeight - chainActive.FindFork(block)->nHeight;
         obj.push_back(Pair("branchlen", branchLen));
 
-        string status;
+        std::string status;
         if (chainActive.Contains(block)) {
             // This block is part of the currently active chain.
             status = "active";
@@ -906,7 +930,7 @@ UniValue getchaintips(const UniValue& params, bool fHelp)
 UniValue getfeeinfo(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
-        throw runtime_error(
+        throw std::runtime_error(
             "getfeeinfo blocks\n"
             "\nReturns details of transaction fees over the last n blocks.\n"
 
@@ -956,7 +980,7 @@ UniValue mempoolInfoToJSON()
 UniValue getmempoolinfo(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
-        throw runtime_error(
+        throw std::runtime_error(
             "getmempoolinfo\n"
             "\nReturns details on the active state of the TX memory pool.\n"
 
@@ -975,7 +999,7 @@ UniValue getmempoolinfo(const UniValue& params, bool fHelp)
 UniValue invalidateblock(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
-        throw runtime_error(
+        throw std::runtime_error(
             "invalidateblock \"hash\"\n"
             "\nPermanently marks a block as invalid, as if it violated a consensus rule.\n"
 
@@ -1012,7 +1036,7 @@ UniValue invalidateblock(const UniValue& params, bool fHelp)
 UniValue reconsiderblock(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
-        throw runtime_error(
+        throw std::runtime_error(
             "reconsiderblock \"hash\"\n"
             "\nRemoves invalidity status of a block and its descendants, reconsider them for activation.\n"
             "This can be used to undo the effects of invalidateblock.\n"
@@ -1082,7 +1106,7 @@ void validaterange(const UniValue& params, int& heightStart, int& heightEnd, int
 
 UniValue getblockindexstats(const UniValue& params, bool fHelp) {
     if (fHelp || params.size() < 2 || params.size() > 3)
-        throw runtime_error(
+        throw std::runtime_error(
                 "getblockindexstats height range ( fFeeOnly )\n"
                 "\nReturns aggregated BlockIndex data for blocks "
                 "\n[height, height+1, height+2, ..., height+range-1]\n"

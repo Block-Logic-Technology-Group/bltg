@@ -2134,7 +2134,7 @@ https://www.transifex.com/bltg-project/bltg-project-translations</translation>
         <source>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
 These zBLTG are spendable.</source>
         <translation>Volwassen: meer dan 20 bevestigingen en meer dan 1 mint van dezelfde denominatie nadat het gemint was.
-Deze zPIB zijn besteedbaar.</translation>
+Deze zBLTG zijn besteedbaar.</translation>
     </message>
     <message>
         <source>Unconfirmed: less than 20 confirmations

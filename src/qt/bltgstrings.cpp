@@ -57,7 +57,7 @@ QT_TRANSLATE_NOOP("bltg-core", ""
 "COPYING or <http://www.opensource.org/licenses/mit-license.php>."),
 QT_TRANSLATE_NOOP("bltg-core", ""
 "Enable SwiftX, show confirmations for locked transactions (bool, default: %s)"),
-QT_TRANSLATE_NOOP("bltgx-core", ""
+QT_TRANSLATE_NOOP("bltg-core", ""
 "Enable automatic Zerocoin minting from specific addresses (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("bltg-core", ""
 "Enable automatic wallet backups triggered after each zBLTG minting (0-1, "

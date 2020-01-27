@@ -1,8 +1,8 @@
 Source: bltg
 Section: utils
 Priority: optional
-Maintainer: Jonas Smedegaard <dr@jones.dk> ***TODO***
-Uploaders: Micah Anderson <micah@debian.org> ***TODO***
+Maintainer: cpass <chris@block-logic.com>
+Uploaders: cpass <chris@block-logic.com>
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -28,7 +28,7 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: http://www.block-logic.com
+Homepage: https://block-logic.com
 Vcs-Git: git://github.com/Block-Logic-Technology-Group/bltg.git
 Vcs-Browser: https://github.com/Block-Logic-Technology-Group/bltg
 
