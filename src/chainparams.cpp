@@ -196,9 +196,9 @@ public:
         assert(hashGenesisBlock == uint256("0x00000ccaa671bbab8d6f72eb853466d5af0e33491fddd2861d52b394553f96f9"));
         assert(genesis.hashMerkleRoot == uint256("0xe456c7b894fe91492a94361376809abe1b7894ca75cbe30641b309e6d9d6b0a0"));
 
-        vSeeds.push_back("seed1.block-logic.com", "seed1.block-logic.com");     // Primary DNS Seeder
-        vSeeds.push_back("seed2.block-logic.com", "seed2.block-logic.com");    // Secondary DNS Seeder
-        vSeeds.push_back("seed3.block-logic.com", "seed3.block-logic.com");         // Single node address
+        vSeeds.push_back(CDNSSeedData("seed1.block-logic.com", "seed1.block-logic.com"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("seed2.block-logic.com", "seed2.block-logic.com"));    // Secondary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("seed3.block-logic.com", "seed3.block-logic.com"));         // Single node address
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,25);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,13);
@@ -309,9 +309,9 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back("testnet1.block-logic.com", "testnet1.block-logic.com");
-        vSeeds.push_back("testnet2.block-logic.com", "testnet2.block-logic.com");
-        vSeeds.push_back("testnet3.block-logic.com", "testnet3.block-logic.com");
+        vSeeds.push_back(CDNSSeedData("testnet1.block-logic.com", "testnet1.block-logic.com"));
+        vSeeds.push_back(CDNSSeedData("testnet2.block-logic.com", "testnet2.block-logic.com"));
+        vSeeds.push_back(CDNSSeedData("testnet3.block-logic.com", "testnet3.block-logic.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet bltg addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet bltg script addresses start with '8' or '9'
