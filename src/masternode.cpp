@@ -463,6 +463,16 @@ bool CMasternodeBroadcast::Create(CTxIn txin, CService service, CKey keyCollater
 
 bool CMasternodeBroadcast::CheckDefaultPort(std::string strService, std::string& strErrorRet, std::string strContext)
 {
+    CService service = CService(strService);
+    int nDefaultPort = Params().GetDefaultPort();
+
+    if (service.GetPort() != nDefaultPort) {
+        strErrorRet = strprintf("Invalid port %u for masternode %s, only %d is supported on %s-net.",
+                                        service.GetPort(), strService, nDefaultPort, Params().NetworkIDString());
+        LogPrint("masternode", "%s - %s\n", strContext, strErrorRet);
+        return false;
+    }
+
     return true;
 }
 
@@ -516,10 +526,10 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
         return error("CMasternodeBroadcast::CheckAndUpdate - Got bad Masternode address signature : %s", errorMessage);
     }
 
-//    if (Params().NetworkID() == CBaseChainParams::MAIN) {
-//        if (addr.GetPort() != 17127) return false;
-//    } else if (addr.GetPort() == 17127)
-//        return false;
+    if (Params().NetworkID() == CBaseChainParams::MAIN) {
+        if (addr.GetPort() != 17127) return false;
+    } else if (addr.GetPort() == 17127)
+        return false;
 
     //search existing Masternode list, this is where we update existing Masternodes with new mnb broadcasts
     CMasternode* pmn = mnodeman.Find(vin);

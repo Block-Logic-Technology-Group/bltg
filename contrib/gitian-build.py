@@ -23,9 +23,9 @@ def setup():
         programs += ['apt-cacher-ng', 'lxc', 'debootstrap']
     subprocess.check_call(['sudo', 'apt-get', 'install', '-qq'] + programs)
 #    if not os.path.isdir('gitian.sigs'):
-#        subprocess.check_call(['git', 'clone', 'https://github.com/PIVX-Project/gitian.sigs.git'])
+#        subprocess.check_call(['git', 'clone', 'https://github.com/Block-Logic-Technology-Group/gitian.sigs.git'])
 #    if not os.path.isdir('bltg-detached-sigs'):
-#        subprocess.check_call(['git', 'clone', 'https://github.com/PIVX-Project/PIVX-detached-sigs.git'])
+#        subprocess.check_call(['git', 'clone', 'https://github.com/Block-Logic-Technology-Group/BLTG-detached-sigs.git'])
     if not os.path.isdir('gitian-builder'):
         subprocess.check_call(['git', 'clone', 'https://github.com/devrandom/gitian-builder.git'])
     if not os.path.isdir('bltg'):
