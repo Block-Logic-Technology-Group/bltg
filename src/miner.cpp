@@ -129,7 +129,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     // -blockversion=N to test forking scenarios
     if (Params().MineBlocksOnDemand()) {
         if (fZerocoinActive)
-            pblock->nVersion = 4;
+            pblock->nVersion = 5;
         else
             pblock->nVersion = 3;
 
