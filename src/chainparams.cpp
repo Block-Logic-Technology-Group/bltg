@@ -65,13 +65,13 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
         (500000, uint256("0xa7cd3a14decb0ae556ae1c2c1a4426bd983492ceeffc732bca234898b54f6bb1"))
         (600000, uint256("0x3f464393ad2e76350e3bf79de1380b14c074bfccc53fd5bded4bde8ec91377cb"))
         (650000, uint256("0x196c3c94eb298b1e341b2b4f5cb0ed407f303f9394ab3598ab182453f50a4fea"))
-        (677551, uint256("0x4339b88f40e0d22ac73561b743a34ef4bc76e3292d3b44dece408836092c043e"));
+        (683265, uint256("0x0ed2fed0e0ea755ab1cfe0791dad081a3edc2f2f28c5e4dc8a2c72ce1fda1909"));
 
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1581011342, // * UNIX timestamp of last checkpoint block
-    1415367,    // * total number of transactions between genesis and last checkpoint
+    1581359153, // * UNIX timestamp of last checkpoint block
+    1426867,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     1440        // * estimated number of transactions per day after checkpoint
 };
@@ -170,7 +170,7 @@ public:
         nBlockDoubleAccumulated = 2147483647;
         nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nBlockStakeModifierlV2 = 692000;
+        nBlockStakeModifierlV2 = 694080; //!> Roughly Monday, Feb 17th, 2020 @ 1:00 PM
         // Public coin spend enforcement
         nPublicZCSpends = 2147483647;
 
