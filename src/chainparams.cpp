@@ -157,6 +157,8 @@ public:
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 300;
+        nBltgBadBlockTime = 1540080487; // Skip nBit validation of Block 301
+        nBltgBadBlocknBits = 0x1e00bc6b; // Skip nBit validation of Block 301
         nModifierUpdateBlock = 0;
         nZerocoinStartHeight = 2147483647; // Block # should start at
         nZerocoinStartTime = 2147483647; // Tue, 19 Jan 2038 03:14:07 +0000
