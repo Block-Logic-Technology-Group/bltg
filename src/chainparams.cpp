@@ -159,7 +159,7 @@ public:
         nLastPOWBlock = 300;
         nBltgBadBlockTime = 1540080487; // Skip nBit validation of Block 301
         nBltgBadBlocknBits = 0x1e00bc6b; // Skip nBit validation of Block 301
-        nModifierUpdateBlock = 0;
+//        nModifierUpdateBlock = 0;
         nZerocoinStartHeight = 2147483647; // Block # should start at
         nZerocoinStartTime = 2147483647; // Tue, 19 Jan 2038 03:14:07 +0000
         nBlockEnforceSerialRange = 2147483647; //Enforce serial range starting this block
@@ -282,7 +282,7 @@ public:
         nMaturity = 10;
         nStakeMinDepth = 100;
         nMasternodeCountDrift = 4;
-        nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
+//        nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
         nZerocoinStartHeight = 2147483647;
         nZerocoinStartTime = 2147483647;
@@ -379,7 +379,7 @@ public:
         nMaturity = 10;
         nStakeMinDepth = 0;
         nMasternodeCountDrift = 4;
-        nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
+//        nModifierUpdateBlock = 0; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
         nZerocoinStartHeight = 300;
         nBlockZerocoinV2 = 300;

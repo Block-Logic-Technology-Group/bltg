@@ -128,7 +128,7 @@ public:
     int Zerocoin_RequiredStakeDepth() const { return nZerocoinRequiredStakeDepth; }
 
     /** Height or Time Based Activations **/
-    int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
+//    int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
     int LAST_POW_BLOCK() const { return nLastPOWBlock; }
     int BltgBadBlockTime() const { return nBltgBadBlockTime; }
     int BltgBadBlocknBits() const { return nBltgBadBlocknBits; }
@@ -175,7 +175,7 @@ protected:
     int nFutureTimeDriftPoW;
     int nFutureTimeDriftPoS;
 
-    int nModifierUpdateBlock;
+//    int nModifierUpdateBlock;
     CAmount nMaxMoneyOut;
     int nMinerThreads;
     std::vector<CDNSSeedData> vSeeds;
