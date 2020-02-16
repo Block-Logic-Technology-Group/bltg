@@ -1,24 +1,21 @@
+(note: this is a temporary file, to be added-to by anybody, and moved to release-notes at release time)
 
-BLTG Core version *3.0.1* is now available from:  <https://github.com/Block-Logic-Technology-Group/bltg/releases>
+BLTG Core version *version* is now available from: <https://github.com/Block-Logic-Technology-Group/bltg/releases>
 
-This is a new minor version release, including various bug fixes and performance improvements, as well as updated translations.
+This is a new major version release, including various bug fixes and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at github: <https://github.com/Block-Logic-Technology-Group/bltg/issues>
 
-As Block-Logic is based on open-source code from the pivx project, an exhaustive description of all changes can be found at <https://github.com/PIVX-Project/PIVX/releases>
 
-
-Supplemental Update
+Mandatory Update
 ==============
 
-BLTG Core v3.0.1 is a supplemental update for all users to address forking concerns.
-
-Masternodes will need to be restarted once both the masternode daemon and the controller wallet have been upgraded.
 
 How to Upgrade
 ==============
 
 If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/BLTG-Qt (on Mac) or bltgd/bltg-qt (on Linux).
+
 
 Compatibility
 ==============
@@ -27,25 +24,42 @@ BLTG Core is extensively tested on multiple operating systems using the Linux ke
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support), No attempt is made to prevent installing or running the software on Windows XP, you can still do so at your own risk but be aware that there are known instabilities and issues. Please do not report issues about Windows XP to the issue tracker.
 
-Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). BLTG Core software starting with v3.0.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
+Apple released it's last Mountain Lion update August 13, 2015, and officially ended support on [December 14, 2015](http://news.fnal.gov/2015/10/mac-os-x-mountain-lion-10-8-end-of-life-december-14/). BLTG Core software starting with v2.0.0 will no longer run on MacOS versions prior to Yosemite (10.10). Please do not report issues about MacOS versions prior to Yosemite to the issue tracker.
 
 BLTG Core should also work on most other Unix-like systems but is not frequently tested on them.
+
 
 Notable Changes
 ==============
 
+(Developers: add your notes here as part of your pull requests whenever possible)
 
-*3.0.1* Change log
+
+RPC Changes
+--------------
+
+### Modified input/output for existing commands
+
+- "CoinStake" JSON object in `getblock` output is removed, and replaced with the strings "stakeModifier" and "hashProofOfStake"
+
+### Removed commands
+
+The following commands have been removed from the RPC interface:
+- `...`
+
+### Newly introduced commands
+
+The following new commands have been added to the RPC interface:
+- `...`
+
+Details about each new command can be found below.
+
+*version* Change log
 ==============
-- `9612bccc2c`[Log] supress some logging to debug (cpass78)
-- `9fd8cb8e32`[Net] Add additional checkpoints (cpass78)
-- `217f0bc524` [Trivial] Update copyright headers (cpass78)
 
+Detailed release notes follow. This overview includes changes that affect behavior, not code moves, refactors and string updates. For convenience in locating the code changes and accompanying discussion, both the pull request and git merge commit are mentioned.
 
-Detailed release notes follow. This overview includes changes that affect behavior, not code moves, refactors and string updates.
-
-
-### Core
+### Core Features
 
 ### Build System
 
@@ -57,17 +71,11 @@ Detailed release notes follow. This overview includes changes that affect behavi
 
 ### Wallet
 
-### Unit Tests
-
-### Budget
-
 ### Miscellaneous
 
 ## Credits
 
 Thanks to everyone who directly contributed to this release:
 
- - cpass78
 
- and of course
- - PIVX team for an awesome codebase
+As well as everyone that helped, the QA team during Testing and the Node hosts supporting our Testnet.
