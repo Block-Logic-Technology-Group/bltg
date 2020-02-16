@@ -172,7 +172,7 @@ public:
         nBlockDoubleAccumulated = 2147483647;
         nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nBlockStakeModifierlV2 = 694080; //!> Roughly Monday, Feb 17th, 2020 @ 1:00 PM
+        nBlockStakeModifierlV2 = 699000; //!> Roughly Friday, Feb 21st, 2020
         // Public coin spend enforcement
         nPublicZCSpends = 2147483647;
 
