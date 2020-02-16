@@ -3,10 +3,11 @@ BLTG Core integration/staging repository
 
 [![Build Status](https://travis-ci.org/Block-Logic-Technology-Group/bltg.svg?branch=master)](https://travis-ci.org/Block-Logic-Technology-Group/bltg.svg?branch=master)
 
-BLTG is an open source utility token focused on fast private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes the first ever anonymous proof of stake protocol, called zPoS, combined with regular PoS and masternodes for securing its network. zPoS incentivises using the privacy features available in BLTG by granting a higher block reward for zPoS over regular PoS and masternodes. In practice BLTG has between 4 to 10 times higher use of it's privacy features in comparison to other coins that combine public and private transactions. This is thanks to innovations like zPoS and integrating the Zerocoin protocol into light/mobile wallets, allowing for a complete and lightweight privacy protocol that can be used on the go. As well as security improvements like deterministic generation of zBLTG for easy backups.
-The goal of BLTG is to achieve a decentralized sustainable crypto currency with near instant full-time private transactions, fair governance and community intelligence.
-- Fast transactions featuring guaranteed zero confirmation transactions, we call it _SwiftX_.
-- Decentralized blockchain voting utilizing Masternode technology to form a DAO. The blockchain will distribute monthly treasury funds based on successful proposals submitted by the community and voted on by the DAO.
+BLTG is an open-source utility token which offers consumers and enterprises the benefits of a decentralised data network, with low transaction fees & environmental footprint. It utilizes regular PoS and Masternodes for securing its network.
+
+The goal of BLTG is to combine the benefits of Blockchain and Distributed Technologies to empower consumers of our technologies with the tools to securely store, manage and distribute electronic data.
+- Fast transactions featuring guaranteed zero-confirmation transactions, we call it _SwiftX_. 
+- Decentralized blockchain voting utilizing Masternode technology to form a DAO (Decentralized autonomous organization). The blockchain will distribute monthly treasury funds based on successful proposals submitted by the community and voted on by the DAO.
 
 More information at [block-logic.com](https://block-logic.com)
 
