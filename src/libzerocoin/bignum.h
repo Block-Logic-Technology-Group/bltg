@@ -22,7 +22,6 @@
 #include <stdexcept>
 #include <vector>
 #include <limits.h>
-
 #include "serialize.h"
 #include "uint256.h"
 #include "version.h"
@@ -347,4 +346,11 @@ inline bool operator>(const CBigNum& a, const CBigNum& b)  { return (mpz_cmp(a.b
 inline std::ostream& operator<<(std::ostream &strm, const CBigNum &b) { return strm << b.ToString(10); }
 
 typedef CBigNum Bignum;
-#endif
+
+/** constant bignum instances */
+const CBigNum BN_ZERO = CBigNum(0);
+const CBigNum BN_ONE = CBigNum(1);
+const CBigNum BN_TWO = CBigNum(2);
+const CBigNum BN_THREE = CBigNum(3);
+
+#endif // BITCOIN_BIGNUM_H

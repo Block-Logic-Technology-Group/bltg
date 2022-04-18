@@ -1,7 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2016-2018 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
+// Copyright (c) 2016-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,7 +40,6 @@ std::string SanitizeString(const std::string& str, int rule)
 }
 
 bool validateURL(std::string strURL, std::string& strErr, unsigned int maxSize) {
-
     // Check URL size
     if (strURL.size() > maxSize) {
         strErr = strprintf("Invalid URL: %d exceeds limit of %d characters.", strURL.size(), maxSize);
@@ -56,7 +54,7 @@ bool validateURL(std::string strURL, std::string& strErr, unsigned int maxSize) 
 
     // check fronts
     bool found = false;
-    for (int i=0; i < reqPre.size() && !found; i++) {
+    for (int i=0; i < (int) reqPre.size() && !found; i++) {
         if (strURL.find(reqPre[i]) == 0) found = true;
     }
     if ((!found) && (reqPre.size() > 0)) {
@@ -613,5 +611,4 @@ int64_t atoi64(const std::string& str)
 
 int atoi(const std::string& str)
 {
-    return atoi(str.c_str());
-}
+    return atoi(str.c_str());}

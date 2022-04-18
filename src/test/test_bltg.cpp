@@ -22,79 +22,83 @@
 CClientUIInterface uiInterface;
 CWallet* pwalletMain;
 
+uint256 insecure_rand_seed = GetRandHash();
+FastRandomContext insecure_rand_ctx(insecure_rand_seed);
+
 extern bool fPrintToConsole;
 extern void noui_connect();
 
 BasicTestingSetup::BasicTestingSetup()
 {
-    ECC_Start();
-    SetupEnvironment();
-    fPrintToDebugLog = false; // don't want to write to debug.log file
-    fCheckBlockIndex = true;
-    SelectParams(CBaseChainParams::UNITTEST);
+        RandomInit();
+        ECC_Start();
+        SetupEnvironment();
+        fPrintToDebugLog = false; // don't want to write to debug.log file
+        fCheckBlockIndex = true;
+        SelectParams(CBaseChainParams::UNITTEST);
 }
 BasicTestingSetup::~BasicTestingSetup()
 {
-    ECC_Stop();
+        ECC_Stop();
 }
 
 TestingSetup::TestingSetup()
 {
 #ifdef ENABLE_WALLET
-    bitdb.MakeMock();
+        bitdb.MakeMock();
 #endif
-    ClearDatadirCache();
-    pathTemp = GetTempPath() / strprintf("test_bltg_%lu_%i", (unsigned long)GetTime(), (int)(GetRand(100000)));
-    boost::filesystem::create_directories(pathTemp);
-    mapArgs["-datadir"] = pathTemp.string();
-    pblocktree = new CBlockTreeDB(1 << 20, true);
-    pcoinsdbview = new CCoinsViewDB(1 << 23, true);
-    pcoinsTip = new CCoinsViewCache(pcoinsdbview);
-    InitBlockIndex();
+        ClearDatadirCache();
+        pathTemp = GetTempPath() / strprintf("test_bltg_%lu_%i", (unsigned long)GetTime(), (int)(InsecureRandRange(100000)));
+        boost::filesystem::create_directories(pathTemp);
+        mapArgs["-datadir"] = pathTemp.string();
+        pblocktree = new CBlockTreeDB(1 << 20, true);
+        pcoinsdbview = new CCoinsViewDB(1 << 23, true);
+        pcoinsTip = new CCoinsViewCache(pcoinsdbview);
+        InitBlockIndex();
 #ifdef ENABLE_WALLET
-    bool fFirstRun;
+        bool fFirstRun;
         pwalletMain = new CWallet("wallet.dat");
         pwalletMain->LoadWallet(fFirstRun);
         RegisterValidationInterface(pwalletMain);
 #endif
-    nScriptCheckThreads = 3;
-    for (int i=0; i < nScriptCheckThreads-1; i++)
-        threadGroup.create_thread(&ThreadScriptCheck);
-    RegisterNodeSignals(GetNodeSignals());
+        nScriptCheckThreads = 3;
+        for (int i=0; i < nScriptCheckThreads-1; i++)
+            threadGroup.create_thread(&ThreadScriptCheck);
+        RegisterNodeSignals(GetNodeSignals());
 }
 
 TestingSetup::~TestingSetup()
 {
-    UnregisterNodeSignals(GetNodeSignals());
-    threadGroup.interrupt_all();
-    threadGroup.join_all();
+        UnregisterNodeSignals(GetNodeSignals());
+        threadGroup.interrupt_all();
+        threadGroup.join_all();
 #ifdef ENABLE_WALLET
-    UnregisterValidationInterface(pwalletMain);
+        UnregisterValidationInterface(pwalletMain);
         delete pwalletMain;
         pwalletMain = NULL;
 #endif
-    UnloadBlockIndex();
-    delete pcoinsTip;
-    delete pcoinsdbview;
-    delete pblocktree;
+        UnloadBlockIndex();
+        delete pcoinsTip;
+        delete pcoinsdbview;
+        delete pblocktree;
 #ifdef ENABLE_WALLET
-    bitdb.Flush(true);
+        bitdb.Flush(true);
         bitdb.Reset();
 #endif
-    boost::filesystem::remove_all(pathTemp);
+        boost::filesystem::remove_all(pathTemp);
 }
 
-void Shutdown(void* parg)
+[[noreturn]] void Shutdown(void* parg)
 {
-    exit(0);
+    std::exit(0);
 }
 
-void StartShutdown()
+[[noreturn]] void StartShutdown()
 {
-    exit(0);
+    std::exit(0);
 }
 
 bool ShutdownRequested()
 {
-    return false;
+  return false;
 }

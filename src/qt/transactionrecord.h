@@ -1,7 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2016 The Dash developers
-// Copyright (c) 2016-2018 The PIVX developers
-// Copyright (c) 2018 The BLTG developers
+// Copyright (c) 2016-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -23,7 +22,7 @@ class TransactionStatus
 {
 public:
     TransactionStatus() : countsForBalance(false), sortKey(""),
-                          matures_in(0), status(Offline), depth(0), open_for(0), cur_num_blocks(-1)
+                          matures_in(0), status(Unconfirmed), depth(0), open_for(0), cur_num_blocks(-1)
     {
     }
 
@@ -95,30 +94,48 @@ public:
         ObfuscationCollateralPayment,
         ObfuscationMakeCollaterals,
         ObfuscationCreateDenominations,
-        Obfuscated
+        Obfuscated,
+        StakeDelegated, // Received cold stake (owner)
+        StakeHot, // Staked via a delegated P2CS.
+        P2CSDelegation, // Non-spendable P2CS, staker side.
+        P2CSDelegationSent, // Non-spendable P2CS delegated utxo. (coin-owner transferred ownership to external wallet)
+        P2CSDelegationSentOwner, // Spendable P2CS delegated utxo. (coin-owner)
+        P2CSUnlockOwner, // Coin-owner spent the delegated utxo
+        P2CSUnlockStaker, // Staker watching the owner spent the delegated utxo
+        SendToShielded, // Shielded send
+        RecvWithShieldedAddress, // Shielded receive
+        SendToSelfShieldedAddress, // Shielded send to self
+        SendToSelfShieldToTransparent, // Unshield coins to self
+        SendToSelfShieldToShieldChangeAddress, // Changing coins from one shielded address to another inside the wallet.
+        SendToNobody // Burned BLTGs, op_return output.
     };
 
     /** Number of confirmation recommended for accepting a transaction */
     static const int RecommendedNumConfirmations = 6;
 
-    TransactionRecord() : hash(), time(0), type(Other), address(""), debit(0), credit(0), idx(0)
+    TransactionRecord(unsigned int size) : hash(), time(0), type(Other), address(""), debit(0), credit(0), size(size), idx(0)
     {
     }
 
-    TransactionRecord(uint256 hash, qint64 time) : hash(hash), time(time), type(Other), address(""), debit(0),
-                                                   credit(0), idx(0)
+    TransactionRecord(uint256 hash, qint64 time, unsigned int size) : hash(hash), time(time), type(Other), address(""), debit(0),
+                                                   credit(0), size(size), idx(0)
     {
     }
 
-    TransactionRecord(uint256 hash, qint64 time, Type type, const std::string& address, const CAmount& debit, const CAmount& credit) : hash(hash), time(time), type(type), address(address), debit(debit), credit(credit),
-                                                                                                                                       idx(0)
+    TransactionRecord(uint256 hash, qint64 time, unsigned int size, Type type, const std::string& address, const CAmount& debit, const CAmount& credit) : hash(hash), time(time), type(type), address(address), debit(debit), credit(credit),
+                                                                                                                                       size(size), idx(0)
     {
     }
 
     /** Decompose CWallet transaction to model transaction records.
      */
-    static bool showTransaction(const CWalletTx& wtx);
     static QList<TransactionRecord> decomposeTransaction(const CWallet* wallet, const CWalletTx& wtx);
+
+    /// Helpers
+    static bool ExtractAddress(const CScript& scriptPubKey, bool fColdStake, std::string& addressStr);
+    static void loadHotOrColdStakeOrContract(const CWallet* wallet, const CWalletTx& wtx,
+                                            TransactionRecord& record, bool isContract = false);
+    static void loadUnlockColdStake(const CWallet* wallet, const CWalletTx& wtx, TransactionRecord& record);
 
     /** @name Immutable transaction attributes
       @{*/
@@ -128,6 +145,7 @@ public:
     std::string address;
     CAmount debit;
     CAmount credit;
+    unsigned int size;
     /**@}*/
 
     /** Subtransaction index, for sort key */
@@ -137,21 +155,35 @@ public:
     TransactionStatus status;
 
     /** Whether the transaction was sent/received with a watch-only address */
-    bool involvesWatchAddress;
-
-    /** Return the unique identifier for this transaction (part) */
-    QString getTxID() const;
+    bool involvesWatchAddress{false};
 
     /** Return the output index of the subtransaction  */
     int getOutputIndex() const;
 
     /** Update status from core wallet tx.
      */
-    void updateStatus(const CWalletTx& wtx);
+    void updateStatus(const CWalletTx& wtx, int chainHeight);
 
     /** Return whether a status update is needed.
      */
-    bool statusUpdateNeeded();
+    bool statusUpdateNeeded(int blockHeight) const;
+
+    /** Return transaction status
+     */
+    std::string statusToString();
+
+    /** Return true if the tx is a coinstake
+     */
+    bool isCoinStake() const;
+
+    /** Return true if the tx is a any cold staking type tx.
+     */
+    bool isAnyColdStakingType() const;
+
+    /** Return true if the tx hash is null and/or if the size is 0
+     */
+    bool isNull() const;
+
 };
 
 #endif // BITCOIN_QT_TRANSACTIONRECORD_H

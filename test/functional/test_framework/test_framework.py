@@ -13,7 +13,6 @@ import shutil
 import sys
 import tempfile
 import time
-
 from .authproxy import JSONRPCException
 from . import coverage
 from .test_node import TestNode

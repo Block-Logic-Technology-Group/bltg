@@ -1,5 +1,5 @@
 ---
-name: "bltg-win-3.1.99"
+name: "bltg-win-4.0"
 enable_cache: true
 distro: "ubuntu"
 suites:

@@ -2,12 +2,11 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018 The BLTG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UINT256_H
-#define BITCOIN_UINT256_H
+#ifndef BLTG_UINT256_H
+#define BLTG_UINT256_H
 
 #include <assert.h>
 #include <cstring>
@@ -42,8 +41,6 @@ public:
         for (int i = 0; i < WIDTH; i++)
             pn[i] = b.pn[i];
     }
-
-
     bool IsNull() const
     {
         for (int i = 0; i < WIDTH; i++)
@@ -56,7 +53,6 @@ public:
     {
         memset(pn, 0, sizeof(pn));
     }
-
 
     base_uint& operator=(const base_uint& b)
     {
@@ -403,7 +399,6 @@ public:
         return ret;
     }
 };
-
 inline uint512 uint512S(const std::string& str)
 {
     uint512 rv;
@@ -411,4 +406,4 @@ inline uint512 uint512S(const std::string& str)
     return rv;
 }
 
-#endif // BITCOIN_UINT256_H
+#endif // BLTG_UINT256_H

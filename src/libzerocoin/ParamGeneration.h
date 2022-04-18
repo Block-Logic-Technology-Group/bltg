@@ -7,8 +7,8 @@
 ///
 /// \copyright  Copyright 2013 Ian Miers, Christina Garman and Matthew Green
 /// \license    This project is released under the MIT license.
-// Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
+// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2018-2022 The BLTG developers
 
 #ifndef PARAMGENERATION_H_
 #define PARAMGENERATION_H_

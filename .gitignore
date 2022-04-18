@@ -1,4 +1,4 @@
-!.gitignore
+.gitignore
 *.sublime-project
 *.sublime-workspace
 todo.txt
@@ -64,7 +64,7 @@ src/qt/test/moc*.cpp
 *.pyc
 *.o
 *.o-*
-#*.patch
+*.patch
 .bltg
 *.a
 *.pb.cc
@@ -132,3 +132,10 @@ libbitcoinconsensus.pc
 .idea
 CMakeLists.txt
 cmake-build-debug
+
+moc_*
+*.tmp
+ui_*
+build*
+bltgd.*
+bltgd-new-gui.*

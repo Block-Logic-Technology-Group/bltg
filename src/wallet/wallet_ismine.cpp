@@ -1,7 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2016-2019 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -76,6 +75,20 @@ isminetype IsMine(const CKeyStore& keystore, const CScript& scriptPubKey)
             if(ret != ISMINE_NO)
                 return ret;
         }
+        break;
+    }
+    case TX_COLDSTAKE: {
+        CKeyID stakeKeyID = CKeyID(uint160(vSolutions[0]));
+        bool stakeKeyIsMine = keystore.HaveKey(stakeKeyID);
+        CKeyID ownerKeyID = CKeyID(uint160(vSolutions[1]));
+        bool spendKeyIsMine = keystore.HaveKey(ownerKeyID);
+
+        if (spendKeyIsMine && stakeKeyIsMine)
+            return ISMINE_SPENDABLE_STAKEABLE;
+        else if (stakeKeyIsMine)
+            return ISMINE_COLD;
+        else if (spendKeyIsMine)
+            return ISMINE_SPENDABLE_DELEGATED;
         break;
     }
     case TX_MULTISIG: {

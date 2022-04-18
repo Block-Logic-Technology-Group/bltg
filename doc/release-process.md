@@ -5,18 +5,18 @@ Release Process
 
 ### Before every release candidate
 
-* Update translations (ping cpass on Discord) see [translation_process.md](https://github.com/Block-Logic-Technology-Group/bltg/blob/master/doc/translation_process.md#synchronising-translations).
+* Update translations (ping Fuzzbawls on Discord) see [translation_process.md](https://github.com/Block-Logic-Technology-Group/bltg/blob/master/doc/translation_process.md#synchronising-translations).
 * Update manpages, see [gen-manpages.sh](https://github.com/Block-Logic-Technology-Group/bltg/blob/master/contrib/devtools/README.md#gen-manpagessh).
-
+* Update release candidate version in `configure.ac` (`CLIENT_VERSION_RC`)
 ### Before every major and minor release
 
-* Update version in `configure.ac` (don't forget to set `CLIENT_VERSION_IS_RELEASE` to `true`)
+* Update version in `configure.ac` (don't forget to set `CLIENT_VERSION_IS_RELEASE` to `true`) (don't forget to set `CLIENT_VERSION_RC` to `0`)
 * Write release notes (see below)
 
 ### Before every major release
 
 * Update hardcoded [seeds](/contrib/seeds/README.md), see [this pull request](https://github.com/bitcoin/bitcoin/pull/7415) for an example.
-* Update [`BLOCK_CHAIN_SIZE`](/src/qt/intro.cpp) to the current size plus some overhead.
+* Update [`BLOCK_CHAIN_SIZE` and `TESTNET_BLOCK_CHAIN_SIZE`](/src/qt/intro.cpp) to the current size plus some overhead for each respective network.
 * Update `src/chainparams.cpp` with statistics about the transaction count and rate.
 * On both the master branch and the new release branch:
   - update `CLIENT_VERSION_MINOR` in [`configure.ac`](../configure.ac)
@@ -46,7 +46,6 @@ Release Process
 If you're using the automated script (found in [contrib/gitian-build.py](/contrib/gitian-build.py)), then at this point you should run it with the "--setup" command. Otherwise ignore this.
 
 Check out the source code in the following directory hierarchy.
-
     cd /path/to/your/toplevel/build
     git clone https://github.com/Block-Logic-Technology-Group/bltg/gitian.sigs.git
     git clone https://github.com/Block-Logic-Technology-Group/bltg-detached-sigs.git
@@ -97,8 +96,8 @@ Ensure gitian-builder is up-to-date:
 
     pushd ./gitian-builder
     mkdir -p inputs
-    wget -P inputs https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
-    wget -P inputs http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
+    wget -O osslsigncode-2.0.tar.gz -P inputs https://github.com/mtrojnar/osslsigncode/archive/2.0.tar.gz
+    echo '5a60e0a4b3e0b4d655317b2f12a810211c50242138322b16e7e01c6fbb89d92f inputs/osslsigncode-2.0.tar.gz' | sha256sum -c
     popd
 
 Create the macOS SDK tarball, see the [macOS build instructions](build-osx.md#deterministic-macos-dmg-notes) for details, and copy it into the inputs directory.
@@ -106,9 +105,7 @@ Create the macOS SDK tarball, see the [macOS build instructions](build-osx.md#de
 ### Optional: Seed the Gitian sources cache and offline git repositories
 
 NOTE: Gitian is sometimes unable to download files. If you have errors, try the step below.
-
 By default, Gitian will fetch source files as needed. To cache them ahead of time, make sure you have checked out the tag you want to build in bltg, then:
-
     pushd ./gitian-builder
     make -C ../bltg/depends download SOURCES_PATH=`pwd`/cache/common
     popd
@@ -123,7 +120,7 @@ NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from 
 
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign BLTG Core for Linux, Windows, and OS X:
+### Build and sign BLTG Core for Linux, Windows, and macOS:
 
     pushd ./gitian-builder
     ./bin/gbuild --num-make 2 --memory 3000 --commit bltg=v${VERSION} ../bltg/contrib/gitian-descriptors/gitian-linux.yml
@@ -152,12 +149,9 @@ Build output expected:
 ### Verify other gitian builders signatures to your own. (Optional)
 
 Add other gitian builders keys to your gpg keyring, and/or refresh keys.
-
     gpg --import bltg/contrib/gitian-keys/*.pgp
     gpg --refresh-keys
-
 Verify the signatures
-
     pushd ./gitian-builder
     ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../bltg/contrib/gitian-descriptors/gitian-linux.yml
     ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../bltg/contrib/gitian-descriptors/gitian-win.yml
@@ -206,10 +200,9 @@ Codesigner only: Commit the detached codesign payloads:
     git commit -m "point to ${VERSION}"
     git tag -s v${VERSION} HEAD
     git push the current branch and new tag
-
 Non-codesigners: wait for Windows/macOS detached signatures:
 
-- Once the Windows/OS X builds each have 3 matching signatures, they will be signed with their respective release keys.
+- Once the Windows/macOS builds each have 3 matching signatures, they will be signed with their respective release keys.
 - Detached signatures will then be committed to the [bltg-detached-sigs](https://github.com/Block-Logic-Technology-Group/bltg-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the signed macOS binary:
@@ -228,22 +221,17 @@ Create (and optionally verify) the signed Windows binaries:
     ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../bltg/contrib/gitian-descriptors/gitian-win-signer.yml
     ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../bltg/contrib/gitian-descriptors/gitian-win-signer.yml
     mv build/out/bltg-*win64-setup.exe ../bltg-${VERSION}-win64-setup.exe
-    mv build/out/bltg-*win32-setup.exe ../bltg-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed macOS/Windows binaries:
-
     pushd gitian.sigs
     git add ${VERSION}-osx-signed/"${SIGNER}"
     git add ${VERSION}-win-signed/"${SIGNER}"
     git commit -m "Add ${SIGNER} ${VERSION} signed binaries signatures"
     git push  # Assuming you can push to the gitian.sigs tree
     popd
-
 ### After 3 or more people have gitian-built and their results match:
-
 - Create `SHA256SUMS.asc` for the builds, and GPG-sign it:
-
 ```bash
 sha256sum * > SHA256SUMS
 ```
@@ -258,8 +246,6 @@ bltg-${VERSION}-x86_64-linux-gnu.tar.gz
 bltg-${VERSION}-osx64.tar.gz
 bltg-${VERSION}-osx.dmg
 bltg-${VERSION}.tar.gz
-bltg-${VERSION}-win32-setup.exe
-bltg-${VERSION}-win32.zip
 bltg-${VERSION}-win64-setup.exe
 bltg-${VERSION}-win64.zip
 ```

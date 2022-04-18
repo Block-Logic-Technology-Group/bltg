@@ -1,11 +1,9 @@
 // Copyright (c) 2018 The PIVX developers
-// Copyright (c) 2018 The BLTG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BLTG_ZBLTGCHAIN_H
 #define BLTG_ZBLTGCHAIN_H
-
 #include "libzerocoin/Coin.h"
 #include "libzerocoin/Denominations.h"
 #include "libzerocoin/CoinSpend.h"
@@ -38,6 +36,5 @@ std::string ReindexZerocoinDB();
 libzerocoin::CoinSpend TxInToZerocoinSpend(const CTxIn& txin);
 bool TxOutToPublicCoin(const CTxOut& txout, libzerocoin::PublicCoin& pubCoin, CValidationState& state);
 std::list<libzerocoin::CoinDenomination> ZerocoinSpendListFromBlock(const CBlock& block, bool fFilterInvalid);
-
 
 #endif //BLTG_ZBLTGCHAIN_H

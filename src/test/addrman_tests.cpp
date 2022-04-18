@@ -1,4 +1,5 @@
 // Copyright (c) 2012-2013 The Bitcoin Core developers
+// Copyright (c) 2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include "addrman.h"
@@ -6,7 +7,6 @@
 #include <string>
 #include <boost/test/unit_test.hpp>
 #include <crypto/common.h> // for ReadLE64
-
 #include "hash.h"
 #include "random.h"
 
@@ -24,7 +24,7 @@ public:
     void MakeDeterministic()
     {
         nKey.SetNull();
-        seed_insecure_rand(true);
+        insecure_rand = FastRandomContext(true);
     }
 
     int RandomInt(int nMax)
@@ -179,10 +179,11 @@ BOOST_AUTO_TEST_CASE(addrman_select)
     BOOST_CHECK(addrman.size() == 7);
 
     // Test 12: Select pulls from new and tried regardless of port number.
-    BOOST_CHECK(addrman.Select().ToString() == "250.4.6.6:8333");
-    BOOST_CHECK(addrman.Select().ToString() == "250.3.2.2:9999");
-    BOOST_CHECK(addrman.Select().ToString() == "250.3.3.3:9999");
-    BOOST_CHECK(addrman.Select().ToString() == "250.4.4.4:8333");
+    std::set<uint16_t> ports;
+    for (int i = 0; i < 20; ++i) {
+        ports.insert(addrman.Select().GetPort());
+    }
+    BOOST_CHECK_EQUAL(ports.size(), 3);
 }
 
 BOOST_AUTO_TEST_CASE(addrman_new_collisions)
@@ -412,8 +413,6 @@ BOOST_AUTO_TEST_CASE(caddrinfo_get_tried_bucket)
 
     uint256 nKey1 = (uint256)(CHashWriter(SER_GETHASH, 0) << 1).GetHash();
     uint256 nKey2 = (uint256)(CHashWriter(SER_GETHASH, 0) << 2).GetHash();
-
-
     BOOST_CHECK(info1.GetTriedBucket(nKey1) == 40);
 
     // Test 26: Make sure key actually randomizes bucket placement. A fail on

@@ -10,7 +10,7 @@
  * @license    This project is released under the MIT license.
  **/
 // Copyright (c) 2017-2019 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
+// Copyright (c) 2018-2022 The BLTG developers
 
 #ifndef COMMITMENT_H_
 #define COMMITMENT_H_
@@ -104,6 +104,5 @@ private:
 
 	CBigNum S1, S2, S3, challenge;
 };
-
 } /* namespace libzerocoin */
 #endif /* COMMITMENT_H_ */

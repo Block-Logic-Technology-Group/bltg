@@ -14,7 +14,7 @@ To install:
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your bltgqt binary to `/usr/bin`
+the .desktop file or copy or symlink your bltg-qt binary to `/usr/bin`
 and the `../../share/pixmaps/bltg128.png` to `/usr/share/pixmaps`
 
 bltg-qt.protocol (KDE)

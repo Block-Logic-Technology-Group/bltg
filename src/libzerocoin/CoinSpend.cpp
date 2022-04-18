@@ -10,7 +10,7 @@
  * @license    This project is released under the MIT license.
  **/
 // Copyright (c) 2017-2019 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
+// Copyright (c) 2018-2022 The BLTG developers
 
 #include "CoinSpend.h"
 #include <iostream>
@@ -133,8 +133,9 @@ bool CoinSpend::HasValidSerial(ZerocoinParams* params) const
 //Additional verification layer that requires the spend be signed by the private key associated with the serial
 bool CoinSpend::HasValidSignature() const
 {
+    const int coinVersion = getCoinVersion();
     //No private key for V1
-    if (version < PrivateCoin::PUBKEY_VERSION)
+    if (coinVersion < PrivateCoin::PUBKEY_VERSION)
         return true;
 
     try {
@@ -144,7 +145,7 @@ bool CoinSpend::HasValidSignature() const
             //cout << "CoinSpend::HasValidSignature() hashedpubkey is not equal to the serial!\n";
             return false;
         }
-    } catch(std::range_error &e) {
+    } catch (const std::range_error& e) {
         //std::cout << "HasValidSignature() error: " << e.what() << std::endl;
         throw InvalidSerialException("Serial longer than 256 bits");
     }
@@ -155,7 +156,7 @@ bool CoinSpend::HasValidSignature() const
 CBigNum CoinSpend::CalculateValidSerial(ZerocoinParams* params)
 {
     CBigNum bnSerial = coinSerialNumber;
-    bnSerial = bnSerial.mul_mod(CBigNum(1),params->coinCommitmentGroup.groupOrder);
+    bnSerial = bnSerial % params->coinCommitmentGroup.groupOrder;
     return bnSerial;
 }
 
@@ -167,6 +168,13 @@ std::vector<unsigned char> CoinSpend::ParseSerial(CDataStream& s) {
     CBigNum coinSerialNumber;
     s >> coinSerialNumber;
     return coinSerialNumber.getvch();
+}
+
+void CoinSpend::setPubKey(CPubKey pkey, bool fUpdateSerial) {
+    this->pubkey = pkey;
+    if (fUpdateSerial) {
+        this->coinSerialNumber = libzerocoin::ExtractSerialFromPubKey(this->pubkey);
+    }
 }
 
 } /* namespace libzerocoin */

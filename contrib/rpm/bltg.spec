@@ -20,7 +20,7 @@ Summary:	Peer to Peer Cryptographic Currency
 
 Group:		Applications/System
 License:	MIT
-URL:		https://block-logic.com/
+URL:		https://bltg.org/
 Source0:	https://bltg.org/bin/bltg-core-%{version}/bltg-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 

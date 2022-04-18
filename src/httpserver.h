@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_HTTPSERVER_H
-#define BITCOIN_HTTPSERVER_H
+#ifndef BLTG_HTTPSERVER_H
+#define BLTG_HTTPSERVER_H
 
 #include <string>
 #include <stdint.h>
@@ -31,6 +31,10 @@ bool StartHTTPServer();
 void InterruptHTTPServer();
 /** Stop HTTP server */
 void StopHTTPServer();
+
+/** Change logging level for libevent. Removes BCLog::LIBEVENT from log categories if
+ * libevent doesn't support debug logging.*/
+bool UpdateHTTPServerLogging(bool enable);
 
 /** Handler for requests to a certain HTTP path */
 typedef std::function<void(HTTPRequest* req, const std::string &)> HTTPRequestHandler;
@@ -144,4 +148,4 @@ private:
     struct event* ev;
 };
 
-#endif // BITCOIN_HTTPSERVER_H
+#endif // BLTG_HTTPSERVER_H

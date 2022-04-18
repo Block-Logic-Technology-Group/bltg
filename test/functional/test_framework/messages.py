@@ -27,7 +27,7 @@ from test_framework.siphash import siphash256
 from test_framework.util import hex_str_to_bytes, bytes_to_hex_str
 
 MIN_VERSION_SUPPORTED = 60001
-MY_VERSION = 70914  # past bip-31 for ping/pong
+MY_VERSION = 70923
 MY_SUBVERSION = b"/python-mininode-tester:0.0.3/"
 MY_RELAY = 1 # from version 70001 onwards, fRelay should be appended to version messages (BIP37)
 
@@ -181,7 +181,7 @@ def FromHex(obj, hex_string):
 def ToHex(obj):
     return bytes_to_hex_str(obj.serialize())
 
-# Objects that map to bitcoind objects, which can be serialized/deserialized
+# Objects that map to bltgd objects, which can be serialized/deserialized
 
 class CAddress():
     def __init__(self):
@@ -211,9 +211,27 @@ class CAddress():
 
 class CInv():
     typemap = {
-        0: "Error",
-        1: "TX",
-        2: "Block",
+        0: "MSG_ERROR",
+        1: "MSG_TX",
+        2: "MSG_BLOCK",
+        3: "MSG_FILTERED_BLOCK",
+        4: "MSG_TXLOCK_REQUEST",
+        5: "MSG_TXLOCK_VOTE",
+        6: "MSG_SPORK",
+        7: "MSG_MASTERNODE_WINNER",
+        8: "MSG_MASTERNODE_SCANNING_ERROR",
+        9: "MSG_BUDGET_VOTE",
+        10: "MSG_BUDGET_PROPOSAL",
+        11: "MSG_BUDGET_FINALIZED",
+        12: "MSG_BUDGET_FINALIZED_VOTE",
+        13: "MSG_MASTERNODE_QUORUM",
+        14: "MSG_MASTERNODE_QUORUM",
+        15: "MSG_MASTERNODE_ANNOUNCE",
+        16: "MSG_MASTERNODE_PING",
+        17: "MSG_DSTX",
+        18: "MSG_PUBCOINS",
+        19: "MSG_GENWIT",
+        20: "MSG_ACC_VALUE"
     }
 
     def __init__(self, t=0, h=0):
@@ -300,8 +318,6 @@ class CTxIn():
         return "CTxIn(prevout=%s scriptSig=%s nSequence=%i)" \
             % (repr(self.prevout), bytes_to_hex_str(self.scriptSig),
                self.nSequence)
-
-
 class CTxOut():
     def __init__(self, nValue=0, scriptPubKey=b""):
         self.nValue = nValue
@@ -461,22 +477,26 @@ class CBlockHeader():
         self.calc_sha256()
         return self.sha256
 
-    # PIV Uniqueness
+    # BLTG Uniqueness
     def get_uniqueness(self, prevout):
         r = b""
         r += struct.pack("<I", prevout.n)
         r += ser_uint256(prevout.hash)
         return r
 
-    def solve_stake(self, prevouts):
+    def solve_stake(self, prevouts, isModifierV2=False):
         target0 = uint256_from_compact(self.nBits)
         loop = True
         while loop:
             for prevout in prevouts:
-                nvalue, txBlockTime, stakeModifier, hashStake = prevouts[prevout]
+                nvalue, txBlockTime, hashStake = prevouts[prevout]
                 target = int(target0 * nvalue / 100) % 2**256
                 data = b""
-                data += ser_uint64(stakeModifier)
+                if isModifierV2:
+                    data += ser_uint256(0)
+                else:
+                    data += ser_uint64(0)
+                #data += ser_uint64(stakeModifier)
                 data += struct.pack("<I", txBlockTime)
                 # prevout for zPoS is serial hashes hex strings
                 if isinstance(prevout, COutPoint):
@@ -935,8 +955,6 @@ class msg_addr():
 
     def __repr__(self):
         return "msg_addr(addrs=%s)" % (repr(self.addrs))
-
-
 class msg_inv():
     command = b"inv"
 
@@ -993,7 +1011,6 @@ class msg_getblocks():
     def __repr__(self):
         return "msg_getblocks(locator=%s hashstop=%064x)" \
             % (repr(self.locator), self.hashstop)
-
 
 class msg_tx():
     command = b"tx"

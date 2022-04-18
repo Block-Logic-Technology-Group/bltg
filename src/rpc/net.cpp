@@ -16,8 +16,6 @@
 #include "guiinterface.h"
 #include "util.h"
 #include "version.h"
-
-
 #include <univalue.h>
 
 
@@ -181,7 +179,7 @@ UniValue addnode(const UniValue& params, bool fHelp)
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("addnode", "\"192.168.0.6:51472\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:51472\", \"onetry\""));
+            HelpExampleCli("addnode", "\"192.168.0.6:17127\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:17127\", \"onetry\""));
 
     std::string strNode = params[0].get_str();
 
@@ -255,7 +253,7 @@ UniValue getaddednodeinfo(const UniValue& params, bool fHelp)
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:17127\",  (string) The bltg server host and port\n"
+            "         \"address\" : \"192.168.0.201:17127\",  (string) The bltg server IP and port we're connected to\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "       ,...\n"
@@ -424,7 +422,6 @@ UniValue getnetworkinfo(const UniValue& params, bool fHelp)
             HelpExampleCli("getnetworkinfo", "") + HelpExampleRpc("getnetworkinfo", ""));
 
     LOCK(cs_main);
-
     UniValue obj(UniValue::VOBJ);
     obj.push_back(Pair("version", CLIENT_VERSION));
     obj.push_back(Pair("subversion",    strSubVersion));

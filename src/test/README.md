@@ -35,12 +35,12 @@ Run `test_bltg --help` for the full list.
 ### Note on adding test cases
 
 The sources in this directory are unit test cases.  Boost includes a
-unit testing framework, and since bitcoin already uses boost, it makes
+unit testing framework, and since bltg already uses boost, it makes
 sense to simply use this framework rather than require developers to
 configure some other framework (we want as few impediments to creating
 unit tests as possible).
 
-The build system is setup to compile an executable called "test_bltg"
+The build system is setup to compile an executable called `test_bltg`
 that runs all of the unit tests.  The main source file is called
 test_bltg.cpp, which simply includes other files that contain the
 actual unit tests (outside of a couple required preprocessor

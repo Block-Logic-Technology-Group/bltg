@@ -1,7 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,6 +16,8 @@
 #include "random.h"
 #include "util.h"
 #include "utilstrencodings.h"
+
+#include <atomic>
 
 #ifdef HAVE_GETADDRINFO_A
 #include <netdb.h>
@@ -137,7 +138,6 @@ bool static LookupIntern(const char* pszName, std::vector<CNetAddr>& vIP, unsign
 #else
     aiHint.ai_flags = fAllowLookup ? AI_ADDRCONFIG : AI_NUMERICHOST;
 #endif
-
     struct addrinfo* aiRes = NULL;
 #ifdef HAVE_GETADDRINFO_A
     struct gaicb gcb, *query = &gcb;
@@ -288,7 +288,6 @@ bool static InterruptibleRecv(char* data, size_t len, int timeout, SOCKET& hSock
     }
     return len == 0;
 }
-
 struct ProxyCredentials
 {
     std::string username;
@@ -467,7 +466,6 @@ bool static ConnectSocketDirectly(const CService& addrConnect, SOCKET& hSocketRe
     // Set to non-blocking
     if (!SetSocketNonBlocking(hSocket, true))
         return error("ConnectSocketDirectly: Setting socket to non-blocking failed, error %s\n", NetworkErrorString(WSAGetLastError()));
-
     if (connect(hSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
         int nErr = WSAGetLastError();
         // WSAEINVAL is here because some legacy version of winsock uses it
@@ -586,8 +584,8 @@ static bool ConnectThroughProxy(const proxyType &proxy, const std::string strDes
     // do socks negotiation
     if (proxy.randomize_credentials) {
         ProxyCredentials random_auth;
-        random_auth.username = strprintf("%i", insecure_rand());
-        random_auth.password = strprintf("%i", insecure_rand());
+        static std::atomic_int counter;
+        random_auth.username = random_auth.password = strprintf("%i", counter++);
         if (!Socks5(strDest, (unsigned short)port, &random_auth, hSocket))
             return false;
     } else {

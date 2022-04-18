@@ -658,3 +658,6 @@ TRANSLATIONS += src/qt/locale/bltg_bg.ts \
                 src/qt/locale/bltg_vi.ts \
                 src/qt/locale/bltg_zh_CN.ts \
                 src/qt/locale/bltg_zh_TW.ts
+
+DISTFILES += \
+    README.md

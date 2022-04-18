@@ -14,7 +14,6 @@ BOOST_AUTO_TEST_SUITE(mempool_tests)
 BOOST_AUTO_TEST_CASE(MempoolRemoveTest)
 {
     // Test CTxMemPool::remove functionality
-
     // Parent transaction with three children,
     // and three grand-children:
     CMutableTransaction txParent;

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2019 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
+// Copyright (c) 2018-2022 The BLTG developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,9 +16,6 @@
 #include "util.h"
 #include "utilmoneystr.h"
 #include "utilstrencodings.h"
-
-
-
 std::string FormatScript(const CScript& script)
 {
     std::string ret;
@@ -82,8 +79,13 @@ void ScriptPubKeyToUniv(const CScript& scriptPubKey,
     out.pushKV("type", GetTxnOutputType(type));
 
     UniValue a(UniValue::VARR);
-    for (const CTxDestination& addr : addresses)
-        a.push_back(CBitcoinAddress(addr).ToString());
+    if (type == TX_COLDSTAKE && addresses.size() == 2) {
+        a.push_back(CBitcoinAddress(addresses[0], CChainParams::STAKING_ADDRESS).ToString());
+        a.push_back(CBitcoinAddress(addresses[1], CChainParams::PUBKEY_ADDRESS).ToString());
+    } else {
+        for (const CTxDestination& addr : addresses)
+            a.push_back(CBitcoinAddress(addr).ToString());
+    }
     out.pushKV("addresses", a);
 }
 

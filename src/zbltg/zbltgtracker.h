@@ -42,7 +42,7 @@ public:
     std::vector<uint256> GetSerialHashes();
     mutable CCriticalSection cs_spendcache;
     CoinWitnessData* GetSpendCache(const uint256& hashStake) EXCLUSIVE_LOCKS_REQUIRED(cs_spendcache);
-//    bool ClearSpendCache() EXCLUSIVE_LOCKS_REQUIRED(cs_spendcache);
+    bool ClearSpendCache() EXCLUSIVE_LOCKS_REQUIRED(cs_spendcache);
     std::vector<CMintMeta> GetMints(bool fConfirmedOnly) const;
     CAmount GetUnconfirmedBalance() const;
     std::set<CMintMeta> ListMints(bool fUnusedOnly, bool fMatureOnly, bool fUpdateStatus, bool fWrongSeed = false, bool fExcludeV1 = false);

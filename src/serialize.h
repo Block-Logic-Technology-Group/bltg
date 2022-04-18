@@ -1,12 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SERIALIZE_H
-#define BITCOIN_SERIALIZE_H
+#ifndef BLTG_SERIALIZE_H
+#define BLTG_SERIALIZE_H
 
 #include <algorithm>
 #include <assert.h>
@@ -21,6 +20,7 @@
 #include <vector>
 #include "libzerocoin/Denominations.h"
 #include "libzerocoin/SpendType.h"
+#include "sporkid.h"
 
 class CScript;
 
@@ -248,8 +248,6 @@ inline void Serialize(Stream& s, bool a, int, int = 0)
     char f = a;
     WRITEDATA(s, f);
 }
-
-
 template <typename Stream>
 inline void Unserialize(Stream& s, bool& a, int, int = 0)
 {
@@ -289,6 +287,23 @@ inline void Unserialize(Stream& s, libzerocoin::SpendType & a, int, int = 0)
     uint8_t f=0;
     READDATA(s, f);
     a = static_cast<libzerocoin::SpendType>(f);
+}
+
+// Serialization for SporkId
+inline unsigned int GetSerializeSize(SporkId sporkID, int, int = 0) { return sizeof(SporkId); }
+template <typename Stream>
+inline void Serialize(Stream& s, SporkId sporkID, int, int = 0)
+{
+    int32_t f = static_cast<int32_t>(sporkID);
+    WRITEDATA(s, f);
+}
+
+template <typename Stream>
+inline void Unserialize(Stream& s, SporkId& sporkID, int, int = 0)
+{
+    int32_t f=0;
+    READDATA(s, f);
+    sporkID = (SporkId) f;
 }
 
 
@@ -676,8 +691,6 @@ void Unserialize(Stream& is, std::basic_string<C>& str, int, int)
     if (nSize != 0)
         is.read((char*)&str[0], nSize * sizeof(str[0]));
 }
-
-
 /**
  * vector
  */
@@ -763,8 +776,6 @@ inline void Unserialize(Stream& is, std::vector<T, A>& v, int nType, int nVersio
 {
     Unserialize_impl(is, v, nType, nVersion, T());
 }
-
-
 /**
  * others derived from vector
  */
@@ -876,8 +887,6 @@ void Unserialize(Stream& is, std::set<K, Pred, A>& m, int nType, int nVersion)
         it = m.insert(it, key);
     }
 }
-
-
 /**
  * Support for ADD_SERIALIZE_METHODS and READWRITE macro
  */
@@ -899,8 +908,6 @@ inline void SerReadWrite(Stream& s, T& obj, int nType, int nVersion, CSerActionU
 {
     ::Unserialize(s, obj, nType, nVersion);
 }
-
-
 class CSizeComputer
 {
 protected:
@@ -937,4 +944,4 @@ public:
     }
 };
 
-#endif // BITCOIN_SERIALIZE_H
+#endif // BLTG_SERIALIZE_H

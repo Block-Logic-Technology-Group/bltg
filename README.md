@@ -1,25 +1,25 @@
 BLTG Core integration/staging repository
 =====================================
 
-[![Build Status](https://travis-ci.org/Block-Logic-Technology-Group/bltg.svg?branch=master)](https://travis-ci.org/Block-Logic-Technology-Group/bltg.svg?branch=master)
+[![master Actions Status](https://github.com/Block-Logic-Technology-Group/bltg/workflows/CI%20Actions%20for%20BLTG/badge.svg)](https://github.com/Block-Logic-Technology-Group/bltg/actions)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Block-Logic-Technology-Group/bltg/bltg?color=%235c4b7d&cacheSeconds=3600)](https://github.com/Block-Logic-Technology-Group/bltg/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/Block-Logic-Technology-Group/bltg/bltg?color=%235c4b7d&cacheSeconds=3600)](https://github.com/Block-Logic-Technology-Group/bltg/releases)
 
-BLTG is an open-source utility token which offers consumers and enterprises the benefits of a decentralised data network, with low transaction fees & environmental footprint. It utilizes regular PoS and Masternodes for securing its network.
+## What is BLTG?
 
-The goal of BLTG is to combine the benefits of Blockchain and Distributed Technologies to empower consumers of our technologies with the tools to securely store, manage and distribute electronic data.
-- Fast transactions featuring guaranteed zero-confirmation transactions, we call it _SwiftX_. 
-- Decentralized blockchain voting utilizing Masternode technology to form a DAO (Decentralized autonomous organization). The blockchain will distribute monthly treasury funds based on successful proposals submitted by the community and voted on by the DAO.
+BLTG is an open source community-driven cryptocurrency, focused on five main aspects:
 
-More information at [block-logic.com](https://block-logic.com)
+(1) User Data Protection: Through the use of SHIELD, a zk-SNARKs based privacy protocol.
 
-### Coin Specs
-<table>
-<tr><td>Algo</td><td>Quark</td></tr>
-<tr><td>Block Time</td><td>60 Seconds</td></tr>
-<tr><td>Difficulty Retargeting</td><td>Every Block</td></tr>
-<tr><td>Max Coin Supply (PoW Phase)</td><td>33 000 300 BLTG</td></tr>
-<tr><td>Max Coin Supply (PoS Phase)</td><td>Infinite</td></tr>
-<tr><td>Premine</td><td>33 000 300 BLTG*</td></tr>
-</table>
+(2) Low environmental footprint and network participation equality: Through the use of a highly developed Proof of Stake protocol.
+
+(3) Decentralized Governance System: A DAO built on top of the tier two Masternodes network, enabling a monthly community treasury, proposals submission and decentralized voting.
+
+(4) Fast Transactions: Through the use of fast block times and the tier two network, BLTG is committed to continue researching new and better instant transactions mechanisms.
+
+(5) Ease of Use: BLTG is determined to offer the best possible graphical interface for a core node/wallet. A full featured graphical product for new and advanced users.
+
+A lot more information and specs at [https://block-logic.com/](https://block-logic.com/). Join the community at [BLTG Discord](https://discord.block-logic.com/).
 
 *33 000 300 BLTG Premine
 
@@ -46,4 +46,29 @@ More information at [block-logic.com](https://block-logic.com)
 <tr><td>1575401-Infinite</td><td>20% (1 BLTG)</td><td>80% (4 BLTG)</td><td>20% (1 BLTG)</td></tr>
 </table>
 
-* Budget representation is merely informative as to what will be stored for approval by Masternode community Holders
+## Development Process
+
+The master branch is regularly built (see doc/build-*.md for instructions) and tested, but it is not guaranteed to be completely stable. [Tags](https://github.com/Block-Logic-Technology-Group/bltg/tags) are created regularly from release branches to indicate new official, stable release versions of BLTG Core.
+
+The contribution workflow is described in [CONTRIBUTING.md](https://github.com/Block-Logic-Technology-Group/bltg/blob/master/CONTRIBUTING.md) and useful hints for developers can be found in [doc/developer-notes.md](https://github.com/Block-Logic-Technology-Group/bltg/blob/master/doc/developer-notes.md).
+
+## Testing
+
+Testing and code review is the bottleneck for development; we get more pull requests than we can review and test on short notice. Please be patient and help out by testing other people's pull requests, and remember this is a security-critical project where any mistake might cost people a lot of money.
+
+## Automated Testing
+
+Developers are strongly encouraged to write [unit tests](https://github.com/Block-Logic-Technology-Group/bltg/blob/master/src/test/README.md) for new code, and to submit new unit tests for old code. Unit tests can be compiled and run (assuming they weren't disabled in configure) with: make check. Further details on running and extending unit tests can be found in [/src/test/README.md](https://github.com/Block-Logic-Technology-Group/bltg/blob/master/src/test/README.md).
+
+There are also regression and integration tests, written in Python. These tests can be run (if the test dependencies are installed) with: test/functional/test_runner.py`
+
+The CI (Continuous Integration) systems make sure that every pull request is built for Windows, Linux, and macOS, and that unit/sanity tests are run automatically.
+
+## Manual Quality Assurance (QA) Testing
+
+Changes should be tested by somebody other than the developer who wrote the code. This is especially important for large or high-risk changes. It is useful to add a test plan to the pull request description if testing the changes is not straightforward.
+
+## License
+BLTG Core is released under the terms of the MIT license. See [COPYING](https://github.com/Block-Logic-Technology-Group/bltg/blob/master/COPYING) for more information or see https://opensource.org/licenses/MIT.
+
+

@@ -17,7 +17,7 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "BLTG"
-            VALUE "FileDescription",    "bltgd (OSS daemon/client for BLTG)"
+            VALUE "FileDescription",    "bltgd (OSS daemon/client for PIVX)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "bltgd"
             VALUE "LegalCopyright",     COPYRIGHT_STR

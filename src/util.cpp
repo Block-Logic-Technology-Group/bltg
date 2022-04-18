@@ -2,7 +2,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,9 +21,6 @@
 #include <stdarg.h>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
-#include <openssl/bio.h>
-#include <openssl/buffer.h>
-#include <openssl/evp.h>
 
 
 #ifndef WIN32
@@ -89,7 +85,7 @@
 #include <openssl/rand.h>
 
 
-// BLTG only features
+// PIVX only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -98,6 +94,11 @@ bool fLiteMode = false;
 // SwiftX
 bool fEnableSwiftTX = true;
 int nSwiftTXDepth = 5;
+// Automatic Zerocoin minting
+bool fEnableZeromint = true;
+bool fEnableAutoConvert = true;
+int nZeromintPercentage = 10;
+int nPreferredDenom = 0;
 const int64_t AUTOMINT_DELAY = (60 * 5); // Wait at least 5 minutes until Automint starts
 
 /** Spork enforcement enabled time */
@@ -113,7 +114,6 @@ bool fDebug = false;
 bool fPrintToConsole = false;
 bool fPrintToDebugLog = true;
 bool fDaemon = false;
-bool fServer = false;
 std::string strMiscWarning;
 bool fLogTimestamps = false;
 bool fLogIPs = false;
@@ -215,7 +215,7 @@ bool LogAcceptCategory(const char* category)
             const std::vector<std::string>& categories = mapMultiArgs["-debug"];
             ptrCategory.reset(new std::set<std::string>(categories.begin(), categories.end()));
             // thread_specific_ptr automatically deletes the set when the thread ends.
-            // "bltg" is a composite category enabling all BLTG-related debug output
+            // "bltg" is a composite category enabling all PIVX-related debug output
             if (ptrCategory->count(std::string("bltg"))) {
                 ptrCategory->insert(std::string("obfuscation"));
                 ptrCategory->insert(std::string("swiftx"));
@@ -377,7 +377,7 @@ std::string HelpMessageOpt(const std::string &option, const std::string &message
            std::string("\n\n");
 }
 
-static std::string FormatException(std::exception* pex, const char* pszThread)
+static std::string FormatException(const std::exception* pex, const char* pszThread)
 {
 #ifdef WIN32
     char pszModule[MAX_PATH] = "";
@@ -393,7 +393,7 @@ static std::string FormatException(std::exception* pex, const char* pszThread)
             "UNKNOWN EXCEPTION       \n%s in %s       \n", pszModule, pszThread);
 }
 
-void PrintExceptionContinue(std::exception* pex, const char* pszThread)
+void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 {
     std::string message = FormatException(pex, pszThread);
     LogPrintf("\n\n************************\n%s\n", message);
@@ -404,13 +404,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\BLTG
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\BLTG
-// Mac: ~/Library/Application Support/BLTG
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\PIVX
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\PIVX
+// Mac: ~/Library/Application Support/PIVX
 // Unix: ~/.bltg
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "BLTG";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "PIVX";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -422,7 +422,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "BLTG";
+    return pathRet / "PIVX";
 #else
     // Unix
     return pathRet / ".bltg";
@@ -552,7 +552,7 @@ bool TryCreateDirectory(const boost::filesystem::path& p)
 {
     try {
         return boost::filesystem::create_directory(p);
-    } catch (boost::filesystem::filesystem_error) {
+    } catch (const boost::filesystem::filesystem_error&) {
         if (!boost::filesystem::exists(p) || !boost::filesystem::is_directory(p))
             throw;
     }

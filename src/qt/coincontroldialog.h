@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
+// Copyright (c) 2017-2019 The PIVX developers
+// Copyright (c) 2018-2022 The BLTG developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -49,6 +49,8 @@ public:
 
     void setModel(WalletModel* model);
     void updateDialogLabels();
+    void updateView();
+    void refreshDialog();
 
     // static because also called from sendcoinsdialog
     static void updateLabels(WalletModel*, QDialog*);
@@ -70,19 +72,15 @@ private:
     QAction* copyTransactionHashAction;
     QAction* lockAction;
     QAction* unlockAction;
-
     void sortView(int, Qt::SortOrder);
-    void updateView();
 
     enum {
         COLUMN_CHECKBOX,
         COLUMN_AMOUNT,
         COLUMN_LABEL,
         COLUMN_ADDRESS,
-        COLUMN_TYPE,
         COLUMN_DATE,
         COLUMN_CONFIRMATIONS,
-        COLUMN_PRIORITY,
         COLUMN_TXHASH,
         COLUMN_VOUT_INDEX,
     };
@@ -101,14 +99,12 @@ private slots:
     void clipboardFee();
     void clipboardAfterFee();
     void clipboardBytes();
-    void clipboardPriority();
     void clipboardLowOutput();
     void clipboardChange();
     void radioTreeMode(bool);
     void radioListMode(bool);
     void viewItemChanged(QTreeWidgetItem*, int);
     void headerSectionClicked(int);
-    void buttonBoxClicked(QAbstractButton*);
     void buttonSelectAllClicked();
     void buttonToggleLockClicked();
     void updateLabelLocked();

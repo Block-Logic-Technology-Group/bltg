@@ -122,16 +122,16 @@ CoinWitnessData* CzBLTGTracker::GetSpendCache(const uint256& hashStake)
     return mapStakeCache.at(hashStake).get();
 }
 
-//bool CzBLTGTracker::ClearSpendCache()
-//{
-//    AssertLockHeld(cs_spendcache);
-//    if (!mapStakeCache.empty()) {
-//        mapStakeCache.clear();
-//        return true;
-//    }
-//
-//    return false;
-//}
+bool CzBLTGTracker::ClearSpendCache()
+{
+    AssertLockHeld(cs_spendcache);
+    if (!mapStakeCache.empty()) {
+        mapStakeCache.clear();
+        return true;
+    }
+
+    return false;
+}
 
 std::vector<uint256> CzBLTGTracker::GetSerialHashes()
 {

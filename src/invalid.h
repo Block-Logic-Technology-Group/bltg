@@ -6,7 +6,7 @@
 #ifndef BLTG_INVALID_H
 #define BLTG_INVALID_H
 
-#endif //BLTG_INVALID_H
+
 
 #include <libzerocoin/bignum.h>
 #include <univalue/include/univalue.h>
@@ -24,3 +24,5 @@ namespace invalid_out
     bool LoadOutpoints();
     bool LoadSerials();
 }
+
+#endif //BLTG_INVALID_H

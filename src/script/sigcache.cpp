@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2018-2019 The PIVX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "sigcache.h"
-
 #include "pubkey.h"
 #include "random.h"
 #include "uint256.h"
@@ -14,7 +14,6 @@
 #include <boost/tuple/tuple_comparison.hpp>
 
 namespace {
-
 /**
  * Valid signature cache, to avoid doing expensive ECDSA signature checking
  * twice for every transaction (once when accepted into memory pool, and
@@ -69,7 +68,6 @@ public:
         setValid.insert(k);
     }
 };
-
 }
 
 bool CachingTransactionSignatureChecker::VerifySignature(const std::vector<unsigned char>& vchSig, const CPubKey& pubkey, const uint256& sighash) const
@@ -78,10 +76,8 @@ bool CachingTransactionSignatureChecker::VerifySignature(const std::vector<unsig
 
     if (signatureCache.Get(sighash, vchSig, pubkey))
         return true;
-
     if (!TransactionSignatureChecker::VerifySignature(vchSig, pubkey, sighash))
         return false;
-
     if (store)
         signatureCache.Set(sighash, vchSig, pubkey);
     return true;

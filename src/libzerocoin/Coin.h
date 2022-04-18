@@ -1,7 +1,7 @@
 /**
  * @file       Coin.h
  *
- * @brief      PublicCoin and PrivateCoin classes for the Zerocoin library.
+ * @brief      PublicCoin class for the Zerocoin library.
  *
  * @author     Ian Miers, Christina Garman and Matthew Green
  * @date       June 2013
@@ -34,6 +34,7 @@ namespace libzerocoin
     bool IsValidSerial(const ZerocoinParams* params, const CBigNum& bnSerial);
     bool IsValidCommitmentToCoinRange(const ZerocoinParams* params, const CBigNum& bnCommitment);
     CBigNum GetAdjustedSerial(const CBigNum& bnSerial);
+    CBigNum ExtractSerialFromPubKey(const CPubKey pubkey);
     bool GenerateKeyPair(const CBigNum& bnGroupOrder, const uint256& nPrivkey, CKey& key, CBigNum& bnSerial);
 
 /** A Public coin is the part of a coin that

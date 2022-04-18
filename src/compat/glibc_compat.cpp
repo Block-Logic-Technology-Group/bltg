@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2017 The Bitcoin Core developers
-// Copyright (c) 2017-2018 The PIVX developers
+// Copyright (c) 2017-2019 The PIVX developers
 // Copyright (c) 2018-2019 The BLTG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -54,7 +54,6 @@ extern "C" int64_t __wrap___divmoddi4(int64_t u, int64_t v, int64_t* rp)
         w = -w;
     if (c2)
         r = -r;
-
     *rp = r;
     return w;
 }
@@ -76,3 +75,5 @@ extern "C" float __wrap_log2f(float x)
 {
     return log2f_old(x);
 }
+
+

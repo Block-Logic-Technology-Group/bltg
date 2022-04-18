@@ -41,7 +41,6 @@ void setupDockClickHandler() {
     }
 }
 
-
 MacDockIconHandler::MacDockIconHandler() : QObject()
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];

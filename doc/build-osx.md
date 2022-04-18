@@ -43,7 +43,7 @@ Build BLTG Core
 
 1. Clone the BLTG Core source code:
 
-        git clone https://github.com/Block-Logic-Technology-Group/bltg.git
+        git clone https://github.com/Block-Logic-Technology-Group/bltg
         cd bltg
 
 2.  Make the Homebrew OpenSSL headers visible to the configure script  (do ```brew info openssl``` to find out why this is necessary, or if you use Homebrew with installation folders different from the default).
@@ -51,14 +51,13 @@ Build BLTG Core
         export LDFLAGS+=-L/usr/local/opt/openssl/lib
         export CPPFLAGS+=-I/usr/local/opt/openssl/include
 
-3.  Build bltgd:
+3.  Build BLTG Core:
 
         ./autogen.sh
         ./configure
         make
 
 4.  It is recommended to build and run the unit tests:
-
         make check
 
 5.  You can also create a .dmg that contains the .app bundle (optional):

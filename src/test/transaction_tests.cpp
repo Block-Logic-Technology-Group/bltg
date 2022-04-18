@@ -1,6 +1,5 @@
 // Copyright (c) 2011-2014 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -108,8 +107,8 @@ BOOST_AUTO_TEST_CASE(tx_valid)
             std::map<COutPoint, CScript> mapprevOutScriptPubKeys;
             UniValue inputs = test[0].get_array();
             bool fValid = true;
-	    for (unsigned int inpIdx = 0; inpIdx < inputs.size(); inpIdx++) {
-	        const UniValue& input = inputs[inpIdx];
+        for (unsigned int inpIdx = 0; inpIdx < inputs.size(); inpIdx++) {
+            const UniValue& input = inputs[inpIdx];
                 if (!input.isArray())
                 {
                     fValid = false;
@@ -183,8 +182,8 @@ BOOST_AUTO_TEST_CASE(tx_invalid)
             std::map<COutPoint, CScript> mapprevOutScriptPubKeys;
             UniValue inputs = test[0].get_array();
             bool fValid = true;
-	    for (unsigned int inpIdx = 0; inpIdx < inputs.size(); inpIdx++) {
-	        const UniValue& input = inputs[inpIdx];
+        for (unsigned int inpIdx = 0; inpIdx < inputs.size(); inpIdx++) {
+            const UniValue& input = inputs[inpIdx];
                 if (!input.isArray())
                 {
                     fValid = false;

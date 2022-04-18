@@ -1,12 +1,10 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018 The BLTG developers
+// Copyright (c) 2015-2019 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef SRC_MASTERNODECONFIG_H_
 #define SRC_MASTERNODECONFIG_H_
-
 #include <string>
 #include <vector>
 
@@ -53,7 +51,7 @@ public:
             return outputIndex;
         }
 
-        bool castOutputIndex(int& n);
+        bool castOutputIndex(int& n) const;
 
         void setOutputIndex(const std::string& outputIndex)
         {
@@ -98,7 +96,8 @@ public:
 
     void clear();
     bool read(std::string& strErr);
-    void add(std::string alias, std::string ip, std::string privKey, std::string txHash, std::string outputIndex);
+    CMasternodeConfig::CMasternodeEntry* add(std::string alias, std::string ip, std::string privKey, std::string txHash, std::string outputIndex);
+    void remove(std::string alias);
 
     std::vector<CMasternodeEntry>& getEntries()
     {

@@ -10,7 +10,6 @@
  * @license    This project is released under the MIT license.
  **/
 // Copyright (c) 2017-2019 The PIVX developers
-// Copyright (c) 2018-2019 The BLTG developers
 
 #ifndef ACCUMULATEPROOF_H_
 #define ACCUMULATEPROOF_H_

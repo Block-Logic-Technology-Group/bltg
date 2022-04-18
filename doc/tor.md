@@ -36,18 +36,16 @@ outgoing connections, but more is possible.
 In a typical situation, this suffices to run behind a Tor proxy:
 
 	./bltgd -proxy=127.0.0.1:9050
-
-
-## 2. Run a BLTG hidden server
+## 2. Run a BLTG Core hidden server
 
 If you configure your Tor system accordingly, it is possible to make your node also
 reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equivalent
 config file): *Needed for Tor version 0.2.7.0 and older versions of Tor only. For newer
 versions of Tor see [Section 3](#3-automatically-listen-on-tor).*
 
-    HiddenServiceDir /var/lib/tor/bltg-service/
-    HiddenServicePort 17127 127.0.0.1:17127
-    HiddenServicePort 18127 127.0.0.1:18127
+	HiddenServiceDir /var/lib/tor/bltg-service/
+	HiddenServicePort 17127 127.0.0.1:17127
+	HiddenServicePort 61472 127.0.0.1:27127
 
 The directory can be different of course, but (both) port numbers should be equal to
 your bltgd's P2P listen port (17127 by default).
@@ -125,8 +123,8 @@ in the tor configuration file. The hashed password can be obtained with the comm
 
 ## 4. Privacy recommendations
 
-- Do not add anything but BLTG Core ports to the hidden service created in section 2.
-  If you run a web service too, create a new hidden service for that.
-  Otherwise it is trivial to link them, which may reduce privacy. Hidden
+- Do not add anything but BLTG Core ports to the onion service created in section 3.
+  If you run a web service too, create a new onion service for that.
+  Otherwise it is trivial to link them, which may reduce privacy. Onion
   services created automatically (as in section 3) always have only one port
   open.
