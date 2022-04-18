@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=BLTG Core
+Comment=BLTG Core QT main network
+GenericName=BLTG Digital Currency QT client main network
+Exec=bltg-core.qt %u
+Terminal=false
+Type=Application
+Icon=${SNAP}/share/pixmaps/bltg.png
+MimeType=x-scheme-handler/bltg;
+Categories=X-Office;X-Finance;
+Keywords=internet;bltg;zbltg;bltg;core;wallet;qt;main;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Version=1.0

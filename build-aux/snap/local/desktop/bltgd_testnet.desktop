@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=BLTG Core Daemon SNAP
+Comment=testnet
+GenericName=BLTG Digital Currency Daemon Client testnet network
+Exec=bltg-core.daemon-testnet %u
+Terminal=true
+Type=Application
+Icon=${SNAP}/share/pixmaps/bltg_testnet.png
+MimeType=x-scheme-handler/bltg;
+Categories=X-Office;X-Finance;
+Keywords=internet;bltg;zbltg;core;wallet;daemon;testnet;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Version=1.0
