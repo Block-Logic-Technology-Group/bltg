@@ -475,11 +475,7 @@ void TransactionRecord::updateStatus(const CWalletTx& wtx)
     else if (type == TransactionRecord::Generated ||
             type == TransactionRecord::StakeMint ||
             type == TransactionRecord::StakeZBLTG ||
-            type == TransactionRecord::MNReward ||
-            type == TransactionRecord::BudgetPayment ||
-            type == TransactionRecord::StakeDelegated ||
-            type == TransactionRecord::StakeHot) {
-
+            type == TransactionRecord::MNReward) {
         if (nBlocksToMaturity > 0) {
             status.status = TransactionStatus::Immature;
             status.matures_in = nBlocksToMaturity;
@@ -528,20 +524,14 @@ int TransactionRecord::getOutputIndex() const
 
 bool TransactionRecord::isCoinStake() const
 {
-    return type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZBLTG;
-}
-
-bool TransactionRecord::isMNReward() const
-{
-    return type == TransactionRecord::MNReward;
+    return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZBLTG);
 }
 
 bool TransactionRecord::isAnyColdStakingType() const
 {
     return (type == TransactionRecord::P2CSDelegation || type == TransactionRecord::P2CSDelegationSent
-            || type == TransactionRecord::P2CSDelegationSentOwner
-            || type == TransactionRecord::StakeDelegated || type == TransactionRecord::StakeHot
-            || type == TransactionRecord::P2CSUnlockOwner || type == TransactionRecord::P2CSUnlockStaker);
+           || type == TransactionRecord::StakeDelegated || type == TransactionRecord::StakeHot
+           || type == TransactionRecord::P2CSUnlockOwner || type == TransactionRecord::P2CSUnlockStaker);
 }
 
 bool TransactionRecord::isNull() const
