@@ -30,11 +30,6 @@
 
 #define SINGLE_THREAD_MAX_TXES_SIZE 4000
 
-// Maximum amount of loaded records in ram in the first load.
-// If the user has more and want to load them:
-// TODO, add load on demand in pages (not every tx loaded all the time into the records list).
-#define MAX_AMOUNT_LOADED_RECORDS 20000
-
 // Amount column is right-aligned it contains numbers
 static int column_alignments[] = {
     Qt::AlignLeft | Qt::AlignVCenter, /* status */
@@ -59,12 +54,6 @@ struct TxLessThan {
     {
         return a < b.hash;
     }
-};
-
-struct ConvertTxToVectorResult
-{
-    QList<TransactionRecord> records;
-    qint64 nFirstLoadedTxTime{0};
 };
 
 // Private implementation
@@ -99,19 +88,6 @@ public:
         std::size_t txesSize = walletTxes.size();
         if (txesSize > SINGLE_THREAD_MAX_TXES_SIZE) {
 
-            // First check if the amount of txs exceeds the UI limit
-            if (txesSize > MAX_AMOUNT_LOADED_RECORDS) {
-                // Sort the txs by date
-                sort(walletTxes.begin(), walletTxes.end(),
-                        [](const CWalletTx & a, const CWalletTx & b) -> bool {
-                         return a.GetTxTime() > b.GetTxTime();
-                     });
-
-                // Only latest ones.
-                walletTxes = std::vector<CWalletTx>(walletTxes.begin(), walletTxes.begin() + MAX_AMOUNT_LOADED_RECORDS);
-                txesSize = walletTxes.size();
-            }
-
             // Simple way to get the processors count
             std::size_t threadsCount = (QThreadPool::globalInstance()->maxThreadCount() / 2 ) + 1;
 
@@ -138,53 +114,46 @@ public:
             auto res = convertTxToRecords(this, wallet,
                                               std::vector<CWalletTx>(walletTxes.end() - remainingSize, walletTxes.end())
             );
-            cachedWallet.append(res.records);
-            nFirstLoadedTxTime = res.nFirstLoadedTxTime;
+            cachedWallet.append(res);
 
             for (auto &future : tasks) {
                 future.waitForFinished();
-                ConvertTxToVectorResult convertRes = future.result();
-                cachedWallet.append(convertRes.records);
-                if (nFirstLoadedTxTime > convertRes.nFirstLoadedTxTime) {
-                    nFirstLoadedTxTime = convertRes.nFirstLoadedTxTime;
+                cachedWallet.append(future.result());
+            }
+        } else {
+            // Single thread flow
+            cachedWallet.append(convertTxToRecords(this, wallet, walletTxes));
+        }
+    }
+
+    static QList<TransactionRecord> convertTxToRecords(TransactionTablePriv* tablePriv, const CWallet* wallet, const std::vector<CWalletTx>& walletTxes) {
+        QList<TransactionRecord> cachedWallet;
+
+        bool hasZcTxes = tablePriv->hasZcTxes;
+        for (const auto &tx : walletTxes) {
+            QList<TransactionRecord> records = TransactionRecord::decomposeTransaction(wallet, tx);
+
+            if (!hasZcTxes) {
+                for (const TransactionRecord &record : records) {
+                    hasZcTxes = HasZcTxesIfNeeded(record);
+                    if (hasZcTxes) break;
                 }
             }
 
-            // Now that all records have been cached, sort them by tx hash
-            std::sort(cachedWallet.begin(), cachedWallet.end(), TxLessThan());
-
-        } else {
-            // Single thread flow
-            ConvertTxToVectorResult convertRes = convertTxToRecords(this, wallet, walletTxes);
-            cachedWallet.append(convertRes.records);
-            nFirstLoadedTxTime = convertRes.nFirstLoadedTxTime;
+            cachedWallet.append(records);
         }
+
+        if (hasZcTxes) // Only update it if it's true, multi-thread operation.
+            tablePriv->hasZcTxes = true;
+
+        return cachedWallet;
     }
 
-    void emitTxLoaded(const TransactionRecord& rec)
-    {
-        Q_EMIT parent->txLoaded(QString::fromStdString(rec.hash.GetHex()),
-                                rec.type, rec.status.status);
-    }
-
-    static ConvertTxToVectorResult convertTxToRecords(TransactionTablePriv* tablePriv,
-                                                      const CWallet* wallet,
-                                                      const std::vector<CWalletTx>& walletTxes)
-    {
-        ConvertTxToVectorResult res;
-        for (const auto& tx : walletTxes) {
-            QList<TransactionRecord> records = TransactionRecord::decomposeTransaction(wallet, tx);
-            if (records.isEmpty()) continue;
-            qint64 time = records.first().time;
-            if (res.nFirstLoadedTxTime == 0 || res.nFirstLoadedTxTime > time) {
-                res.nFirstLoadedTxTime = time;
-            }
-            for (const auto& rec : records) {
-                tablePriv->emitTxLoaded(rec);
-            }
-            res.records.append(records);
-        }
-        return res;
+    static bool HasZcTxesIfNeeded(const TransactionRecord& record) {
+        return (record.type == TransactionRecord::ZerocoinMint ||
+                record.type == TransactionRecord::ZerocoinSpend ||
+                record.type == TransactionRecord::ZerocoinSpend_Change_zBltg ||
+                record.type == TransactionRecord::ZerocoinSpend_FromMe);
     }
 
     /* Update our model of the wallet incrementally, to synchronize our model of the wallet
@@ -223,27 +192,22 @@ public:
                     break;
                 }
                 if (showTransaction) {
+                    LOCK2(cs_main, wallet->cs_wallet);
                     // Find transaction in wallet
-                    const CWalletTx* wtx = wallet->GetWalletTx(hash);
-                    if (!wtx) {
+                    auto mi = wallet->mapWallet.find(hash);
+                    if (mi == wallet->mapWallet.end()) {
                         qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_NEW, but transaction is not in wallet";
                         break;
                     }
-
-                    // As old transactions are still getting updated (+20k range),
-                    // do not add them if we deliberately didn't load them at startup.
-                    if (cachedWallet.size() >= MAX_AMOUNT_LOADED_RECORDS && wtx->GetTxTime() < nFirstLoadedTxTime) {
-                        return;
-                    }
-
                     // Added -- insert at the right position
                     QList<TransactionRecord> toInsert =
-                        TransactionRecord::decomposeTransaction(wallet, *wtx);
+                        TransactionRecord::decomposeTransaction(wallet, mi->second);
                     if (!toInsert.isEmpty()) { /* only if something to insert */
                         parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex + toInsert.size() - 1);
                         int insert_idx = lowerIndex;
                         for (const TransactionRecord& rec : toInsert) {
                             cachedWallet.insert(insert_idx, rec);
+                            if (!hasZcTxes) hasZcTxes = HasZcTxesIfNeeded(rec);
                             insert_idx += 1;
                             ret = rec; // Return record
                         }
@@ -264,10 +228,6 @@ public:
             case CT_UPDATED:
                 // Miscellaneous updates -- nothing to do, status update will take care of this, and is only computed for
                 // visible transactions.
-                for (int i = lowerIndex; i < upperIndex; i++) {
-                    TransactionRecord *rec = &cachedWallet[i];
-                    rec->status.needsUpdate = true;
-                }
                 break;
         }
     }
@@ -277,19 +237,31 @@ public:
         return cachedWallet.size();
     }
 
-    TransactionRecord* index(int cur_block_num, const uint256& cur_block_hash, int idx)
+    bool containsZcTxes()
+    {
+        return hasZcTxes;
+    }
+
+    TransactionRecord* index(int idx)
     {
         if (idx >= 0 && idx < cachedWallet.size()) {
             TransactionRecord* rec = &cachedWallet[idx];
-            if (!cur_block_hash.IsNull() && rec->statusUpdateNeeded(cur_block_num)) {
-                // If a status update is needed (blocks came in since last check),
-                // update the status of this transaction from the wallet. Otherwise,
-                // simply re-use the cached status.
+
+            // Get required locks upfront. This avoids the GUI from getting
+            // stuck if the core is holding the locks for a longer time - for
+            // example, during a wallet rescan.
+            //
+            // If a status update is needed (blocks came in since last check),
+            //  update the status of this transaction from the wallet. Otherwise,
+            // simply re-use the cached status.
+            TRY_LOCK(cs_main, lockMain);
+            if (lockMain) {
                 TRY_LOCK(wallet->cs_wallet, lockWallet);
-                if (lockWallet) {
-                    auto mi = wallet->mapWallet.find(rec->hash);
+                if (lockWallet && rec->statusUpdateNeeded()) {
+                    std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(rec->hash);
+
                     if (mi != wallet->mapWallet.end()) {
-                        rec->updateStatus(mi->second, cur_block_num);
+                        rec->updateStatus(mi->second);
                     }
                 }
             }
@@ -318,13 +290,9 @@ TransactionTableModel::TransactionTableModel(CWallet* wallet, WalletModel* paren
                                                                                      fProcessingQueuedTransactions(false)
 {
     columns << QString() << QString() << tr("Date") << tr("Type") << tr("Address") << BitcoinUnits::getAmountColumnTitle(walletModel->getOptionsModel()->getDisplayUnit());
-
-    connect(walletModel->getOptionsModel(), &OptionsModel::displayUnitChanged, this, &TransactionTableModel::updateDisplayUnit);
-}
-
-void TransactionTableModel::init()
-{
     priv->refreshWallet();
+
+    connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
     subscribeToCoreSignals();
 }
 
@@ -466,18 +434,14 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
     case TransactionRecord::StakeMint:
         return tr("BLTG Stake");
     case TransactionRecord::StakeZBLTG:
-        return tr("zPBLTG Stake");
+        return tr("zBLTG Stake");
     case TransactionRecord::StakeDelegated:
         return tr("BLTG Cold Stake");
     case TransactionRecord::StakeHot:
         return tr("BLTG Stake in behalf of");
     case TransactionRecord::P2CSDelegationSent:
-    case TransactionRecord::P2CSDelegationSentOwner:
     case TransactionRecord::P2CSDelegation:
         return tr("Stake delegation");
-    case TransactionRecord::P2CSUnlockOwner:
-    case TransactionRecord::P2CSUnlockStaker:
-        return tr("Stake delegation spent by");
     case TransactionRecord::Generated:
         return tr("Mined");
     case TransactionRecord::ObfuscationDenominate:
@@ -558,9 +522,6 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord* wtx, b
         return tr("Anonymous");
     case TransactionRecord::P2CSDelegation:
     case TransactionRecord::P2CSDelegationSent:
-    case TransactionRecord::P2CSDelegationSentOwner:
-    case TransactionRecord::P2CSUnlockOwner:
-    case TransactionRecord::P2CSUnlockStaker:
     case TransactionRecord::StakeDelegated:
     case TransactionRecord::StakeHot:
     case TransactionRecord::SendToSelf: {
@@ -801,9 +762,7 @@ QVariant TransactionTableModel::headerData(int section, Qt::Orientation orientat
 QModelIndex TransactionTableModel::index(int row, int column, const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
-    TransactionRecord* data = priv->index(walletModel->getLastBlockProcessedNum(),
-                                          walletModel->getLastBlockProcessed(),
-                                          row);
+    TransactionRecord* data = priv->index(row);
     if (data) {
         return createIndex(row, column, priv->index(row));
     }
@@ -820,7 +779,7 @@ void TransactionTableModel::updateDisplayUnit()
 // queue notifications to show a non freezing progress dialog e.g. for rescan
 struct TransactionNotification {
 public:
-    TransactionNotification() = delete; // need to specify hash and status
+    TransactionNotification() {}
     TransactionNotification(uint256 hash, ChangeType status) : hash(hash), status(status) {}
 
     void invoke(QObject* ttm)
