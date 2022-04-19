@@ -29,7 +29,6 @@ struct SeedSpec6 {
 /**
  * Main network
  */
-
 //! Convert the pnSeeds6 array into usable address objects.
 static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data, unsigned int count)
 {
@@ -126,26 +125,8 @@ bool CChainParams::HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t
     return (contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
 }
 
-int CChainParams::FutureBlockTimeDrift(const int nHeight) const
-{
-    if (IsTimeProtocolV2(nHeight))
-        // PoS (TimeV2): 14 seconds
-        return TimeSlotLength() - 1;
 
-    // PoS (TimeV1): 3 minutes
-    // PoW: 2 hours
-    return (nHeight > LAST_POW_BLOCK()) ? nFutureTimeDriftPoS : nFutureTimeDriftPoW;
-}
 
-bool CChainParams::IsValidBlockTimeStamp(const int64_t nTime, const int nHeight) const
-{
-    // Before time protocol V2, blocks can have arbitrary timestamps
-    if (!IsTimeProtocolV2(nHeight))
-        return true;
-
-    // Time protocol v2 requires time in slots
-    return (nTime % TimeSlotLength()) == 0;
-}
 
 class CMainParams : public CChainParams
 {
