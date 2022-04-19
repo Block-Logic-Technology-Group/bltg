@@ -22,7 +22,7 @@ class TransactionStatus
 {
 public:
     TransactionStatus() : countsForBalance(false), sortKey(""),
-                          matures_in(0), status(Unconfirmed), depth(0), open_for(0), cur_num_blocks(-1)
+                          matures_in(0), status(Offline), depth(0), open_for(0), cur_num_blocks(-1)
     {
     }
 
@@ -98,16 +98,9 @@ public:
         StakeDelegated, // Received cold stake (owner)
         StakeHot, // Staked via a delegated P2CS.
         P2CSDelegation, // Non-spendable P2CS, staker side.
-        P2CSDelegationSent, // Non-spendable P2CS delegated utxo. (coin-owner transferred ownership to external wallet)
-        P2CSDelegationSentOwner, // Spendable P2CS delegated utxo. (coin-owner)
+        P2CSDelegationSent, // Spendable P2CS delegated utxo. (coin-owner)
         P2CSUnlockOwner, // Coin-owner spent the delegated utxo
-        P2CSUnlockStaker, // Staker watching the owner spent the delegated utxo
-        SendToShielded, // Shielded send
-        RecvWithShieldedAddress, // Shielded receive
-        SendToSelfShieldedAddress, // Shielded send to self
-        SendToSelfShieldToTransparent, // Unshield coins to self
-        SendToSelfShieldToShieldChangeAddress, // Changing coins from one shielded address to another inside the wallet.
-        SendToNobody // Burned BLTGs, op_return output.
+        P2CSUnlockStaker // Staker watching the owner spent the delegated utxo
     };
 
     /** Number of confirmation recommended for accepting a transaction */
@@ -155,18 +148,21 @@ public:
     TransactionStatus status;
 
     /** Whether the transaction was sent/received with a watch-only address */
-    bool involvesWatchAddress{false};
+    bool involvesWatchAddress;
+
+    /** Return the unique identifier for this transaction (part) */
+    QString getTxID() const;
 
     /** Return the output index of the subtransaction  */
     int getOutputIndex() const;
 
     /** Update status from core wallet tx.
      */
-    void updateStatus(const CWalletTx& wtx, int chainHeight);
+    void updateStatus(const CWalletTx& wtx);
 
     /** Return whether a status update is needed.
      */
-    bool statusUpdateNeeded(int blockHeight) const;
+    bool statusUpdateNeeded();
 
     /** Return transaction status
      */
