@@ -279,18 +279,7 @@ void CMasternodeMan::CheckAndRemove(bool forceExpiredRemoval)
                 }
             }
 
-            // clean MN pings right away.
-            auto itPing = mapSeenMasternodePing.begin();
-            while (itPing != mapSeenMasternodePing.end()) {
-                if (itPing->second.GetVin().prevout == it->first) {
-                    itPing = mapSeenMasternodePing.erase(itPing);
-                } else {
-                    ++itPing;
-                }
-            }
-
-            it = mapMasternodes.erase(it);
-            LogPrint(BCLog::MASTERNODE, "Masternode removed.\n");
+            it = vMasternodes.erase(it);
         } else {
             ++it;
         }
@@ -830,7 +819,6 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
                 mAskedUsForMasternodeList[pfrom->addr] = askAgain;
             }
         } //else, asking for a specific node which is ok
-
         int nInvCount = 0;
 
         for (CMasternode& mn : vMasternodes) {
