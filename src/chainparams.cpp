@@ -125,8 +125,26 @@ bool CChainParams::HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t
     return (contextHeight - utxoFromBlockHeight >= nStakeMinDepth);
 }
 
+int CChainParams::FutureBlockTimeDrift(const int nHeight) const
+{
+    if (IsTimeProtocolV2(nHeight))
+        // PoS (TimeV2): 14 seconds
+        return TimeSlotLength() - 1;
 
+    // PoS (TimeV1): 3 minutes
+    // PoW: 2 hours
+    return (nHeight > LAST_POW_BLOCK()) ? nFutureTimeDriftPoS : nFutureTimeDriftPoW;
+}
 
+bool CChainParams::IsValidBlockTimeStamp(const int64_t nTime, const int nHeight) const
+{
+    // Before time protocol V2, blocks can have arbitrary timestamps
+    if (!IsTimeProtocolV2(nHeight))
+        return true;
+
+    // Time protocol v2 requires time in slots
+    return (nTime % TimeSlotLength()) == 0;
+}
 
 class CMainParams : public CChainParams
 {
@@ -188,7 +206,7 @@ public:
         nBlockStakeModifierlV2 = 1900000; //!> Roughly ????
         nBIP65ActivationHeight = 1900000;
         // Activation height for TimeProtocolV2, Blocks V7 and newMessageSignatures//
-        nBlockTimeProtocolV2 = 2147483647;
+        nBlockTimeProtocolV2 = 2000000;
         // Public coin spend enforcement
         nPublicZCSpends = 2147483647;
 
@@ -330,8 +348,17 @@ public:
         nEnforceNewSporkKey = 1521604800; //!> Sporks signed after Wednesday, March 21, 2018 4:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1522454400; //!> Reject old spork key after Saturday, March 31, 2018 12:00:00 AM GMT
         nBlockStakeModifierlV2 = 1000;
+        nBIP65ActivationHeight = 1900000;
+        // Activation height for TimeProtocolV2, Blocks V7 and newMessageSignatures
+        nBlockTimeProtocolV2 = 2000000
         // Public coin spend enforcement
         nPublicZCSpends = 2147483647;
+        // New P2P messages signatures
+        nBlockEnforceNewMessageSignatures = nBlockTimeProtocolV2;
+
+        // Blocks v7
+        nBlockLastAccumulatorCheckpoint = nPublicZCSpends - 10;
+        nBlockV7StartHeight = nBlockTimeProtocolV2;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
@@ -427,6 +454,13 @@ public:
         // Public coin spend enforcement
         nPublicZCSpends = 350;
 
+        // Blocks v7
+        nBlockV7StartHeight = nPublicZCSpends + 1;
+        nBlockLastAccumulatorCheckpoint = nPublicZCSpends - 10;
+
+        // New P2P messages signatures
+        nBlockEnforceNewMessageSignatures = 1;
+
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = -1;
 
@@ -448,6 +482,13 @@ public:
         fMineBlocksOnDemand = true;
         fSkipProofOfWorkCheck = true;
         fTestnetToBeDeprecatedFieldRPC = false;
+
+        /* Spork Key for RegTest:
+        WIF private key: 932HEevBSujW2ud7RfB1YF91AFygbBRQj3de3LyaCRqNzKKgWXi
+        private key hex: bd4960dcbd9e7f2223f24e7164ecb6f1fe96fc3a416f5d3a830ba5720c84b8ca
+        Address: yCvUVd72w7xpimf981m114FSFbmAmne7j9
+        */
+        strSporkPubKey = "043969b1b0e6f327de37f297a015d37e2235eaaeeb3933deecd8162c075cee0207b13537618bde640879606001a8136091c62ec272dd0133424a178704e6e75bb7";
     }
     const Checkpoints::CCheckpointData& Checkpoints() const
     {
