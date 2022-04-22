@@ -276,8 +276,8 @@ public:
 
         nPoolMaxTransactions = 3;
         nBudgetCycleBlocks = 43200; //!< Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
-        strSporkKey = "04300c047237e28c6361264532ca825f409babc06f49eadca1540ea15bba9b10710dfdaf1884029d0066381dc6dded497093c7722bde5992ddb76604882514155d";
-        strSporkKeyOld = "";
+        strSporkPubKey = "04300c047237e28c6361264532ca825f409babc06f49eadca1540ea15bba9b10710dfdaf1884029d0066381dc6dded497093c7722bde5992ddb76604882514155d";
+        strSporkPubKeyOld = "";
         strObfuscationPoolDummyAddress = "B4cgYuJAT66Jy4gXQWjJurU8k9wJ38YR2h";
         nStartMasternodePayments = 1531154631;
 
@@ -351,7 +351,7 @@ public:
         nBlockStakeModifierlV2 = 1000;
         nBIP65ActivationHeight = 1900000;
         // Activation height for TimeProtocolV2, Blocks V7 and newMessageSignatures
-        nBlockTimeProtocolV2 = 2000000
+        nBlockTimeProtocolV2 = 2000000;
         // Public coin spend enforcement
         nPublicZCSpends = 2147483647;
         // New P2P messages signatures
@@ -400,8 +400,8 @@ public:
 
         nPoolMaxTransactions = 2;
         nBudgetCycleBlocks = 144; //!< Ten cycles per day on testnet
-        strSporkKey = "04238a360e5b459484eb1990f1fbdcc162c577979f325b6c74569251bcdb2efe866351f32ae0755c864a3e85e50da3e242202e75dd11e8e98543a51957c4efa6d4";
-        //strSporkKeyOld = "";
+        strSporkPubKey = "04238a360e5b459484eb1990f1fbdcc162c577979f325b6c74569251bcdb2efe866351f32ae0755c864a3e85e50da3e242202e75dd11e8e98543a51957c4efa6d4";
+        //strSporkPubKeyOld = "";
         strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
         nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
