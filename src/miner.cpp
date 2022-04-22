@@ -780,7 +780,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         }
 
         LogPrintf("Running BLTGMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
-            ::GetSerializeSize(*pblock, PROTOCOL_VERSION));
+            ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //
         // Search
