@@ -238,7 +238,7 @@ void RPCExecutor::requestCommand(const QString& command)
     }
 }
 
-SettingsConsoleWidget::SettingsConsoleWidget(PIVXGUI* _window, QWidget *parent) :
+SettingsConsoleWidget::SettingsConsoleWidget(BLTGGUI* _window, QWidget *parent) :
     PWidget(_window,parent),
     ui(new Ui::SettingsConsoleWidget)
 {
@@ -268,6 +268,7 @@ SettingsConsoleWidget::SettingsConsoleWidget(PIVXGUI* _window, QWidget *parent) 
     ui->pushButtonOpenDebug->setText(tr("Open Debug File"));
     setCssBtnSecondary(ui->pushButtonOpenDebug);
     setCssBtnSecondary(ui->pushButtonCommandOptions);
+
     connect(ui->pushButtonOpenDebug, &QPushButton::clicked, [this](){
         if(!GUIUtil::openDebugLogfile()){
             inform(tr("Cannot open debug file.\nVerify that you have installed a predetermined text editor."));
@@ -359,6 +360,7 @@ void SettingsConsoleWidget::loadClientModel() {
         {
             wordList << commandList[i].c_str();
         }
+
         autoCompleter = new QCompleter(wordList, this);
         ui->lineEdit->setCompleter(autoCompleter);
 
@@ -411,7 +413,7 @@ void SettingsConsoleWidget::clear(){
     QString clsKey = "Ctrl-L";
 #endif
 
-    messageInternal(RPCExecutor::CMD_REPLY, (tr("Welcome to the BLTG RPC console.") + "<br>" +
+    message(CMD_REPLY, (tr("Welcome to the BLTG RPC console.") + "<br>" +
                         tr("Use up and down arrows to navigate history, and %1 to clear screen.").arg("<b>"+clsKey+"</b>") + "<br>" +
                         tr("Type <b>help</b> for an overview of available commands.") +
                         "<br><span class=\"secwarning\"><br>" +
