@@ -161,7 +161,7 @@ bool TransactionFilterProxy::isZcTx(int type) const {
 }
 
 bool TransactionFilterProxy::isStakeTx(int type) const {
-    return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZPIV);
+    return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZBLTG);
 }
 
 bool TransactionFilterProxy::isColdStake(int type) const {
