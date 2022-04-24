@@ -179,7 +179,7 @@ public:
         nTargetTimespan = 40 * 60;                      // 40 minutes
         nTimeSlotLength = 15;                           // 15 seconds
         nTargetTimespan_V2 = 2 * nTimeSlotLength * 60;  // 30 minutes
-        nMaturity = 100;
+        nMaturity = 10;
         nStakeMinAge = 60 * 60;                         // 1 hour
         nStakeMinDepth = 600;
         nFutureTimeDriftPoW = 7200;
@@ -195,10 +195,10 @@ public:
         //nModifierUpdateBlock = 0;
         nZerocoinStartHeight = 1900001; // Block # should start at
         //nZerocoinStartTime = 2147483647; // Tue, 19 Jan 2038 03:14:07 +0000
-        nBlockEnforceSerialRange = 1900000; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = 699750; //Trigger a recalculation of accumulators
-        //nBlockFirstFraudulent = 2147483647; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 699750; //Last valid accumulator checkpoint
+        nBlockEnforceSerialRange = 2147483647; //Enforce serial range starting this block
+        nBlockRecalculateAccumulators = 2147483647; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = 2147483647; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = 2147483647; //Last valid accumulator checkpoint
         //nBlockEnforceInvalidUTXO = 999999999; //Start enforcing the invalid UTXO's
         nInvalidAmountFiltered = 0*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
         nBlockZerocoinV2 = 1900002; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
@@ -215,9 +215,9 @@ public:
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockTimeProtocolV2;
 
-        // Blocks v7
+        // Blocks v5
         nBlockLastAccumulatorCheckpoint = 1900001;
-        nBlockV7StartHeight = nBlockTimeProtocolV2;
+        nBlockV5StartHeight = nBlockTimeProtocolV2;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 0;        // We werent subjected by this, therefore shouldn't be anything to recalculate
