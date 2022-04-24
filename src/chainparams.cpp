@@ -192,23 +192,23 @@ public:
         nLastPOWBlock = 300;
         nBltgBadBlockTime = 1540080487; // Skip nBit validation of Block 301
         nBltgBadBlocknBits = 0x1e00bc6b; // Skip nBit validation of Block 301
-//        nModifierUpdateBlock = 0;
-        nZerocoinStartHeight = 1900000; // Block # should start at
+        //nModifierUpdateBlock = 0;
+        nZerocoinStartHeight = 1900001; // Block # should start at
         //nZerocoinStartTime = 2147483647; // Tue, 19 Jan 2038 03:14:07 +0000
         nBlockEnforceSerialRange = 1900000; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = 2147483647; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = 2147483647; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 2147483647; //Last valid accumulator checkpoint
+        nBlockRecalculateAccumulators = 699750; //Trigger a recalculation of accumulators
+        //nBlockFirstFraudulent = 2147483647; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = 699750; //Last valid accumulator checkpoint
         //nBlockEnforceInvalidUTXO = 999999999; //Start enforcing the invalid UTXO's
         nInvalidAmountFiltered = 0*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
-        nBlockZerocoinV2 = 2147483647; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
+        nBlockZerocoinV2 = 1900002; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
         nBlockDoubleAccumulated = 2147483647;
         nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
         nBlockStakeModifierlV2 = 699750; //!> Roughly ????
         nBIP65ActivationHeight = 699750;
         // Activation height for TimeProtocolV2, Blocks V7 and newMessageSignatures//
-        nBlockTimeProtocolV2 = 699750;
+        nBlockTimeProtocolV2 = 1900000;
         // Public coin spend enforcement
         nPublicZCSpends = 2147483647;
 
@@ -216,7 +216,7 @@ public:
         nBlockEnforceNewMessageSignatures = nBlockTimeProtocolV2;
 
         // Blocks v7
-        nBlockLastAccumulatorCheckpoint = 1900000;
+        nBlockLastAccumulatorCheckpoint = 1900001;
         nBlockV7StartHeight = nBlockTimeProtocolV2;
 
         // Fake Serial Attack
