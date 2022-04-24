@@ -66,10 +66,11 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     	(600000, uint256("0x3f464393ad2e76350e3bf79de1380b14c074bfccc53fd5bded4bde8ec91377cb"))
     	(650000, uint256("0x196c3c94eb298b1e341b2b4f5cb0ed407f303f9394ab3598ab182453f50a4fea"))
     	(686116, uint256("0x11fac5d54cd40af34847fa49b050a833bade32b55f68e016a0564f364a347d5f"))
-    	(900000, uint256("3c7f5d43d904446796499a9dd450563e07e2525e1d09cb94a3619987f48835f3"))
-    	(1200000, uint256("6560732ccebb552ba2395e536df59ffaaf305e93ff135941d36a2dbc50dd0306"))
-    	(1500000, uint256("fe289b896a39a0144e8ecfbde8dfbea9c80d281ce97dda42d5a7e89fc86712bd"))
-    	(1700000, uint256("798a3c3bf6728ca12ef82a7bf8a2e801e7255353115f752e2b4e84212b989cb0"));
+	(699750, uint256("0xdba813591388d62b5bde57a7985058d4426cf27ff15541b8eee94d3b63a6731d"))
+    	(900000, uint256("0x3c7f5d43d904446796499a9dd450563e07e2525e1d09cb94a3619987f48835f3"))
+    	(1200000, uint256("0x6560732ccebb552ba2395e536df59ffaaf305e93ff135941d36a2dbc50dd0306"))
+    	(1500000, uint256("0xfe289b896a39a0144e8ecfbde8dfbea9c80d281ce97dda42d5a7e89fc86712bd"))
+    	(1700000, uint256("0x798a3c3bf6728ca12ef82a7bf8a2e801e7255353115f752e2b4e84212b989cb0"));
 
 
 static const Checkpoints::CCheckpointData data = {
@@ -204,10 +205,10 @@ public:
         nBlockDoubleAccumulated = 2147483647;
         nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
         nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
-        nBlockStakeModifierlV2 = 1900000; //!> Roughly ????
-        nBIP65ActivationHeight = 1900000;
+        nBlockStakeModifierlV2 = 699750; //!> Roughly ????
+        nBIP65ActivationHeight = 699750;
         // Activation height for TimeProtocolV2, Blocks V7 and newMessageSignatures//
-        nBlockTimeProtocolV2 = 2000000;
+        nBlockTimeProtocolV2 = 699750;
         // Public coin spend enforcement
         nPublicZCSpends = 2147483647;
 
