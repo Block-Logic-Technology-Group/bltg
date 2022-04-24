@@ -215,9 +215,9 @@ public:
         // New P2P messages signatures
         nBlockEnforceNewMessageSignatures = nBlockTimeProtocolV2;
 
-        // Blocks v5
+        // Blocks v7
         nBlockLastAccumulatorCheckpoint = 1900001;
-        nBlockV5StartHeight = nBlockTimeProtocolV2;
+        nBlockV7StartHeight = nBlockTimeProtocolV2;
 
         // Fake Serial Attack
         nFakeSerialBlockheightEnd = 0;        // We werent subjected by this, therefore shouldn't be anything to recalculate
